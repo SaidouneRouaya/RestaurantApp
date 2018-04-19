@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         menujourbouton =findViewById(R.id.menujour) as? Button
         commandebouton = findViewById(R.id.commande) as? Button
         reservebouton = findViewById(R.id.reserve) as? Button
-        // Instance of Uiil class
+        // Instance of Uiil class............. rouya
         val util = Util()
         // View Model instance
         val restaurantModel = ViewModelProviders.of(this).get(RestaurantModel::class.java)
