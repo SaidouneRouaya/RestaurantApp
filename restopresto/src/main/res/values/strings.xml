@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">RestoPresto</string>
+    <string name="bouton_infos">Infos</string>
+    <string name="bouton_commander">Commander</string>
+    <string name="bouton_reserver">Réserver</string>
+    <string name="bouton_menus">Menus</string>
+    <string-array name="restos">
+        <item>Le dey</item>
+        <item>Lalla Mina</item>
+        <item>El Djenina</item>
+        <item>Palmeraie</item>
+        <item>ElDjazair</item>
+    </string-array>
+    <string-array name="notes">
+        <item>★★★✩</item>
+        <item>★★★★</item>
+        <item>★✩✩✩</item>
+        <item>★★✩✩</item>
+        <item>★★★✩</item>
+    </string-array>
+    <string-array name="menujour">
+        <item>Salade mechouia\n
+        Chorba\n
+        Mhelbi\n
+        Thé
+        </item>
+        <item>Salade césar\n
+        Hrira\n
+        Makrout\n
+        Thé ou café
+        </item>
+        <item>Tadjine Jben\n
+        Chorba\n
+        Tamina\n
+        Thé ou café
+        </item>
+        <item>Salade mechouia\n
+        Tadjine zitoune\n
+        Fruits de saison\n
+        Thé, café ou jus nature
+        </item>
+        <item>Bourek\n
+        Chorba\n
+        Fruits de saison\n
+        Thé
+        </item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_restaurant">Restaurant</string>
+    <string name="titreliste">Liste des restaurants</string>
+    <string name="bouton_menujour">Menu du jour</string>
+</resources>
