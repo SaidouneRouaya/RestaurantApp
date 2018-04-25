@@ -45,10 +45,51 @@
         Thé
         </item>
     </string-array>
+    <string-array name="plats">
+        <item>Chakhchoukha speciale</item>
+        <item>Tajine Zitoune</item>
+        <item>Loubia</item>
+        <item>Zfitti</item>
+        <item>Kebda mcharmla</item>
+        <item>Chakhchoukha speciale</item>
+        <item>Tajine Zitoune</item>
+        <item>Loubia</item>
+        <item>Zfitti</item>
+        <item>Kebda mcharmla</item>
+    </string-array>
+    <string-array name="ingredients">
 
+        <item>Chakhchoukha, part de viande/poulet au choix </item>
+        <item>Olives, champignons, part de poulet/viande</item>
+        <item>Loubia, part de viande</item>
+        <item>Zfitti </item>
+        <item>Kebda à la sauce rouge</item>
+        <item>Chakhchoukha, part de viande/poulet au choix </item>
+        <item>Olives, champignons, part de poulet/viande</item>
+        <item>Loubia, part de viande</item>
+        <item>Zfitti </item>
+        <item>Kebda à la sauce rouge</item>
+    </string-array>
+    <string-array name="prix">
+        <item>600 </item>
+        <item>250</item>
+        <item>150</item>
+        <item>200</item>
+        <item>500</item>
+        <item>600 </item>
+        <item>250</item>
+        <item>150</item>
+        <item>200</item>
+        <item>500</item>
+    </string-array>
+    <string name="formule1">Entrée\n+\nPlat</string>
+    <string name="formule2">Plat\n+\nDessert</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_restaurant">Restaurant</string>
     <string name="titreliste">Liste des restaurants</string>
     <string name="bouton_menujour">Menu du jour</string>
+    <string name="title_activity_formule_binaire">FormuleBinaireActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 </resources>

@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#795548</color>
-    <color name="colorPrimaryDark">#5D4037</color>
-    <color name="colorAccent">#9E9E9E</color>
+    <color name="colorPrimary">#222</color>
+    <color name="colorPrimaryDark">#000</color>
+    <color name="colorAccent">#910202</color>
+    <color name="colorBouton">#fff</color>
     <!-- primary #f44336
     dark primary : #d32f2f
     accent #607D8B -->
 </resources>
+<!-- <?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ededed</color>
+    <color name="colorPrimaryDark">#9E9E9E</color>
+    <color name="colorAccent">#a40000</color>
+   primary #f44336
+    dark primary : #d32f2f
+    accent #607D8B
+    </resources>-->

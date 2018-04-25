@@ -28,7 +28,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <fragment
-        android:id="@+id/fragment3"
+        android:id="@+id/fragmentplat"
         android:name="example.android.com.myapplication.RestaurantFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"

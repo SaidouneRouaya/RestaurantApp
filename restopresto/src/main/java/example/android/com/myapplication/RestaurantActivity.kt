@@ -26,6 +26,9 @@ class RestaurantActivity : AppCompatActivity() {
         reserve.setOnClickListener({
             startActivity(intentFor<ReserverActivity>("nom" to nomsTab[i]))
         })
+        menus.setOnClickListener({
+            startActivity(intentFor<FormuleBinaireActivity>())
+        })
         util.displayDetail(this,resto)
     }
 }
