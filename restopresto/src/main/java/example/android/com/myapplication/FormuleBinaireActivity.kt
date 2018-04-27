@@ -17,6 +17,7 @@ import android.view.ViewGroup
 
 import kotlinx.android.synthetic.main.activity_formule_binaire.*
 import kotlinx.android.synthetic.main.fragment_formule_binaire.view.*
+import org.jetbrains.anko.intentFor
 
 class FormuleBinaireActivity : AppCompatActivity() {
     private val listFragment = listOf(EntreePlatFragment(),PlatDessertFragment())
@@ -38,8 +39,7 @@ class FormuleBinaireActivity : AppCompatActivity() {
         container.adapter = mSectionsPagerAdapter
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+            startActivity(intentFor<ReserverActivity>())
         }
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(Tab))
         Tab.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))

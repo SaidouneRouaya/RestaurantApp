@@ -23,7 +23,7 @@ class platAdapter (_ctx: Activity, _listplats:List<plat>): BaseAdapter() {
         var view = p0
         var viewHolder: ViewHolder
         if(view == null) {
-            view = LayoutInflater.from(ctx).inflate(R.layout.plat_layout,parent,false)
+            view = LayoutInflater.from(ctx).inflate(R.layout.plat_binaire_layout,parent,false)
             val nom = view?.findViewById<TextView>(R.id.nom_plat) as TextView
             val ingredients = view?.findViewById<TextView>(R.id.ingredients_plat) as TextView
             viewHolder= ViewHolder(nom, ingredients)
