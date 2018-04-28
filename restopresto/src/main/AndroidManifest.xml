@@ -3,7 +3,10 @@
     package="example.android.com.myapplication">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
-
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -28,8 +31,7 @@
         </activity>
         <activity
             android:name=".MenuJourActivity"
-            android:label="Menu du jour"
-            >
+            android:label="Menu du jour">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".RestaurantActivity" />
@@ -39,7 +41,11 @@
             android:label="Commande" />
         <activity
             android:name=".ReserverActivity"
-            android:label="Réservation" />
+            android:label="Réservation">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".RestaurantActivity" />
+        </activity>
         <activity
             android:name=".FormuleBinaireActivity"
             android:label="@string/title_activity_formule_binaire"
@@ -56,8 +62,23 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MenuDesMenusActivity" />
         </activity>
-        <activity android:name=".MenuDesMenusActivity"
-            android:label="Choix du menu"></activity>
+        <activity
+            android:name=".MenuDesMenusActivity"
+            android:label="Choix du menu">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".RestaurantActivity" />
+        </activity>
+        <activity android:name=".InfosActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".RestaurantActivity" />
+        </activity>
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="@string/bundle_key"/>
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

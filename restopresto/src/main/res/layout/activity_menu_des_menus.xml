@@ -14,6 +14,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/CV_menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,11 +51,14 @@
                     android:id="@+id/titre_MenuJour"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="11dp"
+                    android:layout_marginStart="11dp"
+                    android:layout_toEndOf="@+id/image_menu"
                     android:text="Menu du jour"
-                    android:textColor="@color/colorBouton" />
+                    android:textColor="@color/colorBouton"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/image_menu"
@@ -85,6 +89,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/CV_formuleBinaire"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -93,6 +98,7 @@
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <ImageView
                 android:id="@+id/image_Menu"
                 android:layout_width="0dp"
@@ -105,6 +111,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/menu_menu" />
+
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -124,7 +131,9 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="5dp"
                     android:text="Menus"
-                    android:textColor="@color/colorBouton" />
+                    android:textColor="@color/colorBouton"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
             </RelativeLayout>
 
 
@@ -136,10 +145,12 @@
         android:id="@+id/CV_formuleBinaire"
         android:layout_width="match_parent"
         android:layout_height="150dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -180,8 +191,10 @@
                     android:layout_marginBottom="5dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="5dp"
-                    android:text="Formule binaires"
-                    android:textColor="@color/colorBouton" />
+                    android:text="Formules binaires"
+                    android:textColor="@color/colorBouton"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
             </RelativeLayout>
 
 

@@ -10,6 +10,8 @@ class MenuDesMenusActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu_des_menus)
+        val ab = getSupportActionBar()
+        ab?.setDisplayHomeAsUpEnabled(true)
         val nom = intent.getStringExtra("nom")
         val i = intent.getIntExtra("pos",0)
         CV_MenuJour.setOnClickListener({

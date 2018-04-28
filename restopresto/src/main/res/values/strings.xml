@@ -190,8 +190,42 @@
         <item>1150</item>
         <item>1200</item>
     </string-array>
+    <string-array name="adresses">
+        <item>Rue Petites Provinces Hydra</item>
+        <item>54 Rue Didouche Mourad, Alger 16000</item>
+        <item>Rue Didouche Mourad Algiers 16000</item>
+        <item>Villa N° 308,Coopérative El-Moustakbel Route AIN ALLAH, Dely Ibrahim</item>
+        <item>Rue Emile ZOLA Algiers 16000</item>
+    </string-array>
 
-
+    <string-array name="emails">
+        <item>Ledey@gmail.com</item>
+        <item>LallaMina@gmail.com</item>
+        <item>ElDjenina@gmail.com</item>
+        <item>Palmeraie@gmail.com</item>
+        <item>ElDjazair@gmail.com</item>
+    </string-array>
+    <string-array name="numeros" >
+        <item>0556716623</item>
+        <item>0556716623</item>
+        <item>0556716623</item>
+        <item>0556716623</item>
+        <item>0556716623</item>
+    </string-array>
+    <string-array name="latitudes">
+        <item>36.740114</item>
+        <item>36.767676</item>
+        <item>36.761651</item>
+        <item>36.754076</item>
+        <item>36.772497</item>
+    </string-array>
+    <string-array name="longitudes">
+        <item>3.034452</item>
+        <item>3.052560</item>
+        <item>3.047574</item>
+        <item>2.994754</item>
+        <item>3.057716</item>
+    </string-array>
     <string name="formule1">Entrée\n+\nPlat</string>
     <string name="formule2">Plat\n+\nDessert</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -206,4 +240,5 @@
     <string name="menu_normal">Menu normal</string>
     <string name="menu_diabet">Diabétique</string>
     <string name="menu_vegetarien">Végétarien</string>
+    <string name="bundle_key">AIzaSyAt3VyyGP44oFn_5RCEjvVXbG93E8b80nM</string>
 </resources>

@@ -28,7 +28,8 @@ class ReserverActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reserver)
-
+        val ab = getSupportActionBar()
+        ab?.setDisplayHomeAsUpEnabled(true)
         //Récupération des références du layout 11201201
         textview_date = this.date_textview
         bouton_date = this.button_pick_date

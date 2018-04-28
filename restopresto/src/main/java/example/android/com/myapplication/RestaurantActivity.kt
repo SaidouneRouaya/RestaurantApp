@@ -3,10 +3,8 @@ package example.android.com.myapplication
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import example.android.com.myapplication.entity.Restaurant
-import kotlinx.android.synthetic.main.activity_restaurant.*
 import kotlinx.android.synthetic.main.fragment_restaurant.*
 import org.jetbrains.anko.intentFor
-import org.jetbrains.anko.toast
 
 class RestaurantActivity : AppCompatActivity() {
 
@@ -21,7 +19,7 @@ class RestaurantActivity : AppCompatActivity() {
         val nomsTab = resources.getStringArray(R.array.restos)
         val resto = Restaurant(nom = nomsTab[i], image = imagesTab[i])
         menujour.setOnClickListener({
-            startActivity(intentFor<MenuJourActivity>("pos" to i))
+            startActivity(intentFor<MenuJourActivity>("pos" to i, "nom" to nomsTab[i]))
         })
         commande.setOnClickListener({
             startActivity(intentFor<CommanderActivity>("pos" to i))
@@ -31,6 +29,9 @@ class RestaurantActivity : AppCompatActivity() {
         })
         menus.setOnClickListener({
             startActivity(intentFor<MenuDesMenusActivity>("nom" to nomsTab[i], "pos" to i))
+        })
+        infos.setOnClickListener({
+            startActivity(intentFor<InfosActivity>("pos" to i))
         })
         util.displayDetail(this,resto)
     }
