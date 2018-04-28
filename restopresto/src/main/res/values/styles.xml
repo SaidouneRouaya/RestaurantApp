@@ -22,10 +22,12 @@
         <item name="colorControlNormal">#fff</item>
         <item name="colorControlActivated">#fff</item>
     </style>
-    <style name="Picker" >
+
+    <style name="Picker">
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="colorControlNormal">#fff</item>
     </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

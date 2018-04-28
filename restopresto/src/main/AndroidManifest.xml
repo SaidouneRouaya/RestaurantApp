@@ -35,9 +35,17 @@
             android:name=".FormuleBinaireActivity"
             android:label="@string/title_activity_formule_binaire"
             android:theme="@style/AppTheme.NoActionBar">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".RestaurantActivity"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".RestaurantActivity" />
+        </activity>
+        <activity
+            android:name=".LesMenusActivity"
+            android:label="@string/title_activity_les_menus"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".RestaurantActivity" />
         </activity>
     </application>
 

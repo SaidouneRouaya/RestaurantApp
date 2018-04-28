@@ -63,6 +63,9 @@ class MainActivity : AppCompatActivity() {
                 reservebouton?.setOnClickListener({
                     startActivity(intentFor<ReserverActivity>("nom" to detailNomsTab[i]))
                 })
+                menus.setOnClickListener({
+                    startActivity(intentFor<LesMenusActivity>("nom" to detailNomsTab[i]))
+                })
             }
             else {
                 // send the position to the detail activity

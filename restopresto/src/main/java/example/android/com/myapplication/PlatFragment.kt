@@ -34,7 +34,7 @@ class PlatFragment : DialogFragment() {
     fun loadDataPlats():List<plat> {
         val nomTab = resources.getStringArray(R.array.platsbinaire)
         val ingredientsTab = resources.getStringArray(R.array.ingredientsbinaire)
-        val prixTab = resources.getStringArray(R.array.prix)
+        val prixTab = resources.getStringArray(R.array.prixbinaire)
         val list = mutableListOf<plat>()
         for (i in 0..nomTab.size-1) {
             list.add(plat(nom = nomTab[i], ingredients = ingredientsTab[i], prix = prixTab[i]))
