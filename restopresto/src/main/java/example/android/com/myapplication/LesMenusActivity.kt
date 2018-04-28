@@ -28,6 +28,7 @@ class LesMenusActivity : AppCompatActivity(){
         // Action Up
         val ab = getSupportActionBar()
         ab?.setDisplayHomeAsUpEnabled(true)
+        
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)

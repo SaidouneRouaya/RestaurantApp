@@ -21,10 +21,19 @@
         <activity
             android:name=".RestaurantActivity"
             android:label="@string/title_activity_restaurant"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity
             android:name=".MenuJourActivity"
-            android:label="Menu du jour" />
+            android:label="Menu du jour"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".RestaurantActivity" />
+        </activity>
         <activity
             android:name=".CommanderActivity"
             android:label="Commande" />
@@ -37,7 +46,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".RestaurantActivity" />
+                android:value=".MenuDesMenusActivity" />
         </activity>
         <activity
             android:name=".LesMenusActivity"
@@ -45,7 +54,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".RestaurantActivity" />
+                android:value=".MenuDesMenusActivity" />
         </activity>
         <activity android:name=".MenuDesMenusActivity"
             android:label="Choix du menu"></activity>

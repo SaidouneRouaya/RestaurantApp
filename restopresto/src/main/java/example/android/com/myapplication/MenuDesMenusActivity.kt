@@ -13,13 +13,13 @@ class MenuDesMenusActivity : AppCompatActivity() {
         val nom = intent.getStringExtra("nom")
         val i = intent.getIntExtra("pos",0)
         CV_MenuJour.setOnClickListener({
-            startActivity(intentFor<MenuJourActivity>("pos" to i))
+            startActivity(intentFor<MenuJourActivity>("pos" to i, "nom" to nom))
         })
         CV_menu.setOnClickListener({
             startActivity(intentFor<LesMenusActivity>("nom" to nom))
         })
         CV_formuleBinaire.setOnClickListener({
-            startActivity(intentFor<FormuleBinaireActivity>())
+            startActivity(intentFor<FormuleBinaireActivity>("nom" to nom))
         })
     }
 }

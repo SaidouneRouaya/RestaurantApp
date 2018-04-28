@@ -13,8 +13,8 @@ class RestaurantActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_restaurant)
-       /* val actionBar = actionBar
-        actionBar?.setDisplayHomeAsUpEnabled(true)*/
+        val ab = getSupportActionBar()
+        ab?.setDisplayHomeAsUpEnabled(true)
         val util = Util()
         val i = intent.getIntExtra("pos",0)
         val imagesTab = arrayOf(R.drawable.ledey, R.drawable.lallamina, R.drawable.eldjenina, R.drawable.lapalmeraie, R.drawable.eldjazair)

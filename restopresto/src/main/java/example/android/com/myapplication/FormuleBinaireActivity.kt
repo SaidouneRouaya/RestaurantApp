@@ -31,6 +31,7 @@ class FormuleBinaireActivity : AppCompatActivity() {
         //Action Up
         val ab = getSupportActionBar()
         ab?.setDisplayHomeAsUpEnabled(true)
+        val nom = intent.getStringExtra("nom")
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
@@ -39,7 +40,7 @@ class FormuleBinaireActivity : AppCompatActivity() {
         container.adapter = mSectionsPagerAdapter
 
         fab.setOnClickListener { view ->
-            startActivity(intentFor<ReserverActivity>())
+            startActivity(intentFor<ReserverActivity>("nom" to nom))
         }
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(Tab))
         Tab.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
