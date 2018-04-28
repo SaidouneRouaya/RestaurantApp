@@ -6,10 +6,13 @@ import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_entree_plat.*
+import kotlinx.android.synthetic.main.fragment_entree_plat.view.*
+import org.jetbrains.anko.toast
 
 
 class EntreePlatFragment : Fragment(/*var _ctxt: Activity*/) {
@@ -18,18 +21,16 @@ class EntreePlatFragment : Fragment(/*var _ctxt: Activity*/) {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_entree_plat, container, false)
-        CV_entree?.setOnClickListener({
-            showEntreeDialog()
+        view.CV_plat?.setOnClickListener({
+            val newFragment:PlatFragment = PlatFragment().newInstance()
+            newFragment.show(activity?.fragmentManager,"dialog")
+        })
+        view.CV_entree?.setOnClickListener({
+            val newFragment:EntreeFragment = EntreeFragment().newInstance()
+            newFragment.show(activity?.fragmentManager,"dialog")
         })
         return view
     }
-    fun showEntreeDialog() {
-        val dialogBuilder = AlertDialog.Builder(context)
-        val inflater = this.layoutInflater
-        val dialogView = inflater.inflate(R.layout.fragment_plat, null)
-        dialogBuilder.setView(dialogView)
-        val b = dialogBuilder.create()
-        b.show()
-    }
+
 
 }// Required empty public constructor

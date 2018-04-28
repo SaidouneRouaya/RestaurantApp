@@ -45,30 +45,21 @@
         Thé
         </item>
     </string-array>
-    <string-array name="plats">
-        <item>Chakhchoukha speciale</item>
-        <item>Tajine Zitoune</item>
-        <item>Loubia</item>
-        <item>Zfitti</item>
-        <item>Kebda mcharmla</item>
+    <string-array name="platsbinaire">
         <item>Chakhchoukha speciale</item>
         <item>Tajine Zitoune</item>
         <item>Loubia</item>
         <item>Zfitti</item>
         <item>Kebda mcharmla</item>
     </string-array>
-    <string-array name="ingredients">
+    <string-array name="ingredientsbinaire">
 
         <item>Chakhchoukha, part de viande/poulet au choix </item>
         <item>Olives, champignons, part de poulet/viande</item>
         <item>Loubia, part de viande</item>
         <item>Zfitti </item>
         <item>Kebda à la sauce rouge</item>
-        <item>Chakhchoukha, part de viande/poulet au choix </item>
-        <item>Olives, champignons, part de poulet/viande</item>
-        <item>Loubia, part de viande</item>
-        <item>Zfitti </item>
-        <item>Kebda à la sauce rouge</item>
+
     </string-array>
     <string-array name="prix">
         <item>600 </item>
@@ -76,11 +67,34 @@
         <item>150</item>
         <item>200</item>
         <item>500</item>
-        <item>600 </item>
-        <item>250</item>
-        <item>150</item>
-        <item>200</item>
-        <item>500</item>
+    </string-array>
+    <string-array name="entreesbinaire">
+        <item>Salade de piment</item>
+        <item>Bourek</item>
+        <item>Salade variée</item>
+        <item>Hors d\'oeuvre</item>
+        <item>Salade de riz</item>
+    </string-array>
+    <string-array name="ingredientsentreebinaire">
+        <item>Piment mechoui, Huile d\'olive</item>
+        <item>Dioul, Viande hachée (ou poulet),Fromage</item>
+        <item>Salade verte, Tomate, Carottes, Olives</item>
+        <item>Légumes cuits à la vapeur, mayonnaise</item>
+        <item>Riz, légumes, assaisonnement</item>
+    </string-array>
+    <string-array name="dessertsbinaire">
+        <item>Mhelbi</item>
+        <item>Makrout</item>
+        <item>Tamina</item>
+        <item>Glace</item>
+        <item>Fruits</item>
+    </string-array>
+    <string-array name="ingredientsdessertbinaire">
+        <item>Riz, lait, sucre, vanille</item>
+        <item>Gateaux à la semoule et aux dattes enrobés de miel</item>
+        <item>Semoule torréfié accomodé de miel</item>
+        <item>Boules de glace au choix (selon la disponibilité)</item>
+        <item>Fruits de saison</item>
     </string-array>
     <string name="formule1">Entrée\n+\nPlat</string>
     <string name="formule2">Plat\n+\nDessert</string>
@@ -89,7 +103,7 @@
     <string name="title_activity_restaurant">Restaurant</string>
     <string name="titreliste">Liste des restaurants</string>
     <string name="bouton_menujour">Menu du jour</string>
-    <string name="title_activity_formule_binaire">FormuleBinaireActivity</string>
+    <string name="title_activity_formule_binaire">Formules Binaires</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
 </resources>

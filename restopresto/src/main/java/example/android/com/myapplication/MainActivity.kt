@@ -36,6 +36,15 @@ class MainActivity : AppCompatActivity() {
 
         if (isTwoPane()) {
             util.displayDetail(this,restaurantModel.restaurant)
+            menujourbouton?.setOnClickListener({
+                startActivity(intentFor<MenuJourActivity>("pos" to 0))
+            })
+            commandebouton?.setOnClickListener({
+                startActivity(intentFor<CommanderActivity>("pos" to 0))
+            })
+            reservebouton?.setOnClickListener({
+                startActivity(intentFor<ReserverActivity>("nom" to detailNomsTab[0]))
+            })
         }
 
         // Listner pour les éléments de la liste

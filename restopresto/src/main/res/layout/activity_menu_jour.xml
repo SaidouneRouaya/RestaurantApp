@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/restaurant_floue"
+
     >
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -13,28 +13,11 @@
     android:layout_height="match_parent"
     tools:context="example.android.com.myapplication.MenuJourActivity">
 
-    <TextView
-        android:id="@+id/prix"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="212dp"
-        android:background="@drawable/text_view_circle"
-        android:elevation="10dp"
-        android:gravity="center"
-        android:text="1500DA"
-        android:textColor="#fff"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/card_view1" />
 
     <android.support.v7.widget.CardView
         android:id="@+id/card_view1"
         android:layout_width="0dp"
-        android:layout_height="240dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
@@ -54,12 +37,12 @@
                 android:id="@+id/nom_resto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
-                android:elevation="4dp"
+                android:background="#eee"
+                android:elevation="5dp"
                 android:padding="8dp"
                 android:text="Lundi 2 avril 2018"
                 android:textAlignment="center"
-                android:textColor="#fff"
+                android:textColor="#000"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -68,23 +51,23 @@
             <TextView
                 android:id="@+id/menuj"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:lineSpacingExtra="10sp"
                 android:padding="8dp"
                 android:text="TextView"
                 android:textAlignment="center"
-                android:textColor="#000"
+                android:textColor="@color/colorBouton"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                app:layout_constraintTop_toBottomOf="@+id/textView6"
+                android:background="@color/colorPrimary"/>
 
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="#eee"
+                android:background="#fff"
                 android:elevation="4dp"
                 android:padding="8dp"
                 android:text="Le Chef vous propose aujourd'hui :"
@@ -95,17 +78,33 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/nom_resto" />
 
+            <TextView
+                android:id="@+id/prix"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:background="@color/colorAccent"
+                android:elevation="10dp"
+                android:gravity="center"
+                android:text="1500DA"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/menuj"
+                app:layout_constraintVertical_bias="1.0" />
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
 
     <Button
         android:id="@+id/reserve"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/bouton_arrondi"
         android:elevation="10dp"
         android:padding="4dp"

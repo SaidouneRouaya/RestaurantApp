@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#000</color>
     <color name="colorAccent">#910202</color>
     <color name="colorBouton">#fff</color>
+    <color name="colorEntete">#eee</color>
+    <color name="colorTextEntete">#000</color>
     <!-- primary #f44336
     dark primary : #d32f2f
     accent #607D8B -->

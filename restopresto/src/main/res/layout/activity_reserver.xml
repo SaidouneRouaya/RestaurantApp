@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="example.android.com.myapplication.ReserverActivity"
-    android:background="@drawable/restaurant_floue">
+    >
 
     <android.support.v7.widget.CardView
         android:id="@+id/card_view1"
@@ -18,24 +18,25 @@
         app:cardCornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
             >
 
             <TextView
                 android:id="@+id/nom_resto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
+                android:background="@color/colorEntete"
                 android:elevation="4dp"
                 android:padding="8dp"
                 android:text="nom resto"
                 android:textAlignment="center"
-                android:textColor="#fff"
+                android:textColor="@color/colorTextEntete"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -51,12 +52,15 @@
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nom_resto">
+                app:layout_constraintTop_toBottomOf="@+id/nom_resto"
+                android:theme="@style/TextLabel"
+                >
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nom et prénom" />
+                    android:hint="Nom et prénom"
+                    android:textColor="@color/colorBouton"/>
             </android.support.design.widget.TextInputLayout>
 
             <TextView
@@ -66,6 +70,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:text="--/--/----"
+                android:textColor="@color/colorBouton"
                 android:textAlignment="center"
                 android:textSize="18sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/button_pick_date"
@@ -102,6 +107,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:text="--:--"
+                android:textColor="@color/colorBouton"
                 android:textSize="18sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/button_pick_time"
                 app:layout_constraintEnd_toStartOf="@+id/button_pick_time"
@@ -116,6 +122,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="Date de la réservation :"
+                android:textColor="@color/colorBouton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.1"
                 app:layout_constraintStart_toStartOf="parent"
@@ -129,6 +136,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="Heure de la réservation :"
+                android:textColor="@color/colorBouton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.1"
                 app:layout_constraintStart_toStartOf="parent"
@@ -138,12 +146,12 @@
                 android:id="@+id/numberPicker"
                 android:layout_width="75dp"
                 android:layout_height="100dp"
-                android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/colorBouton"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button_pick_time" />
+                app:layout_constraintTop_toBottomOf="@+id/button_pick_time"
+                android:theme="@style/Picker" />
 
             <TextView
                 android:id="@+id/textView7"
@@ -154,60 +162,48 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="A combien serez vous ?"
+                android:textColor="@color/colorBouton"
                 app:layout_constraintBottom_toBottomOf="@+id/numberPicker"
                 app:layout_constraintEnd_toStartOf="@+id/numberPicker"
                 app:layout_constraintHorizontal_bias="0.1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/numberPicker" />
+                app:layout_constraintTop_toTopOf="@+id/numberPicker"
+
+                />
+
+            <Button
+                android:id="@+id/valider"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bouton_arrondi"
+                android:text="Valider"
+                android:textColor="@color/colorBouton"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/appel"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/appel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="4dp"
+
+                android:background="@drawable/bouton_arrondi"
+                android:text="Appelez directement"
+                android:textColor="@color/colorBouton"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/numberPicker" />
 
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
 
-    <Button
-        android:id="@+id/valider"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="350dp"
-        android:background="@drawable/bouton_arrondi"
-        android:text="Valider"
-        android:textColor="@color/colorBouton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/card_view1" />
-
-    <Button
-        android:id="@+id/appel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/bouton_arrondi"
-        android:drawableTop="@drawable/ic_call_white_24dp"
-        android:text="Appelez directement"
-        android:textColor="@color/colorBouton"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Ou bien "
-        android:textColor="#000"
-        android:textColorHighlight="@color/colorBouton"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/valider" />
-
 </android.support.constraint.ConstraintLayout>
+    <!-- android:drawableTop="@drawable/ic_call_white_24dp"
+    android:background="@drawable/restaurant_floue"-->

@@ -14,21 +14,33 @@
 
     >
 
-    <!-- TODO: Update blank fragment layout -->
+
+    <ImageView
+        android:id="@+id/imagedetail"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/nomdetail"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:background="#8888"
+        android:fontFamily="casual"
+        android:paddingLeft="10dp"
         android:text="NomResto"
-        android:textColor="#000"
+        android:textColor="@color/colorBouton"
         android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imagedetail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imagedetail" />
+        app:layout_constraintTop_toTopOf="@+id/imagedetail"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/menus"
@@ -37,9 +49,9 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/bouton_arrondi"
-        android:drawableTop="@drawable/ic_import_contacts_white_24dp"
-        android:textColor="@color/colorBouton"
+        android:background="@drawable/bouton_arrondi_blanc"
+        android:drawableTop="@drawable/ic_import_contacts_black_48dp"
+        android:textColor="@color/colorAccent"
         android:elevation="10dp"
         android:text="@string/bouton_menus"
         android:textAppearance="@android:style/TextAppearance.Holo.Widget.Button"
@@ -57,9 +69,9 @@
         android:layout_marginEnd="4dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/bouton_arrondi"
-        android:drawableTop="@drawable/ic_today_white_24dp"
-        android:textColor="@color/colorBouton"
+        android:background="@drawable/bouton_arrondi_blanc"
+        android:drawableTop="@drawable/ic_today_black_48dp"
+        android:textColor="@color/colorAccent"
         android:elevation="10dp"
         android:text="@string/bouton_reserver"
         android:textAppearance="@android:style/TextAppearance.Holo.Widget.Button"
@@ -78,9 +90,9 @@
         android:layout_marginEnd="4dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/bouton_arrondi"
-        android:drawableTop="@drawable/ic_info_outline_white_24dp"
-        android:textColor="@color/colorBouton"
+        android:background="@drawable/bouton_arrondi_blanc"
+        android:drawableTop="@drawable/ic_info_outline_black_48dp"
+        android:textColor="@color/colorAccent"
         android:elevation="10dp"
         android:text="@string/bouton_infos"
         android:textAppearance="@android:style/TextAppearance.Holo.Widget.Button"
@@ -97,9 +109,9 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/bouton_arrondi"
-        android:drawableTop="@drawable/ic_call_white_24dp"
-        android:textColor="@color/colorBouton"
+        android:background="@drawable/bouton_arrondi_blanc"
+        android:drawableTop="@drawable/ic_phone_in_talk_black_48dp"
+        android:textColor="@color/colorAccent"
         android:elevation="10dp"
         android:text="@string/bouton_commander"
         android:textAppearance="@android:style/TextAppearance.Holo.Widget.Button"
@@ -111,15 +123,7 @@
         app:layout_constraintTop_toBottomOf="@+id/menus"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
-        android:id="@+id/imagedetail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/ic_launcher"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
     <Button
         android:id="@+id/menujour"
@@ -127,13 +131,13 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/bouton_arrondi"
         android:drawableTop="@drawable/ic_restaurant_menu_white_24dp"
-        android:textColor="@color/colorBouton"
         android:elevation="10dp"
         android:text="@string/bouton_menujour"
         android:textAppearance="@android:style/TextAppearance.Holo.Widget.Button"
+        android:textColor="@color/colorBouton"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

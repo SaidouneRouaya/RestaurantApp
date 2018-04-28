@@ -1,5 +1,8 @@
 package example.android.com.myapplication
 
+import android.app.AlertDialog
+import android.app.Dialog
+import android.app.DialogFragment
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
@@ -11,9 +14,15 @@ import android.widget.ListView
 import example.android.com.myapplication.entity.plat
 
 
-class PlatFragment : Fragment() {
+class PlatFragment : DialogFragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+    fun newInstance(): PlatFragment {
+        val frag = PlatFragment()
+        val args = Bundle()
+        frag.setArguments(args)
+        return frag
+    }
+  /*  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_plat, container, false)
@@ -21,16 +30,25 @@ class PlatFragment : Fragment() {
         val platVegetarienAdapter = platAdapter(activity!!, loadDataVegetarien())
         listView.adapter = platVegetarienAdapter
         return view
-    }
-    fun loadDataVegetarien():List<plat> {
-        val nomTab = resources.getStringArray(R.array.plats)
-        val ingredientsTab = resources.getStringArray(R.array.ingredients)
+    }*/
+    fun loadDataPlats():List<plat> {
+        val nomTab = resources.getStringArray(R.array.platsbinaire)
+        val ingredientsTab = resources.getStringArray(R.array.ingredientsbinaire)
         val prixTab = resources.getStringArray(R.array.prix)
         val list = mutableListOf<plat>()
         for (i in 0..nomTab.size-1) {
             list.add(plat(nom = nomTab[i], ingredients = ingredientsTab[i], prix = prixTab[i]))
         }
         return  list
+    }
+
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val view = activity.layoutInflater.inflate(R.layout.fragment_plat, null)
+        val listView= view.findViewById<ListView>(R.id.list_plat_fb)
+        val platBinaireAdapter = platAdapter(activity!!, loadDataPlats())
+        listView.adapter = platBinaireAdapter
+        return AlertDialog.Builder(activity).setTitle("Plats").setView(view).create()
     }
 
 }// Required empty public constructor

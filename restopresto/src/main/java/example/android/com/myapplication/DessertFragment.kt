@@ -13,16 +13,18 @@ import android.view.ViewGroup
 import android.widget.ListView
 import example.android.com.myapplication.entity.plat
 
-class EntreeFragment : DialogFragment() {
-    fun newInstance(): EntreeFragment {
-        val frag = EntreeFragment()
+
+class DessertFragment : DialogFragment() {
+
+    fun newInstance(): DessertFragment {
+        val frag = DessertFragment()
         val args = Bundle()
         frag.setArguments(args)
         return frag
     }
-    fun loadDataentrees():List<plat> {
-        val nomTab = resources.getStringArray(R.array.entreesbinaire)
-        val ingredientsTab = resources.getStringArray(R.array.ingredientsentreebinaire)
+    fun loadDatadesserts():List<plat> {
+        val nomTab = resources.getStringArray(R.array.dessertsbinaire)
+        val ingredientsTab = resources.getStringArray(R.array.ingredientsdessertbinaire)
         val prixTab = resources.getStringArray(R.array.prix)
         val list = mutableListOf<plat>()
         for (i in 0..nomTab.size-1) {
@@ -34,8 +36,8 @@ class EntreeFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val view = activity.layoutInflater.inflate(R.layout.fragment_plat, null)
         val listView= view.findViewById<ListView>(R.id.list_plat_fb)
-        val entreeBinaireAdapter = platAdapter(activity!!, loadDataentrees())
-        listView.adapter = entreeBinaireAdapter
-        return AlertDialog.Builder(activity).setTitle("Entrées").setView(view).create()
+        val dessertBinaireAdapter = platAdapter(activity!!, loadDatadesserts())
+        listView.adapter = dessertBinaireAdapter
+        return AlertDialog.Builder(activity).setTitle("Desserts").setView(view).create()
     }
 }// Required empty public constructor
