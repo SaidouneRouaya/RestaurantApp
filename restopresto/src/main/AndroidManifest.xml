@@ -47,6 +47,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".RestaurantActivity" />
         </activity>
+        <activity android:name=".MenuDesMenusActivity"
+            android:label="Choix du menu"></activity>
     </application>
 
 </manifest>

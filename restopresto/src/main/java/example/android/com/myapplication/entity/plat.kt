@@ -1,4 +1,4 @@
-package com.restopresto.er_sa.restopresto.entities
+package example.android.com.myapplication.entity
 
 /**
  * Created by er_sa on 4/22/2018.

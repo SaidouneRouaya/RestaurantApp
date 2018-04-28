@@ -26,7 +26,8 @@ class platMenuAdapter (_ctx: Activity, _listplats:List<plat>): BaseAdapter() {
             view = LayoutInflater.from(ctx).inflate(R.layout.plat_layout,parent,false)
             val nom = view?.findViewById<TextView>(R.id.nom_plat) as TextView
             val ingredients = view?.findViewById<TextView>(R.id.ingredients_plat) as TextView
-            viewHolder= ViewHolder(nom, ingredients)
+            val prix = view?.findViewById<TextView>(R.id.prix) as TextView
+            viewHolder= ViewHolder(nom, ingredients,prix)
             view.setTag(viewHolder)
         }
         else {
@@ -35,7 +36,8 @@ class platMenuAdapter (_ctx: Activity, _listplats:List<plat>): BaseAdapter() {
 
         viewHolder.nom.setText(listplats.get(position).nom)
         viewHolder.ingredients.setText(listplats.get(position).ingredients)
+        viewHolder.prix.setText(" ${listplats.get(position).prix} DZD")
         return view
     }
-    private data class ViewHolder(var nom: TextView, var ingredients: TextView)
+    private data class ViewHolder(var nom: TextView, var ingredients: TextView, var prix: TextView)
 }
