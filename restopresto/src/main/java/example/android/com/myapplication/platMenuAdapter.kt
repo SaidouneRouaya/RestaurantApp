@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
-import example.android.com.myapplication.entity.plat
+import example.android.com.myapplication.entities.plat
 
 /**
  * Created by start on 28/04/2018.
@@ -27,7 +27,8 @@ class platMenuAdapter (_ctx: Activity, _listplats:List<plat>): BaseAdapter() {
             val nom = view?.findViewById<TextView>(R.id.nom_plat) as TextView
             val ingredients = view?.findViewById<TextView>(R.id.ingredients_plat) as TextView
             val prix = view?.findViewById<TextView>(R.id.prix) as TextView
-            viewHolder= ViewHolder(nom, ingredients,prix)
+            val nb =view?.findViewById<TextView>(R.id.nbCmd)  as TextView
+            viewHolder= ViewHolder(nom, ingredients,prix,nb)
             view.setTag(viewHolder)
         }
         else {
@@ -37,7 +38,9 @@ class platMenuAdapter (_ctx: Activity, _listplats:List<plat>): BaseAdapter() {
         viewHolder.nom.setText(listplats.get(position).nom)
         viewHolder.ingredients.setText(listplats.get(position).ingredients)
         viewHolder.prix.setText(" ${listplats.get(position).prix} DZD")
-        return view
+        viewHolder.nb.setText("0")
+        viewHolder.nb.visibility = View.INVISIBLE
+   return view
     }
-    private data class ViewHolder(var nom: TextView, var ingredients: TextView, var prix: TextView)
+    private data class ViewHolder(var nom: TextView, var ingredients: TextView, var prix: TextView, var nb: TextView)
 }

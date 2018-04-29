@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
-import example.android.com.myapplication.entity.Restaurant
+import example.android.com.myapplication.entities.Restaurant
 
 /**
  * Created by hakim on 3/3/18.
@@ -43,8 +43,6 @@ class RestaurantAdapter(_ctx:Context, _listRestaurants:List<Restaurant>):BaseAda
         viewHolder.note.setText("Note : "+listRestaurants.get(position).note)
 
         return view
-
-
     }
 
     private data class ViewHolder(var image: ImageView, var nom: TextView, var note: TextView)

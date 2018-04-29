@@ -1,7 +1,7 @@
 package example.android.com.myapplication
 
 import android.app.Activity
-import example.android.com.myapplication.entity.Restaurant
+import example.android.com.myapplication.entities.Restaurant
 import kotlinx.android.synthetic.main.activity_infos.*
 import kotlinx.android.synthetic.main.fragment_restaurant.*
 

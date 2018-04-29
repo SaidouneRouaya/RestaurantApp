@@ -4,6 +4,9 @@
     <string name="bouton_commander">Commander</string>
     <string name="bouton_reserver">Réserver</string>
     <string name="bouton_menus">Menus</string>
+    <string name="valider">Valider</string>
+    <string name="annuler">Annuler</string>
+
     <string-array name="restos">
         <item>Le dey</item>
         <item>Lalla Mina</item>
@@ -205,7 +208,7 @@
         <item>Palmeraie@gmail.com</item>
         <item>ElDjazair@gmail.com</item>
     </string-array>
-    <string-array name="numeros" >
+    <string-array name="numeros">
         <item>0556716623</item>
         <item>0556716623</item>
         <item>0556716623</item>

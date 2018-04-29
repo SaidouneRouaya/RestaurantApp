@@ -2,7 +2,6 @@ package example.android.com.myapplication
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import example.android.com.myapplication.entity.Restaurant
 import kotlinx.android.synthetic.main.activity_menu_jour.*
 import org.jetbrains.anko.intentFor
 

@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
-import example.android.com.myapplication.entity.plat
+import example.android.com.myapplication.entities.plat
 
 /**
  * Created by er_sa on 4/22/2018.

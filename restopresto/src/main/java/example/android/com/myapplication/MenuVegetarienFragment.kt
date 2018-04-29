@@ -5,7 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
-import example.android.com.myapplication.entity.plat
+import android.widget.TextView
+import example.android.com.myapplication.entities.plat
 
 /**
  * Created by er_sa on 4/22/2018.
@@ -20,6 +21,17 @@ class MenuVegetarienFragment : Fragment(){
         val listView= view.findViewById<ListView>(R.id.list_plats_vegetariens)
         val platVegetarienAdapter = platMenuAdapter(activity!!, loadDataVegetarien())
         listView.adapter = platVegetarienAdapter
+        listView.setOnItemClickListener({adapterView, view, i, l ->
+            var viewHolder:ViewHolder
+            val num = view?.findViewById<TextView>(R.id.nbCmd) as TextView
+
+            if(num.text.toString().toInt()<20)
+            {                num.text= (num.text.toString().toInt()+1).toString()}
+            else num.text="20"
+            viewHolder=ViewHolder(num)
+            viewHolder.num.visibility = View.VISIBLE
+            view.setTag(viewHolder)
+        })
         return view
     }
     fun loadDataVegetarien():List<plat> {
@@ -31,6 +43,8 @@ class MenuVegetarienFragment : Fragment(){
             list.add(plat(nom = nomTab[i], ingredients = ingredientsTab[i], prix = prixTab[i]))
         }
         return  list
+    }
+    private data class ViewHolder(var num: TextView){
     }
 
 }

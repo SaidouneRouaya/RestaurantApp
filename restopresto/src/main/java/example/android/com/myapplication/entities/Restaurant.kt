@@ -1,4 +1,4 @@
-package example.android.com.myapplication.entity
+package example.android.com.myapplication.entities
 
 /**
  * Created by hakim on 3/3/18.

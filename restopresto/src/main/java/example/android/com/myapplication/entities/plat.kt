@@ -1,4 +1,4 @@
-package example.android.com.myapplication.entity
+package example.android.com.myapplication.entities
 
 /**
  * Created by er_sa on 4/22/2018.
@@ -6,6 +6,7 @@ package example.android.com.myapplication.entity
 data class plat (
         var nom:String,
         var ingredients:String,
-        var prix:String)
+        var prix:String,
+        var nbCmd:String="0")
 {
 }

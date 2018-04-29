@@ -9,7 +9,7 @@ import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import kotlinx.android.synthetic.main.activity_infos.*
 import com.google.android.gms.maps.model.MarkerOptions
-import example.android.com.myapplication.entity.Restaurant
+import example.android.com.myapplication.entities.Restaurant
 import org.jetbrains.anko.makeCall
 
 

@@ -6,7 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
-import example.android.com.myapplication.entity.plat
+import android.widget.TextView
+import example.android.com.myapplication.entities.plat
 
 /**
  * Created by er_sa on 4/22/2018.
@@ -21,6 +22,17 @@ class MenuNormalFragment : Fragment() {
         val listView= view.findViewById<ListView>(R.id.list_plats_normaux)
         val platNormalAdapter = platMenuAdapter(activity!!, loadDataNormal())
         listView.adapter = platNormalAdapter
+        listView.setOnItemClickListener({adapterView, view, i, l ->
+            var viewHolder: ViewHolder
+            val num = view?.findViewById<TextView>(R.id.nbCmd) as TextView
+
+            if(num.text.toString().toInt()<20)
+            {                num.text= (num.text.toString().toInt()+1).toString()}
+            else num.text="20"
+            viewHolder= ViewHolder(num)
+            viewHolder.num.visibility = View.VISIBLE
+            view.setTag(viewHolder)
+        })
         return view
     }
     fun loadDataNormal():List<plat> {
@@ -33,4 +45,7 @@ class MenuNormalFragment : Fragment() {
         }
         return  list
     }
+    private data class ViewHolder(var num: TextView){
+    }
+
 }

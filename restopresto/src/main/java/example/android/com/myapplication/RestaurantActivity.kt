@@ -2,7 +2,7 @@ package example.android.com.myapplication
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import example.android.com.myapplication.entity.Restaurant
+import example.android.com.myapplication.entities.Restaurant
 import kotlinx.android.synthetic.main.fragment_restaurant.*
 import org.jetbrains.anko.intentFor
 
