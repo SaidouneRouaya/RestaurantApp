@@ -5,8 +5,9 @@ package example.android.com.RestoPresto.entities
  */
 data class plat (
         var nom:String,
-        var ingredients:String,
+        var ingredients:String="",
         var prix:String,
         var nbCmd:String="0")
 {
+
 }

@@ -38,7 +38,8 @@
         </activity>
         <activity
             android:name="example.android.com.RestoPresto.CommanderActivity"
-            android:label="Commande" />
+            android:label="Commande"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="example.android.com.RestoPresto.ReserverActivity"
             android:label="Réservation">
@@ -57,14 +58,16 @@
         <activity
             android:name="example.android.com.RestoPresto.LesMenusActivity"
             android:label="@string/title_activity_les_menus"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="example.android.com.RestoPresto.MenuDesMenusActivity" />
         </activity>
         <activity
             android:name="example.android.com.RestoPresto.MenuDesMenusActivity"
-            android:label="Choix du menu">
+            android:label="Choix du menu"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="example.android.com.RestoPresto.RestaurantActivity" />

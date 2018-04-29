@@ -112,11 +112,7 @@
         <item>Loubia</item>
         <item>Zfitti</item>
         <item>Kebda mcharmla</item>
-        <item>Chakhchoukha speciale</item>
-        <item>Tajine Zitoune</item>
-        <item>Loubia</item>
-        <item>Zfitti</item>
-        <item>Kebda mcharmla</item>
+
     </string-array>
     <string-array name="ingredients">
 
@@ -130,18 +126,9 @@
         <item>Loubia, part de viande</item>
         <item>Zfitti </item>
         <item>Kebda à la sauce rouge</item>
-        <item>Chakhchoukha, part de viande/poulet au choix </item>
-        <item>Olives, champignons, part de poulet/viande</item>
-        <item>Loubia, part de viande</item>
-        <item>Zfitti </item>
-        <item>Kebda à la sauce rouge</item>
+
     </string-array>
     <string-array name="prix">
-        <item>600 </item>
-        <item>250</item>
-        <item>150</item>
-        <item>200</item>
-        <item>500</item>
         <item>600 </item>
         <item>250</item>
         <item>150</item>
@@ -229,6 +216,23 @@
         <item>2.994754</item>
         <item>3.057716</item>
     </string-array>
+    <string-array name="plat_cmd">
+        <item>Chakhchoukha speciale</item>
+        <item>Tajine Zitoune</item>
+        <item>Loubia</item>
+    </string-array>
+    <string-array name="prix_cmd">
+        <item>600 </item>
+        <item>250</item>
+        <item>500</item>
+    </string-array>
+    <string-array name="nb_cmd">
+        <item>2</item>
+        <item>1</item>
+        <item>4</item>
+    </string-array>
+    <string-array name="facebooks" />
+    <string-array name="twitters" />
     <string name="formule1">Entrée\n+\nPlat</string>
     <string name="formule2">Plat\n+\nDessert</string>
     <!-- TODO: Remove or change this placeholder text -->

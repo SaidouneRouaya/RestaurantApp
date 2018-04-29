@@ -18,12 +18,16 @@ class MainActivity : AppCompatActivity() {
     var menujourbouton: Button? = null
     var commandebouton: Button? = null
     var reservebouton:Button? = null
+    var infosbouton: Button? = null
+    var menubouton: Button? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         menujourbouton =findViewById(R.id.menujour) as? Button
         commandebouton = findViewById(R.id.commande) as? Button
         reservebouton = findViewById(R.id.reserve) as? Button
+        infosbouton = findViewById(R.id.infos) as? Button
+        menubouton = findViewById(R.id.menus) as? Button
         // Instance of Uiil class............. rouya
         val util = Util()
         // View Model instance
@@ -35,14 +39,21 @@ class MainActivity : AppCompatActivity() {
 
         if (isTwoPane()) {
             util.displayDetail(this,restaurantModel.restaurant)
+
             menujourbouton?.setOnClickListener({
-                startActivity(intentFor<MenuJourActivity>("pos" to 0))
+                startActivity(intentFor<MenuJourActivity>("pos" to 0, "nom" to detailNomsTab[0]))
             })
             commandebouton?.setOnClickListener({
                 startActivity(intentFor<CommanderActivity>("pos" to 0))
             })
             reservebouton?.setOnClickListener({
                 startActivity(intentFor<ReserverActivity>("nom" to detailNomsTab[0]))
+            })
+            menubouton?.setOnClickListener({
+                startActivity(intentFor<MenuDesMenusActivity>("nom" to detailNomsTab[0], "pos" to 0))
+            })
+            infosbouton?.setOnClickListener({
+                startActivity(intentFor<InfosActivity>("pos" to 0))
             })
         }
 
@@ -54,7 +65,7 @@ class MainActivity : AppCompatActivity() {
                 restaurantModel.restaurant = Restaurant(nom = detailNomsTab[i], image = detailImagesTab[i])
                 util.displayDetail(this,restaurantModel.restaurant)
                 menujourbouton?.setOnClickListener({
-                    startActivity(intentFor<MenuJourActivity>("pos" to i))
+                    startActivity(intentFor<MenuJourActivity>("pos" to i, "nom" to detailNomsTab[i]))
                 })
                 commandebouton?.setOnClickListener({
                     startActivity(intentFor<CommanderActivity>("pos" to i))
@@ -62,8 +73,11 @@ class MainActivity : AppCompatActivity() {
                 reservebouton?.setOnClickListener({
                     startActivity(intentFor<ReserverActivity>("nom" to detailNomsTab[i]))
                 })
-                menus.setOnClickListener({
-                    startActivity(intentFor<LesMenusActivity>("nom" to detailNomsTab[i]))
+                menubouton?.setOnClickListener({
+                    startActivity(intentFor<MenuDesMenusActivity>("nom" to detailNomsTab[i], "pos" to i))
+                })
+                infosbouton?.setOnClickListener({
+                    startActivity(intentFor<InfosActivity>("pos" to i))
                 })
             }
             else {

@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_infos.*
 import com.google.android.gms.maps.model.MarkerOptions
 import example.android.com.RestoPresto.entities.Restaurant
 import org.jetbrains.anko.makeCall
+import org.jetbrains.anko.toast
 
 
 class InfosActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -29,6 +30,7 @@ class InfosActivity : AppCompatActivity(), OnMapReadyCallback {
         mapView?.onCreate(mapViewBundle)
         mapView?.getMapAsync(this)
         val util = Util()
+        val url  = "fb://page/218641444910278"
         val i = intent.getIntExtra("pos",0)
         val imagesTab = arrayOf(R.drawable.ledey, R.drawable.lallamina, R.drawable.eldjenina, R.drawable.lapalmeraie, R.drawable.eldjazair)
         val nomsTab = resources.getStringArray(R.array.restos)
@@ -36,13 +38,34 @@ class InfosActivity : AppCompatActivity(), OnMapReadyCallback {
         val noteTab = resources.getStringArray(R.array.notes)
         val emailTab = resources.getStringArray(R.array.emails)
         val numeroTab = resources.getStringArray(R.array.numeros)
+        val fbTab = resources.getStringArray(R.array.facebooks)
+        val twTab = resources.getStringArray(R.array.twitters)
         val resto = Restaurant(nom = nomsTab[i], image = imagesTab[i], adresse = adresseTab[i], numero = numeroTab[i], note = noteTab[i],email = emailTab[i])
         util.displayInfos(this,resto)
         numero_resto.setOnClickListener({
             makeCall(numero_resto.text.toString())
-        }
+        })
+        facebook.setOnClickListener({
+            try {
+                util.openFacebookPage(this, url)
+                toast("Vous etes redirigés vers Facebook")
+            }
+            catch (e : Exception)
+            {
+                util.browseUrl(this,"https://www.facebook.com/search/top/?q=bristol&ref=eyJzaWQiOiIwLjUzNjE2MjY1Mjk4ODc3NDQiLCJxcyI6IkpUVkNKVEl5WW5KcGMzUnZiQ1V5TWlVMVJBIiwiZ3YiOiJiZWUwOWY5M2ZhNzMyY2ZhNTlhMWNiNmQ5ZjQ1MGQzODkyNDI0ZTQ5IiwiZW50X2lkcyI6W10sImJzaWQiOiJiYmI5NDBhMmQ5YmMwZDljNDEzMjlmNWJhNTJmN2NmMiJ9")
+            }
 
-        )
+        })
+        twitter.setOnClickListener({
+            try {
+                util.openFacebookPage(this, "https://twitter.com/palmeraieresort?lang=fr")
+                toast("Vous etes redirigés vers Twitter")
+            }
+            catch (e : Exception)
+            {
+                util.browseUrl(this,"https://www.facebook.com/search/top/?q=bristol&ref=eyJzaWQiOiIwLjUzNjE2MjY1Mjk4ODc3NDQiLCJxcyI6IkpUVkNKVEl5WW5KcGMzUnZiQ1V5TWlVMVJBIiwiZ3YiOiJiZWUwOWY5M2ZhNzMyY2ZhNTlhMWNiNmQ5ZjQ1MGQzODkyNDI0ZTQ5IiwiZW50X2lkcyI6W10sImJzaWQiOiJiYmI5NDBhMmQ5YmMwZDljNDEzMjlmNWJhNTJmN2NmMiJ9")
+            }
+        })
     }
 
     public override fun onSaveInstanceState(outState: Bundle) {
