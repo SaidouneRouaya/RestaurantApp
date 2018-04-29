@@ -42,7 +42,8 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name="example.android.com.RestoPresto.ReserverActivity"
-            android:label="Réservation">
+            android:label="Réservation"
+            >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="example.android.com.RestoPresto.RestaurantActivity" />

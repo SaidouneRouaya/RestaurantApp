@@ -16,7 +16,7 @@ class Util {
 
     fun displayDetail(act: Activity, resto : Restaurant) {
 
-        act.imagedetail.setImageResource(resto.image)
+        act.imagedetail?.setImageResource(resto.image)
         act.nomdetail.text = resto.nom
     }
 
