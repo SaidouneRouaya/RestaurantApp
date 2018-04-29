@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="example.android.com.myapplication">
+    package="example.android.com.RestoPresto">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="example.android.com.RestoPresto.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,57 +22,57 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RestaurantActivity"
+            android:name="example.android.com.RestoPresto.RestaurantActivity"
             android:label="@string/title_activity_restaurant"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="example.android.com.RestoPresto.MainActivity" />
         </activity>
         <activity
-            android:name=".MenuJourActivity"
+            android:name="example.android.com.RestoPresto.MenuJourActivity"
             android:label="Menu du jour">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".RestaurantActivity" />
+                android:value="example.android.com.RestoPresto.RestaurantActivity" />
         </activity>
         <activity
-            android:name=".CommanderActivity"
+            android:name="example.android.com.RestoPresto.CommanderActivity"
             android:label="Commande" />
         <activity
-            android:name=".ReserverActivity"
+            android:name="example.android.com.RestoPresto.ReserverActivity"
             android:label="Réservation">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".RestaurantActivity" />
+                android:value="example.android.com.RestoPresto.RestaurantActivity" />
         </activity>
         <activity
-            android:name=".FormuleBinaireActivity"
+            android:name="example.android.com.RestoPresto.FormuleBinaireActivity"
             android:label="@string/title_activity_formule_binaire"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MenuDesMenusActivity" />
+                android:value="example.android.com.RestoPresto.MenuDesMenusActivity" />
         </activity>
         <activity
-            android:name=".LesMenusActivity"
+            android:name="example.android.com.RestoPresto.LesMenusActivity"
             android:label="@string/title_activity_les_menus"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MenuDesMenusActivity" />
+                android:value="example.android.com.RestoPresto.MenuDesMenusActivity" />
         </activity>
         <activity
-            android:name=".MenuDesMenusActivity"
+            android:name="example.android.com.RestoPresto.MenuDesMenusActivity"
             android:label="Choix du menu">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".RestaurantActivity" />
+                android:value="example.android.com.RestoPresto.RestaurantActivity" />
         </activity>
-        <activity android:name=".InfosActivity">
+        <activity android:name="example.android.com.RestoPresto.InfosActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".RestaurantActivity" />
+                android:value="example.android.com.RestoPresto.RestaurantActivity" />
         </activity>
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="@string/bundle_key"/>

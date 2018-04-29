@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="example.android.com.myapplication.MenuDiabetFragment">
+    tools:context="example.android.com.RestoPresto.MenuDiabetFragment">
 
     <ListView
         android:id="@+id/list_plats_diabet"

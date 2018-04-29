@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="example.android.com.myapplication.MenuNormalFragment">
+    tools:context="example.android.com.RestoPresto.MenuNormalFragment">
 
     <ListView
         android:id="@+id/list_plats_normaux"

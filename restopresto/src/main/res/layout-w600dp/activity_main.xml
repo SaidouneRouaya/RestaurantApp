@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/fragment2"
-        android:name="example.android.com.myapplication.MainFragment"
+        android:name="example.android.com.RestoPresto.MainFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/fragmentplat"
-        android:name="example.android.com.myapplication.RestaurantFragment"
+        android:name="example.android.com.RestoPresto.RestaurantFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
