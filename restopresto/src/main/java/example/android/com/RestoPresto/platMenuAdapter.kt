@@ -39,9 +39,9 @@ class platMenuAdapter (_ctx: Activity, _listplats:List<plat>): BaseAdapter() {
         viewHolder.ingredients.setText(listplats.get(position).ingredients)
         viewHolder.prix.setText(" ${listplats.get(position).prix} DZD")
         viewHolder.nb.setText(listplats.get(position).nbCmd)
-        if (viewHolder.nb.text.equals("0"))
+       /* if (viewHolder.nb.text.equals("0"))
         {
-        viewHolder.nb.visibility = View.INVISIBLE}
+        viewHolder.nb.visibility = View.INVISIBLE}*/
 
    return view
     }

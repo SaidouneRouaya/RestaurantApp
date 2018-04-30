@@ -19,17 +19,23 @@ class MenuVegetarienFragment : Fragment(){
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_menu_vegetarien, container, false)
         val listView= view.findViewById<ListView>(R.id.list_plats_vegetariens)
-        val platVegetarienAdapter = platMenuAdapter(activity!!, loadDataVegetarien())
+        var listveg = loadDataVegetarien()
+        val platVegetarienAdapter = platMenuAdapter(activity!!, listveg)
         listView.adapter = platVegetarienAdapter
         listView.setOnItemClickListener({adapterView, view, i, l ->
-            var viewHolder:ViewHolder
+            var viewHolder: platMenuAdapter.ViewHolder
             val num = view?.findViewById<TextView>(R.id.nbCmd) as TextView
-
+            val nom = view?.findViewById<TextView>(R.id.nom_plat) as TextView
+            val ingredients = view?.findViewById<TextView>(R.id.ingredients_plat) as TextView
+            val prix = view?.findViewById<TextView>(R.id.prix) as TextView
             if(num.text.toString().toInt()<20)
-            {                num.text= (num.text.toString().toInt()+1).toString()}
+            {
+                listveg.get(i).nbCmd= (listveg.get(i).nbCmd.toInt()+1).toString()
+                num.text= listveg.get(i).nbCmd
+                /*(num.text.toString().toInt()+1).toString()*/}
             else num.text="20"
-            viewHolder=ViewHolder(num)
-            viewHolder.num.visibility = View.VISIBLE
+            viewHolder= platMenuAdapter.ViewHolder(nom, ingredients,prix,num)
+            viewHolder.nb.visibility = View.VISIBLE
             view.setTag(viewHolder)
         })
         return view

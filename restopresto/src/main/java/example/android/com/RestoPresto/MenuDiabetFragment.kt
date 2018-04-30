@@ -20,18 +20,24 @@ class MenuDiabetFragment: Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_menu_diabet, container, false)
         val listView= view.findViewById<ListView>(R.id.list_plats_diabet)
-        val platDiabetAdapter = platMenuAdapter(activity!!, loadDataDiabet())
+        var listDiabet = loadDataDiabet()
+        val platDiabetAdapter = platMenuAdapter(activity!!, listDiabet)
         listView.adapter = platDiabetAdapter
-       listView.setOnItemClickListener({adapterView, view, i, l ->
-            var viewHolder: ViewHolder
+        listView.setOnItemClickListener({adapterView, view, i, l ->
+            var viewHolder: platMenuAdapter.ViewHolder
             val num = view?.findViewById<TextView>(R.id.nbCmd) as TextView
-
-           if(num.text.toString().toInt()<20)
-           {                num.text= (num.text.toString().toInt()+1).toString()}
-           else num.text="20"
-            viewHolder= ViewHolder(num)
-           viewHolder.num.visibility = View.VISIBLE
-           view.setTag(viewHolder)
+            val nom = view?.findViewById<TextView>(R.id.nom_plat) as TextView
+            val ingredients = view?.findViewById<TextView>(R.id.ingredients_plat) as TextView
+            val prix = view?.findViewById<TextView>(R.id.prix) as TextView
+            if(num.text.toString().toInt()<20)
+            {
+                listDiabet.get(i).nbCmd= (listDiabet.get(i).nbCmd.toInt()+1).toString()
+                num.text= listDiabet.get(i).nbCmd
+                /*(num.text.toString().toInt()+1).toString()*/}
+            else num.text="20"
+            viewHolder= platMenuAdapter.ViewHolder(nom, ingredients,prix,num)
+            viewHolder.nb.visibility = View.VISIBLE
+            view.setTag(viewHolder)
         })
         return view
     }
