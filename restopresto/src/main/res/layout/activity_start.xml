@@ -9,14 +9,29 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/resto_fond" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/restaurant_floue"
+        android:background="#8888"
+        android:fontFamily="@font/bree_serif"
+        android:gravity="center"
+        android:text="Resto Presto"
+        android:textAlignment="center"
+        android:textColor="@color/colorBouton"
+        android:textSize="50sp"
+        android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

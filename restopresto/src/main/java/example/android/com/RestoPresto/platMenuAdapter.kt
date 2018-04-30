@@ -38,9 +38,12 @@ class platMenuAdapter (_ctx: Activity, _listplats:List<plat>): BaseAdapter() {
         viewHolder.nom.setText(listplats.get(position).nom)
         viewHolder.ingredients.setText(listplats.get(position).ingredients)
         viewHolder.prix.setText(" ${listplats.get(position).prix} DZD")
-        viewHolder.nb.setText("0")
-        viewHolder.nb.visibility = View.INVISIBLE
+        viewHolder.nb.setText(listplats.get(position).nbCmd)
+        if (viewHolder.nb.text.equals("0"))
+        {
+        viewHolder.nb.visibility = View.INVISIBLE}
+
    return view
     }
-    private data class ViewHolder(var nom: TextView, var ingredients: TextView, var prix: TextView, var nb: TextView)
+   /* private */data class ViewHolder(var nom: TextView, var ingredients: TextView, var prix: TextView, var nb: TextView)
 }

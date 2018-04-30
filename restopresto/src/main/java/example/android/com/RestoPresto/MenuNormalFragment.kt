@@ -20,17 +20,23 @@ class MenuNormalFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_menu_normal, container, false)
         val listView= view.findViewById<ListView>(R.id.list_plats_normaux)
-        val platNormalAdapter = platMenuAdapter(activity!!, loadDataNormal())
+        var listNormal = loadDataNormal()
+        val platNormalAdapter = platMenuAdapter(activity!!, listNormal)
         listView.adapter = platNormalAdapter
         listView.setOnItemClickListener({adapterView, view, i, l ->
-            var viewHolder: ViewHolder
+            var viewHolder: platMenuAdapter.ViewHolder
             val num = view?.findViewById<TextView>(R.id.nbCmd) as TextView
-
+            val nom = view?.findViewById<TextView>(R.id.nom_plat) as TextView
+            val ingredients = view?.findViewById<TextView>(R.id.ingredients_plat) as TextView
+            val prix = view?.findViewById<TextView>(R.id.prix) as TextView
             if(num.text.toString().toInt()<20)
-            {                num.text= (num.text.toString().toInt()+1).toString()}
+            {
+                listNormal.get(i).nbCmd= (listNormal.get(i).nbCmd.toInt()+1).toString()
+                num.text= listNormal.get(i).nbCmd
+                /*(num.text.toString().toInt()+1).toString()*/}
             else num.text="20"
-            viewHolder= ViewHolder(num)
-            viewHolder.num.visibility = View.VISIBLE
+            viewHolder= platMenuAdapter.ViewHolder(nom, ingredients,prix,num)
+            viewHolder.nb.visibility = View.VISIBLE
             view.setTag(viewHolder)
         })
         return view
@@ -45,7 +51,7 @@ class MenuNormalFragment : Fragment() {
         }
         return  list
     }
-    private data class ViewHolder(var num: TextView){
-    }
+   /* private data class ViewHolder(var num: TextView){
+    }*/
 
 }

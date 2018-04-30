@@ -11,6 +11,6 @@ class StartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
         val handler = Handler()
-        handler.postDelayed(Runnable { startActivity(intentFor<MainActivity>()) }, 5000)
+        handler.postDelayed(Runnable { startActivity(intentFor<MainActivity>()) }, 2000)
     }
 }
