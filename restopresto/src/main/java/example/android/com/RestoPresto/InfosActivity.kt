@@ -123,6 +123,8 @@ class InfosActivity : AppCompatActivity(), OnMapReadyCallback {
         uiSettings?.setMapToolbarEnabled(true)
         uiSettings?.setCompassEnabled(true)
         uiSettings?.setZoomControlsEnabled(true)
+        uiSettings?.isMyLocationButtonEnabled = true
+        uiSettings?.isMapToolbarEnabled = true
         val latitudesTab = resources.getStringArray(R.array.latitudes)
         val longitudesTab = resources.getStringArray(R.array.longitudes)
         val ny = LatLng(latitudesTab[i].toDouble(), longitudesTab[i].toDouble())

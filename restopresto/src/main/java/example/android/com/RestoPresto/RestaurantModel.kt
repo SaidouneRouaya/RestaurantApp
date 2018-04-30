@@ -8,4 +8,5 @@ import example.android.com.RestoPresto.entities.Restaurant
  */
 class RestaurantModel: ViewModel() {
     var restaurant:Restaurant = Restaurant()
+    var i:Int = 0
 }

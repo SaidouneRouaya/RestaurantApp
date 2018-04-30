@@ -35,9 +35,11 @@ class MainActivity : AppCompatActivity() {
         // Création de l'adapter pour la liste
         val restoAdapter = RestaurantAdapter(this, loadData())
         listrestos.adapter = restoAdapter
-        restaurantModel.restaurant = Restaurant(nom = detailNomsTab[0], image = detailImagesTab[0])
+
 
         if (isTwoPane()) {
+            if (restaurantModel.restaurant.nom.equals(""))
+            {   restaurantModel.restaurant = Restaurant(nom = detailNomsTab[0], image = detailImagesTab[0])
             util.displayDetail(this,restaurantModel.restaurant)
 
             menujourbouton?.setOnClickListener({
@@ -54,7 +56,29 @@ class MainActivity : AppCompatActivity() {
             })
             infosbouton?.setOnClickListener({
                 startActivity(intentFor<InfosActivity>("pos" to 0))
-            })
+            }
+            )}
+            else
+            {
+                util.displayDetail(this,restaurantModel.restaurant)
+                var i = restaurantModel.i
+                menujourbouton?.setOnClickListener({
+                    startActivity(intentFor<MenuJourActivity>("pos" to i, "nom" to detailNomsTab[i]))
+                })
+                commandebouton?.setOnClickListener({
+                    startActivity(intentFor<CommanderActivity>("pos" to i))
+                })
+                reservebouton?.setOnClickListener({
+                    startActivity(intentFor<ReserverActivity>("nom" to detailNomsTab[i]))
+                })
+                menubouton?.setOnClickListener({
+                    startActivity(intentFor<MenuDesMenusActivity>("nom" to detailNomsTab[i], "pos" to i))
+                })
+                infosbouton?.setOnClickListener({
+                    startActivity(intentFor<InfosActivity>("pos" to i))
+                })
+            }
+
         }
 
         // Listner pour les éléments de la liste
@@ -63,7 +87,9 @@ class MainActivity : AppCompatActivity() {
             if (isTwoPane()) {
                 // display detail data
                 restaurantModel.restaurant = Restaurant(nom = detailNomsTab[i], image = detailImagesTab[i])
+                restaurantModel.i = i
                 util.displayDetail(this,restaurantModel.restaurant)
+
                 menujourbouton?.setOnClickListener({
                     startActivity(intentFor<MenuJourActivity>("pos" to i, "nom" to detailNomsTab[i]))
                 })
