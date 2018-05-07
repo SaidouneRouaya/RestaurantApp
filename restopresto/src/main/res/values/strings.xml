@@ -1,11 +1,13 @@
 <resources>
-    <string name="app_name">RestoPresto8h</string>
+    <string name="app_name">RestoPresto10h50</string>
     <string name="bouton_infos">Infos</string>
     <string name="bouton_commander">Commander</string>
     <string name="bouton_reserver">Réserver</string>
     <string name="bouton_menus">Menus</string>
     <string name="valider">Valider</string>
     <string name="annuler">Annuler</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string-array name="restos">
         <item>Le dey</item>
@@ -248,4 +250,5 @@
     <string name="menu_diabet">Diabétique</string>
     <string name="menu_vegetarien">Végétarien</string>
     <string name="bundle_key">AIzaSyAt3VyyGP44oFn_5RCEjvVXbG93E8b80nM</string>
+    <string name="title_activity_tab_navigation">TabNavigationActivity</string>
 </resources>

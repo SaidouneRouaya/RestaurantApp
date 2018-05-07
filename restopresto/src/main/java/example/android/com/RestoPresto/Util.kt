@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import example.android.com.RestoPresto.entities.Restaurant
-import kotlinx.android.synthetic.main.activity_infos.*
+import kotlinx.android.synthetic.main.infos_resto.*
 import kotlinx.android.synthetic.main.fragment_restaurant.*
 import org.jetbrains.anko.browse
 

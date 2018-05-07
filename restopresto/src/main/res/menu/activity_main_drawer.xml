@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"    >
+
+        <item
+            android:id="@+id/accueil"
+            android:title="Accueil"
+            android:visible="true" />
+        <item
+            android:id="@+id/menu_jour"
+            android:title="Menus"
+            android:visible="true" />
+
+        <item
+            android:id="@+id/infos"
+            android:title="Informations"
+            android:visible="true" />
+        <item
+            android:id="@+id/commander"
+            android:title="Commander"
+            android:visible="true" />
+</menu>

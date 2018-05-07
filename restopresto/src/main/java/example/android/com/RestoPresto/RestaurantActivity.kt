@@ -31,7 +31,7 @@ class RestaurantActivity : AppCompatActivity() {
             startActivity(intentFor<MenuDesMenusActivity>("nom" to nomsTab[i], "pos" to i))
         })
         infos.setOnClickListener({
-            startActivity(intentFor<InfosActivity>("pos" to i))
+            startActivity(intentFor<InfosActivity>("nom" to nomsTab[i], "pos" to i))
         })
         util.displayDetail(this,resto)
     }
