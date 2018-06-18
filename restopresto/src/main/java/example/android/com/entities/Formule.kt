@@ -18,8 +18,6 @@ data class Formule (
         var id_formule:Int,
         @ColumnInfo(name = "type")
         var type :String,
-        @ColumnInfo(name = "champ")
-        var champ:String,
         @ColumnInfo(name = "id_restaurant")
         var id_restaurant:Int
 )
