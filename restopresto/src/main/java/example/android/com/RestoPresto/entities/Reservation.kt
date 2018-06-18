@@ -1,4 +1,5 @@
 package example.android.com.RestoPresto.entities
+
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.ForeignKey
@@ -14,14 +15,16 @@ import android.arch.persistence.room.PrimaryKey
         parentColumns = arrayOf("id_user"),
         childColumns = arrayOf("id_user"),
         onDelete = ForeignKey.CASCADE)))
-data class Commande(
+data class Reservation(
         @PrimaryKey(autoGenerate = true)
-        @ColumnInfo(name="id_cmd")
-        var id_cmd:Int,
+        @ColumnInfo(name="id_reservation")
+        var id_reservation:Int,
         @ColumnInfo(name = "date")
         var date:String,
         @ColumnInfo(name = "heure")
         var heure:String,
+        @ColumnInfo(name ="nb_personne")
+        var nb_personne : Int,
         @ColumnInfo(name="id_restaurant")
         var id_restaurant:Int,
         @ColumnInfo(name ="id_user")
