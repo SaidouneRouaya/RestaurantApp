@@ -16,16 +16,16 @@ class Util {
 
     fun displayDetail(act: Activity, resto : Restaurant) {
 
-        act.imagedetail?.setImageResource(resto.image)
+        act.imagedetail?.setImageResource(resto.lien.toInt())
         act.nomdetail.text = resto.nom
     }
 
     fun displayInfos(act: Activity,resto: Restaurant)
     {
-        act.imageView3.setImageResource(resto.image)
+        act.imageView3.setImageResource(resto.lien.toInt())
         act.nom_resto.text = resto.nom
         act.adresse.text = "Adresse : "+resto.adresse
-        act.numero_resto.text =resto.numero
+        act.numero_resto.text =resto.n_tel
         act.email_resto.text ="Email : "+resto.email
         act.note.text = "Note : "+resto.note
     }

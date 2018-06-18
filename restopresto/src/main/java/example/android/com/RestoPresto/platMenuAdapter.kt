@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
-import example.android.com.RestoPresto.entities.plat
+import example.android.com.RestoPresto.entities.Plat
 
 /**
  * Created by start on 28/04/2018.
  */
-class platMenuAdapter (_ctx: Activity, _listplats:List<plat>): BaseAdapter() {
+class platMenuAdapter (_ctx: Activity, _listplats:List<Plat>): BaseAdapter() {
 
     var ctx = _ctx
     val listplats = _listplats
@@ -36,10 +36,12 @@ class platMenuAdapter (_ctx: Activity, _listplats:List<plat>): BaseAdapter() {
         }
 
         viewHolder.nom.setText(listplats.get(position).nom)
-        viewHolder.ingredients.setText(listplats.get(position).ingredients)
+        viewHolder.ingredients.setText(listplats.get(position).ingredient)
         viewHolder.prix.setText(" ${listplats.get(position).prix} DZD")
-        viewHolder.nb.setText(listplats.get(position).nbCmd)
-       /* if (viewHolder.nb.text.equals("0"))
+       // viewHolder.nb.setText(listplats.get(position).nbCmd)
+       viewHolder.nb.setText("3")
+
+        /* if (viewHolder.nb.text.equals("0"))
         {
         viewHolder.nb.visibility = View.INVISIBLE}*/
 

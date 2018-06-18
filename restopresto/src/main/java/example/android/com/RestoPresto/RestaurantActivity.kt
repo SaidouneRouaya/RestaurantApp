@@ -17,7 +17,7 @@ class RestaurantActivity : AppCompatActivity() {
         val i = intent.getIntExtra("pos",0)
         val imagesTab = arrayOf(R.drawable.ledey, R.drawable.lallamina, R.drawable.eldjenina, R.drawable.lapalmeraie, R.drawable.eldjazair)
         val nomsTab = resources.getStringArray(R.array.restos)
-        val resto = Restaurant(nom = nomsTab[i], image = imagesTab[i])
+        val resto = Restaurant(nom = nomsTab[i], lien = imagesTab[i].toString())
         menujour.setOnClickListener({
             startActivity(intentFor<MenuJourActivity>("pos" to i, "nom" to nomsTab[i]))
         })

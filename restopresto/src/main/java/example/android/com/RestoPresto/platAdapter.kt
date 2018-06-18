@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
-import example.android.com.RestoPresto.entities.plat
+import example.android.com.RestoPresto.entities.Plat
 
 /**
  * Created by er_sa on 4/22/2018.
  */
-class platAdapter (_ctx: Activity, _listplats:List<plat>): BaseAdapter() {
+class platAdapter (_ctx: Activity, _listplats:List<Plat>): BaseAdapter() {
 
     var ctx = _ctx
     val listplats = _listplats
@@ -34,7 +34,7 @@ class platAdapter (_ctx: Activity, _listplats:List<plat>): BaseAdapter() {
         }
 
         viewHolder.nom.setText(listplats.get(position).nom)
-        viewHolder.ingredients.setText(listplats.get(position).ingredients)
+        viewHolder.ingredients.setText(listplats.get(position).ingredient)
         return view
     }
     private data class ViewHolder(var nom: TextView, var ingredients: TextView)

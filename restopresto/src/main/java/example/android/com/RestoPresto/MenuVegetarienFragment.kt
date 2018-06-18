@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
 import android.widget.TextView
-import example.android.com.RestoPresto.entities.plat
+import example.android.com.RestoPresto.entities.Plat
 
 /**
  * Created by er_sa on 4/22/2018.
@@ -30,9 +30,10 @@ class MenuVegetarienFragment : Fragment(){
             val prix = view?.findViewById<TextView>(R.id.prix) as TextView
             if(num.text.toString().toInt()<20)
             {
-                listveg.get(i).nbCmd= (listveg.get(i).nbCmd.toInt()+1).toString()
-                num.text= listveg.get(i).nbCmd
-                /*(num.text.toString().toInt()+1).toString()*/}
+              /* listveg.get(i).nbCmd= (listveg.get(i).nbCmd.toInt()+1).toString()
+                num.text= listveg.get(i).nbCmd*/
+                num.text= "5"
+            }
             else num.text="20"
             viewHolder= platMenuAdapter.ViewHolder(nom, ingredients,prix,num)
             viewHolder.nb.visibility = View.VISIBLE
@@ -40,13 +41,13 @@ class MenuVegetarienFragment : Fragment(){
         })
         return view
     }
-    fun loadDataVegetarien():List<plat> {
+    fun loadDataVegetarien():List<Plat> {
         val nomTab = resources.getStringArray(R.array.plats_vegetarien)
         val ingredientsTab = resources.getStringArray(R.array.ingredients_vegetarien)
         val prixTab = resources.getStringArray(R.array.prix_vegetarien)
-        val list = mutableListOf<plat>()
+        val list = mutableListOf<Plat>()
         for (i in 0..nomTab.size-1) {
-            list.add(plat(nom = nomTab[i], ingredients = ingredientsTab[i], prix = prixTab[i]))
+            list.add(Plat(nom = nomTab[i], ingredient = ingredientsTab[i], prix = prixTab[i].toDouble()))
         }
         return  list
     }

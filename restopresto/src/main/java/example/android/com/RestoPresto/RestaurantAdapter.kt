@@ -38,7 +38,7 @@ class RestaurantAdapter(_ctx:Context, _listRestaurants:List<Restaurant>):BaseAda
             viewHolder = view.getTag() as ViewHolder
 
         }
-        viewHolder.image.setImageResource(listRestaurants.get(position).image)
+        viewHolder.image.setImageResource(listRestaurants.get(position).lien.toInt())
         viewHolder.nom.setText(listRestaurants.get(position).nom)
         viewHolder.note.setText("Note : "+listRestaurants.get(position).note)
 

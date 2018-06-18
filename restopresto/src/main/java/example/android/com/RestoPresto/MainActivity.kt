@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         if (isTwoPane()) {
             if (restaurantModel.restaurant.nom.equals(""))
-            {   restaurantModel.restaurant = Restaurant(nom = detailNomsTab[0], image = detailImagesTab[0])
+            {   restaurantModel.restaurant = Restaurant(nom = detailNomsTab[0], lien = detailImagesTab[0].toString())
             util.displayDetail(this,restaurantModel.restaurant)
 
             menujourbouton?.setOnClickListener({
@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
 
             if (isTwoPane()) {
                 // display detail data
-                restaurantModel.restaurant = Restaurant(nom = detailNomsTab[i], image = detailImagesTab[i])
+                restaurantModel.restaurant = Restaurant(nom = detailNomsTab[i], lien = detailImagesTab[i].toString())
                 restaurantModel.i = i
                 util.displayDetail(this,restaurantModel.restaurant)
 
@@ -121,7 +121,7 @@ class MainActivity : AppCompatActivity() {
         val notesTab = resources.getStringArray(R.array.notes)
         val list = mutableListOf<Restaurant>()
         for (i in 0..imagesTab.size - 1) {
-            list.add(Restaurant(nom = nomsTab[i], image = imagesTab[i], note = notesTab[i]))
+            list.add(Restaurant(nom = nomsTab[i], lien = imagesTab[i].toString(), note = notesTab[i]))
 
         }
         return list

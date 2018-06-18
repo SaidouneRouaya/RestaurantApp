@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
 import android.widget.TextView
-import example.android.com.RestoPresto.entities.plat
+import example.android.com.RestoPresto.entities.Plat
 
 /**
  * Created by er_sa on 4/22/2018.
@@ -31,9 +31,11 @@ class MenuDiabetFragment: Fragment() {
             val prix = view?.findViewById<TextView>(R.id.prix) as TextView
             if(num.text.toString().toInt()<20)
             {
-                listDiabet.get(i).nbCmd= (listDiabet.get(i).nbCmd.toInt()+1).toString()
-                num.text= listDiabet.get(i).nbCmd
-                /*(num.text.toString().toInt()+1).toString()*/}
+                /*listDiabet.get(i).nbCmd= (listDiabet.get(i).nbCmd.toInt()+1).toString()
+                num.text= listDiabet.get(i).nbCmd*/
+             //   listDiabet.get(i).nbCmd= (listDiabet.get(i).nbCmd.toInt()+1).toString()
+               num.text= "5"
+            }
             else num.text="20"
             viewHolder= platMenuAdapter.ViewHolder(nom, ingredients,prix,num)
             viewHolder.nb.visibility = View.VISIBLE
@@ -47,15 +49,15 @@ class MenuDiabetFragment: Fragment() {
 
     }
 
-    fun loadDataDiabet():List<plat> {
+    fun loadDataDiabet():List<Plat> {
         val nomTab = resources.getStringArray(R.array.plats_diabet)
         val ingredientsTab = resources.getStringArray(R.array.ingredients_diabet)
         val prixTab = resources.getStringArray(R.array.prix_diabet)
-        val list = mutableListOf<plat>()
+        val list = mutableListOf<Plat>()
 
         for (i in 0..nomTab.size-1) {
             list.add(
-                    plat(nom = nomTab[i], ingredients = ingredientsTab[i], prix = prixTab[i]))
+                    Plat(nom = nomTab[i], ingredient = ingredientsTab[i], prix = prixTab[i].toDouble()))
         }
         return  list
     }

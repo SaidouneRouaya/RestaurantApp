@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
-import example.android.com.RestoPresto.entities.plat
+import example.android.com.RestoPresto.entities.Plat
 
 /**
  * Created by start on 29/04/2018.
  */
-class PlatCommandeAdapter(_ctx : Activity, _listplats:List<plat>): BaseAdapter(){
+class PlatCommandeAdapter(_ctx : Activity, _listplats:List<Plat>): BaseAdapter(){
     var ctx = _ctx
     val listplats = _listplats
 
@@ -37,8 +37,11 @@ class PlatCommandeAdapter(_ctx : Activity, _listplats:List<plat>): BaseAdapter()
 
         viewHolder.nom.setText(listplats.get(position).nom)
         viewHolder.prix.setText(" ${listplats.get(position).prix} DZD")
-        viewHolder.nb.setText("x"+listplats.get(position).nbCmd)
-        pTotal = listplats.get(position).prix.toDouble() * listplats.get(position).nbCmd.toInt()
+       // viewHolder.nb.setText("x"+listplats.get(position).nbCmd)
+        viewHolder.nb.setText("x3")
+     //   pTotal = listplats.get(position).prix.toDouble() * listplats.get(position).nbCmd.toInt()
+     pTotal = listplats.get(position).prix.toDouble() * 3
+
         viewHolder.prixTotal.setText(pTotal.toString())
         return view
     }

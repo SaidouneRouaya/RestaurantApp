@@ -11,15 +11,15 @@ import android.arch.persistence.room.PrimaryKey
 data class Plat (
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name ="id_plat")
-        var id_plat:Int,
+        var id_plat:Int=1,
         @ColumnInfo(name ="nom")
-        var nom : String,
+        var nom : String="",
         @ColumnInfo(name ="ingredient")
-        var ingredient : String,
+        var ingredient : String="",
         @ColumnInfo(name = "type")
-        var type: String,
+        var type: String="",
         @ColumnInfo(name ="prix")
-        var prix : Double,
+        var prix : Double=0.0,
         @ColumnInfo(name ="lien")
-        var lien : String
+        var lien : String=""
 )
