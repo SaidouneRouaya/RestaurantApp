@@ -20,9 +20,11 @@ class MainActivity : AppCompatActivity() {
     var reservebouton:Button? = null
     var infosbouton: Button? = null
     var menubouton: Button? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         menujourbouton =findViewById(R.id.menujour) as? Button
         commandebouton = findViewById(R.id.commande) as? Button
         reservebouton = findViewById(R.id.reserve) as? Button
@@ -33,14 +35,22 @@ class MainActivity : AppCompatActivity() {
         // View Model instance
         val restaurantModel = ViewModelProviders.of(this).get(RestaurantModel::class.java)
         // Création de l'adapter pour la liste
-        val restoAdapter = RestaurantAdapter(this, loadData())
-        listrestos.adapter = restoAdapter
+        restaurantModel.loadData(this)
+
+        /* Si la liste des restaurants est vide */
+        if (restaurantModel.restaurants==null) {
+            restaurantModel.loadData(this)
+        }
+        else {
+            // After the rotation of the screen, use restos of the ViewModel instance
+            listrestos.adapter = RestaurantAdapter(this, restaurantModel.restaurants!!)
+        }
 
 
         if (isTwoPane()) {
-            if (restaurantModel.restaurant.nom.equals(""))
+            if (restaurantModel.restaurant!!.nom.equals(""))
             {   restaurantModel.restaurant = Restaurant(nom = detailNomsTab[0], lien = detailImagesTab[0].toString())
-            util.displayDetail(this,restaurantModel.restaurant)
+            util.displayDetail(this,restaurantModel.restaurant!!)
 
             menujourbouton?.setOnClickListener({
                 startActivity(intentFor<MenuJourActivity>("pos" to 0, "nom" to detailNomsTab[0]))
@@ -60,7 +70,7 @@ class MainActivity : AppCompatActivity() {
             )}
             else
             {
-                util.displayDetail(this,restaurantModel.restaurant)
+                util.displayDetail(this,restaurantModel.restaurant!!)
                 var i = restaurantModel.i
                 menujourbouton?.setOnClickListener({
                     startActivity(intentFor<MenuJourActivity>("pos" to i, "nom" to detailNomsTab[i]))
@@ -82,13 +92,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Listner pour les éléments de la liste
+
+
         listrestos.setOnItemClickListener { adapterView, view, i, l ->
 
             if (isTwoPane()) {
                 // display detail data
                 restaurantModel.restaurant = Restaurant(nom = detailNomsTab[i], lien = detailImagesTab[i].toString())
                 restaurantModel.i = i
-                util.displayDetail(this,restaurantModel.restaurant)
+                util.displayDetail(this,restaurantModel.restaurant!!)
 
                 menujourbouton?.setOnClickListener({
                     startActivity(intentFor<MenuJourActivity>("pos" to i, "nom" to detailNomsTab[i]))
@@ -113,18 +125,19 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-    fun loadData(): List<Restaurant> {
+   /* fun loadData(): List<Restaurant> {
         detailImagesTab = arrayOf(R.drawable.ledey, R.drawable.lallamina, R.drawable.eldjenina, R.drawable.lapalmeraie, R.drawable.eldjazair)
         detailNomsTab=resources.getStringArray(R.array.restos)
         val imagesTab = arrayOf(R.drawable.ledey, R.drawable.lallamina, R.drawable.eldjenina, R.drawable.lapalmeraie, R.drawable.eldjazair)
         val nomsTab = resources.getStringArray(R.array.restos)
         val notesTab = resources.getStringArray(R.array.notes)
+
         val list = mutableListOf<Restaurant>()
         for (i in 0..imagesTab.size - 1) {
             list.add(Restaurant(nom = nomsTab[i], lien = imagesTab[i].toString(), note = notesTab[i]))
 
         }
         return list
-    }
+    }*/
     fun isTwoPane() = findViewById<View>(R.id.fragment2) != null
 }

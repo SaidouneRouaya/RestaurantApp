@@ -28,6 +28,10 @@ interface Endpoint {
     @GET("getrestaurantbyname/{id}")
     fun getRestaurantsByName(@Path("id")id_restaurant : Int) : Call<Restaurant>
 
+
+    @GET("getrestaurantdetail/{id}")
+    fun getDetailRestaurant(@Path("id") id_restaurant : Int):Call<Restaurant>
+
     @GET("getmenusbyrestaurant/{id}")
     fun getMenusByRestaurant(@Path("id")id_restaurant: Int) : Call<List<Menu>>
 
