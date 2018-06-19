@@ -28,6 +28,7 @@ class Util {
         act.numero_resto.text =resto.n_tel
         act.email_resto.text ="Email : "+resto.email
         act.note.text = "Note : "+resto.note
+        act.description.text = resto.description
     }
     fun openFacebookPage(ctx: Context, facebookUrl: String) {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(facebookUrl))
