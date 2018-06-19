@@ -47,9 +47,10 @@ class InfosActivity : AppCompatActivity(), OnMapReadyCallback, NavigationView.On
         val noteTab = resources.getStringArray(R.array.notes)
         val emailTab = resources.getStringArray(R.array.emails)
         val numeroTab = resources.getStringArray(R.array.numeros)
+        val descriptions = resources.getStringArray(R.array.descriptions)
         val fbTab = resources.getStringArray(R.array.facebooks)
         val twTab = resources.getStringArray(R.array.twitters)
-        val resto = Restaurant(nom = nomsTab[i], lien = imagesTab[i].toString(), adresse = adresseTab[i], n_tel = numeroTab[i], note = noteTab[i],email = emailTab[i])
+        val resto = Restaurant(nom = nomsTab[i], lien = imagesTab[i].toString(), adresse = adresseTab[i], n_tel = numeroTab[i], note = noteTab[i],email = emailTab[i],description = descriptions[i])
         util.displayInfos(this,resto)
         numero_resto.setOnClickListener({
             makeCall(numero_resto.text.toString())

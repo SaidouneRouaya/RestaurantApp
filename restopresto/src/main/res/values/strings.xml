@@ -204,6 +204,13 @@
         <item>0556716623</item>
         <item>0556716623</item>
     </string-array>
+    <string-array name="descriptions">
+        <item>Restaurant traditionnel algérien, fondé en 1935, il offre depuis de délicieux plats préparés avec soin par leurs cuisiniers professionnels formés dans les plus grandes écoles d\'hôtelerie.</item>
+        <item>Restaurant traditionnel algérien, fondé en 1935, il offre depuis de délicieux plats préparés avec soin par leurs cuisiniers professionnels formés dans les plus grandes écoles d\'hôtelerie.</item>
+        <item>Restaurant traditionnel algérien, fondé en 1935, il offre depuis de délicieux plats préparés avec soin par leurs cuisiniers professionnels formés dans les plus grandes écoles d\'hôtelerie.</item>
+        <item>Restaurant traditionnel algérien, fondé en 1935, il offre depuis de délicieux plats préparés avec soin par leurs cuisiniers professionnels formés dans les plus grandes écoles d\'hôtelerie.</item>
+        <item>Restaurant traditionnel algérien, fondé en 1935, il offre depuis de délicieux plats préparés avec soin par leurs cuisiniers professionnels formés dans les plus grandes écoles d\'hôtelerie.</item>
+    </string-array>
     <string-array name="latitudes">
         <item>36.740114</item>
         <item>36.767676</item>
