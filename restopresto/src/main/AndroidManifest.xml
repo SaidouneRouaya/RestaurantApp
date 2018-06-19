@@ -8,6 +8,11 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -16,9 +21,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity
+    android:name=".MainActivity"
+    android:theme="@style/AppTheme">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="example.android.com.RestoPresto.LoginActivity" />
+    </activity>
         <activity
             android:name=".RestaurantActivity"
             android:label="@string/title_activity_restaurant"
@@ -33,6 +42,18 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="example.android.com.RestoPresto.RestaurantActivity" />
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:label="Menu du jour">
+
+        </activity>
+        <activity
+            android:name=".SignInActivity"
+            android:label="Menu du jour">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="example.android.com.RestoPresto.SignInActivity" />
         </activity>
         <activity
             android:name=".CommanderActivity"
@@ -69,9 +90,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="example.android.com.RestoPresto.RestaurantActivity" />
         </activity>
-        <activity android:name=".InfosActivity"
+        <activity
+            android:name=".InfosActivity"
             android:theme="@style/AppThemeCustom">
-
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="example.android.com.RestoPresto.RestaurantActivity" />
@@ -87,7 +108,8 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".StartActivity"
+        <activity
+            android:name=".StartActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
