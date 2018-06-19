@@ -8,7 +8,7 @@ import android.arch.persistence.room.PrimaryKey
 /**
  * Created by start on 18/06/2018.
  */
-@Entity(tableName = "ligne_ccommande",foreignKeys = arrayOf(ForeignKey(entity = Commande::class,
+@Entity(tableName = "ligne_commande",foreignKeys = arrayOf(ForeignKey(entity = Commande::class,
         parentColumns = arrayOf("id_cmd"),
         childColumns = arrayOf("id_cmd"),
         onDelete = ForeignKey.CASCADE), ForeignKey(entity = Plat::class,

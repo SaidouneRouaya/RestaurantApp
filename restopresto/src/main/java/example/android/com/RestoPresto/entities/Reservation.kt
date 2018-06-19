@@ -8,7 +8,7 @@ import android.arch.persistence.room.PrimaryKey
 /**
  * Created by start on 18/06/2018.
  */
-@Entity(tableName = "commande",foreignKeys = arrayOf(ForeignKey(entity = Restaurant::class,
+@Entity(tableName = "reservation",foreignKeys = arrayOf(ForeignKey(entity = Restaurant::class,
         parentColumns = arrayOf("id_restaurant"),
         childColumns = arrayOf("id_restaurant"),
         onDelete = ForeignKey.CASCADE), ForeignKey(entity = User::class,
