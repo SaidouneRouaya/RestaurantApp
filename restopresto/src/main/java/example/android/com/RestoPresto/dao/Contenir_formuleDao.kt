@@ -13,10 +13,10 @@ interface Contenir_formuleDao {
     @Query("select * from contenir_formule")
     fun getContenir_formule():List<Contenir_formule>
 
-    @Query("select * from formule m inner join contenir_formule cm on" +
-            "cm.id_formule=m.id_formule inner join plat cm.id_plat=p.id_plat" +
-            "where cm.id_formule=:id_formule")
-    fun getPlatsByformule(id_formule:Int):List<Plat>
+    @Query("select * from formule inner join contenir_formule on " +
+            "contenir_formule.id_formule = formule.id_formule inner join plat on contenir_formule.id_plat = plat.id_plat " +
+            "where contenir_formule.id_formule = :id_formule")
+    fun getPlatsByformule(id_formule:Int):List<Contenir_formule>
 
     @Insert
     fun addContenir_formules(vararg Contenir_formule: Contenir_formule)

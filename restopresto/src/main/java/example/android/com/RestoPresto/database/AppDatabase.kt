@@ -9,7 +9,7 @@ import example.android.com.RestoPresto.entities.*
  * Created by start on 23/04/2018.
  */
 @Database(entities = arrayOf(Restaurant::class,Formule::class,Commande::class, Ligne_commande::class,
-        Menu::class, Plat::class, Reservation::class, User::class),version = 1)
+        Menu::class, Plat::class, Reservation::class, User::class, Contenir_menu::class, Contenir_formule::class),version = 1)
 abstract class AppDatabase: RoomDatabase() {
 
     abstract fun getRestaurantDao() : RestaurantDao
@@ -27,5 +27,9 @@ abstract class AppDatabase: RoomDatabase() {
     abstract fun getReservationDao() : ReservationDao
 
     abstract fun getUserDao() : UserDao
+
+    abstract fun getContnirMenuDao() : Contenir_menuDao
+
+    abstract fun getContenirFormuleDao() : Contenir_formuleDao
 
 }

@@ -15,6 +15,6 @@ import android.arch.persistence.room.ForeignKey
                         childColumns = arrayOf("id_menu")),
                 ForeignKey(entity = Plat::class,
                         parentColumns = arrayOf("id_plat"),
-                        childColumns = arrayOf("playerId"))
+                        childColumns = arrayOf("id_plat"))
         ))
 class Contenir_menu(val id_menu: Int, val id_plat: Int)
