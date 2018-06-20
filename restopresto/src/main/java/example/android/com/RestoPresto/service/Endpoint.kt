@@ -1,9 +1,6 @@
 package example.android.com.RestoPresto.service
 
-import example.android.com.RestoPresto.entities.Formule
-import example.android.com.RestoPresto.entities.Menu
-import example.android.com.RestoPresto.entities.Restaurant
-import example.android.com.RestoPresto.entities.User
+import example.android.com.RestoPresto.entities.*
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -11,16 +8,6 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface Endpoint {
-/*
-    @GET("getteams")
-    fun getTeams():Call<List<Team>>
-
-
-    @GET("getplayersteam/{name}")
-    fun getPlayers(@Path("name")name :String):Call<List<Player>>
-
-    @POST("addTeam")
-    fun addTeam(@Body team: Team):Call<String>*/
 
     @GET("getrestaurants")
     fun getRestaurants(): Call<List<Restaurant>>
@@ -28,12 +15,11 @@ interface Endpoint {
     @GET("getrestaurantbyname/{id}")
     fun getRestaurantsByName(@Path("id")id_restaurant : Int) : Call<Restaurant>
 
+    @GET("getmenusbyrestaurantandtype/{id}&{type}")
+    fun getMenusByRestaurant(@Path("id")id_restaurant: Int, @Path("type")type:String) : Call<List<Menu>>
 
-    @GET("getrestaurantdetail/{id}")
-    fun getDetailRestaurant(@Path("id") id_restaurant : Int):Call<Restaurant>
-
-    @GET("getmenusbyrestaurant/{id}")
-    fun getMenusByRestaurant(@Path("id")id_restaurant: Int) : Call<List<Menu>>
+    @GET("getplatbymenu/{id}")
+    fun getPlatByMenu(@Path("id")id_menu: Int) : Call<List<Plat>>
 
     @GET("getformulesbyrestaurant/{id}")
     fun getFormulesByRestaurant(@Path("id")id_restaurant: Int) : Call<List<Formule>>
@@ -43,4 +29,7 @@ interface Endpoint {
 
     @POST("addUser")
     fun addUser(@Body user : User):Call<String>
+
+    @GET("getcontenirmenu")
+    fun getContenirMenu(): Call<List<Contenir_menu>>
 }

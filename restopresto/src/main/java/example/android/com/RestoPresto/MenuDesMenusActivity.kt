@@ -18,7 +18,7 @@ class MenuDesMenusActivity : AppCompatActivity() {
             startActivity(intentFor<MenuJourActivity>("pos" to i, "nom" to nom))
         })
         CV_menu.setOnClickListener({
-            startActivity(intentFor<LesMenusActivity>("nom" to nom))
+            startActivity(intentFor<LesMenusActivity>("id_restaurant" to i,"nom" to nom))
         })
         CV_formuleBinaire.setOnClickListener({
             startActivity(intentFor<FormuleBinaireActivity>("nom" to nom))
