@@ -1,7 +1,9 @@
 package example.android.com.RestoPresto.database
 
 import android.arch.persistence.room.Database
+import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
+import android.content.Context
 import example.android.com.RestoPresto.dao.*
 import example.android.com.RestoPresto.entities.*
 
@@ -32,4 +34,22 @@ abstract class AppDatabase: RoomDatabase() {
 
     abstract fun getContenirFormuleDao() : Contenir_formuleDao
 
+    /*companion object {
+        private var INSTANCE: AppDatabase? = null
+
+        fun getInstance(context: Context): AppDatabase? {
+            if (INSTANCE == null) {
+                synchronized(AppDatabase::class) {
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                            AppDatabase::class.java, "weather.db")
+                            .build()
+                }
+            }
+            return INSTANCE
+        }
+
+        fun destroyInstance() {
+            INSTANCE = null
+        }
+*/
 }

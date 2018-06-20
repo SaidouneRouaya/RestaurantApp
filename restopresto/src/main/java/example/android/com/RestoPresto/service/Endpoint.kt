@@ -29,4 +29,7 @@ interface Endpoint {
 
     @POST("addUser")
     fun addUser(@Body user : User):Call<String>
+
+    @GET("getcontenirmenu")
+    fun getContenirMenu(): Call<List<Contenir_menu>>
 }
