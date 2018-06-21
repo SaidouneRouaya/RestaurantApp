@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import example.android.com.RestoPresto.entities.Restaurant
 
 /**
@@ -36,9 +38,12 @@ class RestaurantAdapter(_ctx:Context, _listRestaurants:List<Restaurant>):BaseAda
         }
         else {
             viewHolder = view.getTag() as ViewHolder
-
         }
-        viewHolder.image.setImageResource(listRestaurants.get(position).lien.toInt())
+      //  viewHolder.image.setImageResource(listRestaurants.get(position).lien.toInt())
+        System.out.println(" Url est : "+baseUrl + listRestaurants.get(position).lien)
+        Glide.with(ctx).load(baseUrl + listRestaurants.get(position).lien)
+                .into(viewHolder.image)
+
         viewHolder.nom.setText(listRestaurants.get(position).nom)
         viewHolder.note.setText("Note : "+listRestaurants.get(position).note)
 

@@ -47,11 +47,10 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        if (isTwoPane()) {
-            if (restaurantModel.restaurant!!.nom.equals(""))
-            {   restaurantModel.restaurant = Restaurant(nom = detailNomsTab[0], lien = detailImagesTab[0].toString())
-            util.displayDetail(this,restaurantModel.restaurant!!)
 
+        if (isTwoPane()  && restaurantModel.restaurant!=null) {
+
+                restaurantModel.displayDatail (this,restaurantModel.restaurant!!)
             menujourbouton?.setOnClickListener({
                 startActivity(intentFor<MenuJourActivity>("pos" to 0, "nom" to detailNomsTab[0]))
             })
@@ -70,7 +69,7 @@ class MainActivity : AppCompatActivity() {
             )}
             else
             {
-                util.displayDetail(this,restaurantModel.restaurant!!)
+                restaurantModel.displayDatail(this,restaurantModel.restaurant!!)
                 var i = restaurantModel.i
                 menujourbouton?.setOnClickListener({
                     startActivity(intentFor<MenuJourActivity>("pos" to i, "nom" to detailNomsTab[i]))
@@ -89,38 +88,39 @@ class MainActivity : AppCompatActivity() {
                 })
             }
 
-        }
+
 
         // Listner pour les éléments de la liste
 
 
         listrestos.setOnItemClickListener { adapterView, view, i, l ->
-
+            val resto = (adapterView.getItemAtPosition(i) as Restaurant)
             if (isTwoPane()) {
                 // display detail data
-                restaurantModel.restaurant = Restaurant(nom = detailNomsTab[i], lien = detailImagesTab[i].toString())
-                restaurantModel.i = i
-                util.displayDetail(this,restaurantModel.restaurant!!)
+                /*restaurantModel.restaurant = Restaurant(nom = detailNomsTab[i], lien = detailImagesTab[i].toString())
+                restaurantModel.i = i*/
+
+                restaurantModel .displayDatail(this,resto)
 
                 menujourbouton?.setOnClickListener({
-                    startActivity(intentFor<MenuJourActivity>("pos" to i, "nom" to detailNomsTab[i]))
+                    startActivity(intentFor<MenuJourActivity>("pos" to i, "nom" to resto.nom))
                 })
                 commandebouton?.setOnClickListener({
                     startActivity(intentFor<CommanderActivity>("pos" to i))
                 })
                 reservebouton?.setOnClickListener({
-                    startActivity(intentFor<ReserverActivity>("nom" to detailNomsTab[i]))
+                    startActivity(intentFor<ReserverActivity>("nom" to resto.nom))
                 })
                 menubouton?.setOnClickListener({
-                    startActivity(intentFor<MenuDesMenusActivity>("nom" to detailNomsTab[i], "pos" to i))
+                    startActivity(intentFor<MenuDesMenusActivity>("nom" to resto.nom, "pos" to i))
                 })
                 infosbouton?.setOnClickListener({
-                    startActivity(intentFor<InfosActivity>("pos" to i))
+                    startActivity(intentFor<InfosActivity>("pos" to i, "nom" to resto.nom))
                 })
             }
             else {
                 // send the position to the detail activity
-                startActivity(intentFor<RestaurantActivity>("pos" to i))
+                startActivity(intentFor<RestaurantActivity>("resto" to resto))
             }
             }
         }

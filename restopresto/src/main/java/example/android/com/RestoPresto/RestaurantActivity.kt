@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import example.android.com.RestoPresto.entities.Restaurant
+import example.android.com.RestoPresto.singleton.RoomService
 import kotlinx.android.synthetic.main.fragment_restaurant.*
 import org.jetbrains.anko.intentFor
 
@@ -18,31 +19,30 @@ class RestaurantActivity : AppCompatActivity() {
         val i = intent.getIntExtra("pos",0)
 
         val restaurantModel = ViewModelProviders.of(this).get(RestaurantModel::class.java)
-        val resto= intent.getSerializableExtra("resto") as Restaurant
 
-
+        val resto= intent.getSerializableExtra("resto") as Restaurant?
 
         menujour.setOnClickListener({
-            startActivity(intentFor<MenuJourActivity>("pos" to i, "nom" to resto.nom))
+            startActivity(intentFor<MenuJourActivity>("pos" to i, "nom" to resto!!.nom))
         })
         commande.setOnClickListener({
             startActivity(intentFor<CommanderActivity>("pos" to i))
         })
         reserve.setOnClickListener({
-            startActivity(intentFor<ReserverActivity>("nom" to resto.nom))
+            startActivity(intentFor<ReserverActivity>("nom" to resto!!.nom))
         })
         menus.setOnClickListener({
-            startActivity(intentFor<MenuDesMenusActivity>("nom" to resto.nom, "pos" to i))
+            startActivity(intentFor<MenuDesMenusActivity>("nom" to resto!!.nom, "pos" to i))
         })
         infos.setOnClickListener({
-            startActivity(intentFor<InfosActivity>("nom" to resto.nom, "pos" to i))
+            startActivity(intentFor<InfosActivity>("nom" to resto!!.nom, "pos" to i))
         })
 
         if (restaurantModel.restaurant!=null) {
             restaurantModel.displayDatail(this,restaurantModel.restaurant!!)
         }
         else {
-            restaurantModel.loadDetail(this,resto)
+            restaurantModel.loadDetail(this,resto!!)
         }
 
     }

@@ -40,9 +40,7 @@ class RestaurantModel: ViewModel() {
             //act.progressBar1.visibility = View.GONE
             act.listrestos.adapter = RestaurantAdapter(act, restaurants!!)
         }
-
 }
-    
 
     private fun getrestaurantsFromRemote(act:Activity) {
         val call = RetrofitService.endpoint.getRestaurants()
@@ -76,8 +74,8 @@ class RestaurantModel: ViewModel() {
     fun loadDetail(act:Activity,Restaurant:Restaurant) {
         //act.progressBar2.visibility = View.VISIBLE
         // load Restaurant detail from SQLite DB
-        this.restaurants = RoomService.appDatabase.getRestaurantDao().getRestaurantsByName(Restaurant.nom)
-        if(this.restaurant?.lien==null) {
+        this.restaurant = RoomService.appDatabase.getRestaurantDao().getRestaurantByID (Restaurant.id_restaurant)
+        if(this.restaurant==null) {
             // if the Restaurant details don't exist, load the details from server and update SQLite DB
             loadDetailFromRemote(act,Restaurant)
         }
@@ -95,16 +93,7 @@ class RestaurantModel: ViewModel() {
                 //act.progressBar2.visibility = View.GONE
                 if(response?.isSuccessful!!) {
                     var RestaurantDetail = response?.body()
-                    RestaurantDetail = Restaurant.copy(
-                            nom=Restaurant!!.nom,
-                          adresse=Restaurant!!.adresse,
-                            note=Restaurant!!.note,
-                            email=Restaurant!!.email,
-                           n_tel= Restaurant!!.n_tel,
-                            description =RestaurantDetail!!.description,
-                            lien = RestaurantDetail!!.lien
-                            )
-                    displayDatail(act,RestaurantDetail)
+                    displayDatail(act,RestaurantDetail!!)
                     // update the Restaurant in the SQLite DB to support offline mode
                     RoomService.appDatabase.getRestaurantDao().updateRestaurant(RestaurantDetail)
                     // update ViewModel
@@ -128,7 +117,7 @@ class RestaurantModel: ViewModel() {
     }
 
     fun displayDatail(act: Activity,Restaurant: Restaurant) {
-        Glide.with(act).load("192.168.1.6" + Restaurant.lien).apply(
+        Glide.with(act).load(baseUrl+ Restaurant.lien).apply(
                 RequestOptions().placeholder(R.drawable.resto_fond)
         ).into(act.imageView3)
 
