@@ -12,8 +12,11 @@ interface Endpoint {
     @GET("getrestaurants")
     fun getRestaurants(): Call<List<Restaurant>>
 
+    @GET("getrestaurantbyid/{id}")
+    fun getDetailRestaurant(@Path("id") id:Int):Call<Restaurant>
+
     @GET("getrestaurantbyname/{id}")
-    fun getRestaurantsByName(@Path("id")id_restaurant : Int) : Call<Restaurant>
+    fun getRestaurantsByName(@Path("id")id_restaurant :  Int) : Call<Restaurant>
 
     @GET("getmenusbyrestaurantandtype/{id}&{type}")
     fun getMenusByRestaurant(@Path("id")id_restaurant: Int, @Path("type")type:String) : Call<List<Menu>>
