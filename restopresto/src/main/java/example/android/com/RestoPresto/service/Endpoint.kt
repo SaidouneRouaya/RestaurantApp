@@ -21,6 +21,9 @@ interface Endpoint {
     @GET("getplatbymenu/{id}")
     fun getPlatByMenu(@Path("id")id_menu: Int) : Call<List<Plat>>
 
+    @GET("getplats")
+    fun getPlats() : Call<List<Plat>>
+
     @GET("getformulesbyrestaurant/{id}")
     fun getFormulesByRestaurant(@Path("id")id_restaurant: Int) : Call<List<Formule>>
 
@@ -32,4 +35,7 @@ interface Endpoint {
 
     @GET("getcontenirmenu")
     fun getContenirMenu(): Call<List<Contenir_menu>>
+
+    @GET("getmenus")
+    fun getMenus(): Call<List<Menu>>
 }
