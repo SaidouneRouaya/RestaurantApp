@@ -50,19 +50,23 @@ class RestaurantModel: ViewModel() {
             override fun onResponse(call: Call<List<Restaurant>>?, response: Response<List<Restaurant>>?) {
                 //act.progressBar1.visibility = View.GONE
                 if (response?.isSuccessful!!) {
+                    act.toast("response successful 1")
                     restaurants = response?.body()
                    // act.progressBar1.visibility = View.GONE
                     act.listrestos.adapter= RestaurantAdapter(act, restaurants!!)
                     // save restaurants in SQLite DB
-                    RoomService.appDatabase.getRestaurantDao().addRestaurants(restaurant!!)
+                    for (item in restaurants!!)
+                    {
+                    RoomService.appDatabase.getRestaurantDao().addRestaurants(item)
+                    }
                 } else {
-                    act.toast("Une erreur s'est produite")
+                    act.toast("Une erreur s'est produite1")
                 }
             }
 
             override fun onFailure(call: Call<List<Restaurant>>?, t: Throwable?) {
                // act.progressBar1.visibility = View.GONE
-                act.toast("Une erreur s'est produite")
+                act.toast("Une erreur s'est produite2")
             }
 
 
@@ -108,7 +112,7 @@ class RestaurantModel: ViewModel() {
 
                 }
                 else {
-                    act.toast("Une erreur s'est produite")
+                    act.toast("Une erreur s'est produite3")
 
                 }
 
@@ -117,14 +121,14 @@ class RestaurantModel: ViewModel() {
 
             override fun onFailure(call: Call<Restaurant>?, t: Throwable?) {
                 //act.progressBar2.visibility = View.GONE
-                act.toast("Une erreur s'est produite")
+                act.toast("Une erreur s'est produite4")
 
             }
         })
     }
 
     fun displayDatail(act: Activity,Restaurant: Restaurant) {
-        Glide.with(act).load("192.168.1.8" + Restaurant.lien).apply(
+        Glide.with(act).load("192.168.1.6" + Restaurant.lien).apply(
                 RequestOptions().placeholder(R.drawable.resto_fond)
         ).into(act.imageView3)
 
