@@ -1,5 +1,6 @@
 package example.android.com.RestoPresto
 
+import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.ActionBarDrawerToggle
@@ -19,6 +20,8 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.view.Menu
 import android.view.MenuItem
+
+
 import org.jetbrains.anko.intentFor
 
 
@@ -38,42 +41,41 @@ class InfosActivity : AppCompatActivity(), OnMapReadyCallback, NavigationView.On
         mapView = findViewById(R.id.map_view) as MapView
         mapView?.onCreate(mapViewBundle)
         mapView?.getMapAsync(this)
-        val util = Util()
+
+
+      //  val i = intent.getIntExtra("id_resto",0)
         val url  = "fb://page/218641444910278"
-        val i = intent.getIntExtra("pos",0)
-        val imagesTab = arrayOf(R.drawable.ledey, R.drawable.lallamina, R.drawable.eldjenina, R.drawable.lapalmeraie, R.drawable.eldjazair)
-        val nomsTab = resources.getStringArray(R.array.restos)
-        val adresseTab = resources.getStringArray(R.array.adresses)
-        val noteTab = resources.getStringArray(R.array.notes)
-        val emailTab = resources.getStringArray(R.array.emails)
-        val numeroTab = resources.getStringArray(R.array.numeros)
-        val descriptions = resources.getStringArray(R.array.descriptions)
-        val fbTab = resources.getStringArray(R.array.facebooks)
-        val twTab = resources.getStringArray(R.array.twitters)
-        val resto = Restaurant(nom = nomsTab[i], lien = imagesTab[i].toString(), adresse = adresseTab[i], n_tel = numeroTab[i], note = noteTab[i],email = emailTab[i],description = descriptions[i])
-        util.displayInfos(this,resto)
+
+        val restaurantModel = ViewModelProviders.of(this).get(RestaurantModel::class.java)
+        /* restaurantModel.loadDetail(this, i)
+        val resto = restaurantModel.restaurant
+        */
+        val resto = intent.getSerializableExtra("resto") as Restaurant
+        restaurantModel.restaurant=resto
+        restaurantModel.displayInfos(this,resto)
+
         numero_resto.setOnClickListener({
             makeCall(numero_resto.text.toString())
         })
         facebook.setOnClickListener({
             try {
-                util.openFacebookPage(this, url)
+                restaurantModel.openFacebookPage(this, url)
                 toast("Vous etes redirigés vers Facebook")
             }
             catch (e : Exception)
             {
-                util.browseUrl(this,"https://www.facebook.com/search/top/?q=bristol&ref=eyJzaWQiOiIwLjUzNjE2MjY1Mjk4ODc3NDQiLCJxcyI6IkpUVkNKVEl5WW5KcGMzUnZiQ1V5TWlVMVJBIiwiZ3YiOiJiZWUwOWY5M2ZhNzMyY2ZhNTlhMWNiNmQ5ZjQ1MGQzODkyNDI0ZTQ5IiwiZW50X2lkcyI6W10sImJzaWQiOiJiYmI5NDBhMmQ5YmMwZDljNDEzMjlmNWJhNTJmN2NmMiJ9")
+                restaurantModel.browseUrl(this,"https://www.facebook.com/search/top/?q=bristol&ref=eyJzaWQiOiIwLjUzNjE2MjY1Mjk4ODc3NDQiLCJxcyI6IkpUVkNKVEl5WW5KcGMzUnZiQ1V5TWlVMVJBIiwiZ3YiOiJiZWUwOWY5M2ZhNzMyY2ZhNTlhMWNiNmQ5ZjQ1MGQzODkyNDI0ZTQ5IiwiZW50X2lkcyI6W10sImJzaWQiOiJiYmI5NDBhMmQ5YmMwZDljNDEzMjlmNWJhNTJmN2NmMiJ9")
             }
 
         })
         twitter.setOnClickListener({
             try {
-                util.openFacebookPage(this, "https://twitter.com/palmeraieresort?lang=fr")
+                restaurantModel.openFacebookPage(this, "https://twitter.com/palmeraieresort?lang=fr")
                 toast("Vous etes redirigés vers Twitter")
             }
             catch (e : Exception)
             {
-                util.browseUrl(this,"https://www.facebook.com/search/top/?q=bristol&ref=eyJzaWQiOiIwLjUzNjE2MjY1Mjk4ODc3NDQiLCJxcyI6IkpUVkNKVEl5WW5KcGMzUnZiQ1V5TWlVMVJBIiwiZ3YiOiJiZWUwOWY5M2ZhNzMyY2ZhNTlhMWNiNmQ5ZjQ1MGQzODkyNDI0ZTQ5IiwiZW50X2lkcyI6W10sImJzaWQiOiJiYmI5NDBhMmQ5YmMwZDljNDEzMjlmNWJhNTJmN2NmMiJ9")
+                restaurantModel.browseUrl(this,"https://www.facebook.com/search/top/?q=bristol&ref=eyJzaWQiOiIwLjUzNjE2MjY1Mjk4ODc3NDQiLCJxcyI6IkpUVkNKVEl5WW5KcGMzUnZiQ1V5TWlVMVJBIiwiZ3YiOiJiZWUwOWY5M2ZhNzMyY2ZhNTlhMWNiNmQ5ZjQ1MGQzODkyNDI0ZTQ5IiwiZW50X2lkcyI6W10sImJzaWQiOiJiYmI5NDBhMmQ5YmMwZDljNDEzMjlmNWJhNTJmN2NmMiJ9")
             }
         })
         val toggle = ActionBarDrawerToggle(
@@ -121,18 +123,19 @@ class InfosActivity : AppCompatActivity(), OnMapReadyCallback, NavigationView.On
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation view item clicks here.
-        val ft = supportFragmentManager.beginTransaction()
-        val i = intent.getIntExtra("pos",0)
-        val nom = intent.getStringExtra("nom")
+        // Handle navigation view item clicks here
+
+        val i = intent.getIntExtra("id_resto",0)
+
+
         when (item.itemId) {
             R.id.accueil -> { startActivity(intentFor<MainActivity> ()) }
 
-            R.id.menu_jour -> { startActivity(intentFor<MenuDesMenusActivity> ("nom" to nom, "pos" to i)) }
+            R.id.menu_jour -> { startActivity(intentFor<MenuDesMenusActivity> ("id_resto" to i)) }
 
-            R.id.infos -> { startActivity(intentFor<InfosActivity> ("pos" to i)) }
+            R.id.infos -> { startActivity(intentFor<InfosActivity> ("id_resto" to i)) }
 
-            R.id.commander-> { startActivity(intentFor<CommanderActivity> ("pos" to i)) }
+            R.id.commander-> { startActivity(intentFor<CommanderActivity> ("id_resto" to i)) }
         }
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
@@ -171,7 +174,9 @@ class InfosActivity : AppCompatActivity(), OnMapReadyCallback, NavigationView.On
         gmap = googleMap
         gmap?.setMinZoomPreference(12.00f)
         gmap?.setIndoorEnabled(true)
-        val i = intent.getIntExtra("pos",0)
+
+        val resto = intent.getSerializableExtra("resto") as Restaurant?
+
         val uiSettings = gmap?.getUiSettings()
         uiSettings?.setIndoorLevelPickerEnabled(true)
         uiSettings?.setMyLocationButtonEnabled(true)
@@ -180,10 +185,10 @@ class InfosActivity : AppCompatActivity(), OnMapReadyCallback, NavigationView.On
         uiSettings?.setZoomControlsEnabled(true)
         uiSettings?.isMyLocationButtonEnabled = true
         uiSettings?.isMapToolbarEnabled = true
-        val latitudesTab = resources.getStringArray(R.array.latitudes)
-        val longitudesTab = resources.getStringArray(R.array.longitudes)
-        val ny = LatLng(latitudesTab[i].toDouble(), longitudesTab[i].toDouble())
+
+        val ny = LatLng(resto!!.latitude,resto!!.longitude)
         val markerOptions = MarkerOptions()
+
         markerOptions.position(ny)
         gmap?.addMarker(markerOptions)
         gmap?.moveCamera(CameraUpdateFactory.newLatLng(ny))

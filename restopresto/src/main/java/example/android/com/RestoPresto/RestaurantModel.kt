@@ -2,6 +2,9 @@ package example.android.com.RestoPresto
 
 import android.app.Activity
 import android.arch.lifecycle.ViewModel
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import example.android.com.RestoPresto.entities.Restaurant
@@ -14,6 +17,7 @@ import example.android.com.RestoPresto.R.id.nom
 import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_restaurant.*
 import org.jetbrains.anko.act
+import org.jetbrains.anko.browse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -85,7 +89,7 @@ class RestaurantModel: ViewModel() {
         else {
             //act.progressBar2.visibility = View.GONE
 
-            displayDatail(act, this.restaurant)
+            displayDetail(act, this.restaurant)
         }
 
     }
@@ -97,7 +101,7 @@ class RestaurantModel: ViewModel() {
                 //act.progressBar2.visibility = View.GONE
                 if(response?.isSuccessful!!) {
                     var RestaurantDetail = response?.body()
-                    displayDatail(act,RestaurantDetail!!)
+                    displayDetail(act,RestaurantDetail!!)
                     // update the Restaurant in the SQLite DB to support offline mode
                     RoomService.appDatabase.getRestaurantDao().updateRestaurant(RestaurantDetail)
                     // update ViewModel
@@ -120,11 +124,35 @@ class RestaurantModel: ViewModel() {
         })
     }
 
-    fun displayDatail(act: Activity,Restaurant: Restaurant?) {
+    fun displayDetail(act: Activity,Restaurant: Restaurant?) {
            //   Glide.with(act).load(baseUrl+ Restaurant!!.lien).into(act.imageView3)
         Glide.with(act).load(baseUrl+ Restaurant!!.lien).into(act.imagedetail)
         act.nomdetail.text = Restaurant!!.nom
 
+    }
+    fun displayInfos(act: Activity,resto: Restaurant?)
+    {
+
+        Glide.with(act).load(baseUrl+ resto!!.lien).into(act.imageView3)
+        act.nom_resto.text = resto.nom
+        act.adresse.text = "Adresse : "+resto.adresse
+        act.numero_resto.text =resto.n_tel
+        act.email_resto.text ="Email : "+resto.email
+        act.note.text = "Note : "+resto.note
+        act.description.text = resto.description
+    }
+
+    fun openFacebookPage(ctx: Context, facebookUrl: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(facebookUrl))
+        ctx.startActivity(intent)
+    }
+
+    /**
+     * This function opens a web page
+     */
+
+    fun browseUrl(ctx: Context, url:String){
+        ctx.browse(url)
     }
 
 

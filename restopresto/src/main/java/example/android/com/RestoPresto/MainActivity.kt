@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         infosbouton = findViewById(R.id.infos) as? Button
         menubouton = findViewById(R.id.menus) as? Button
         // Instance of Uiil class............. rouya
-        val util = Util()
+
         // View Model instance
         val restaurantModel = ViewModelProviders.of(this).get(RestaurantModel::class.java)
         // Création de l'adapter pour la liste
@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity() {
                 /*restaurantModel.restaurant = Restaurant(nom = detailNomsTab[i], lien = detailImagesTab[i].toString())
                 restaurantModel.i = i*/
 
-                restaurantModel.displayDatail(this,resto)
+                restaurantModel.displayDetail(this,resto)
 
                 menujourbouton?.setOnClickListener({
                     startActivity(intentFor<MenuJourActivity>("id_resto" to resto.id_restaurant))
@@ -120,12 +120,12 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intentFor<MenuDesMenusActivity>("id_resto" to resto.id_restaurant))
                 })
                 infosbouton?.setOnClickListener({
-                    startActivity(intentFor<InfosActivity>("id_resto" to resto.id_restaurant))
+                    startActivity(intentFor<InfosActivity>("resto" to resto))
                 })
             }
             else {
                 // send the position to the detail activity
-                startActivity(intentFor<RestaurantActivity>("id_resto" to resto.id_restaurant))
+                startActivity(intentFor<RestaurantActivity>("resto" to resto))
             }
             }
         }
