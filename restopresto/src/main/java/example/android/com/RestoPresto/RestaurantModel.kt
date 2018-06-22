@@ -71,13 +71,13 @@ class RestaurantModel: ViewModel() {
         })
     }
 
-    fun loadDetail(act:Activity,Restaurant:Restaurant) {
+    fun loadDetail(act:Activity,idRestaurant:Int) {
         //act.progressBar2.visibility = View.VISIBLE
         // load Restaurant detail from SQLite DB
-        this.restaurant = RoomService.appDatabase.getRestaurantDao().getRestaurantByID (Restaurant.id_restaurant)
+        this.restaurant = RoomService.appDatabase.getRestaurantDao().getRestaurantByID (idRestaurant)
         if(this.restaurant==null) {
             // if the Restaurant details don't exist, load the details from server and update SQLite DB
-            loadDetailFromRemote(act,Restaurant)
+            loadDetailFromRemote(act,idRestaurant)
         }
         else {
             //act.progressBar2.visibility = View.GONE
@@ -86,8 +86,8 @@ class RestaurantModel: ViewModel() {
 
     }
 
-    private fun loadDetailFromRemote(act:Activity,Restaurant:Restaurant) {
-        val call = RetrofitService.endpoint.getDetailRestaurant(Restaurant.id_restaurant)
+    private fun loadDetailFromRemote(act:Activity,idRestaurant:Int) {
+        val call = RetrofitService.endpoint.getDetailRestaurant(idRestaurant)
         call.enqueue(object : Callback<Restaurant> {
             override fun onResponse(call: Call<Restaurant>?, response: Response<Restaurant>?) {
                 //act.progressBar2.visibility = View.GONE
@@ -116,10 +116,9 @@ class RestaurantModel: ViewModel() {
         })
     }
 
-    fun displayDatail(act: Activity,Restaurant: Restaurant) {
-        Glide.with(act).load(baseUrl+ Restaurant.lien).apply(
-                RequestOptions().placeholder(R.drawable.resto_fond)
-        ).into(act.imageView3)
+    fun displayDatail(act: Activity,Restaurant: Restaurant?) {
+        if (Restaurant!=null) {
+        Glide.with(act).load(baseUrl+ Restaurant.lien).into(act.imageView3)
 
         act.nom_resto.text = Restaurant.nom
         act.description.text = Restaurant.description
@@ -128,7 +127,10 @@ class RestaurantModel: ViewModel() {
         act.email_resto.text=Restaurant.email
         //act.facebook.setOnClickListener { Restaurant.facebook }
         act.numero_resto.text=Restaurant.n_tel
+        }
+    else System.out.println ("restaurant null dans display detail")
     }
+
 
 
 }

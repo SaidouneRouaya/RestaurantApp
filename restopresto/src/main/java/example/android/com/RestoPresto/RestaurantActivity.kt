@@ -16,11 +16,14 @@ class RestaurantActivity : AppCompatActivity() {
         val ab = getSupportActionBar()
         ab?.setDisplayHomeAsUpEnabled(true)
         val util = Util()
-        val i = intent.getIntExtra("pos",0)
+        val i = intent.getIntExtra("id_resto",0)
 
         val restaurantModel = ViewModelProviders.of(this).get(RestaurantModel::class.java)
 
-        val resto= intent.getSerializableExtra("resto") as Restaurant?
+        //val resto= intent.getSerializableExtra("resto") as Restaurant?
+
+        restaurantModel.loadDetail(this, i)
+        val resto = restaurantModel.restaurant
 
         menujour.setOnClickListener({
             startActivity(intentFor<MenuJourActivity>("pos" to i, "nom" to resto!!.nom))
@@ -42,7 +45,7 @@ class RestaurantActivity : AppCompatActivity() {
             restaurantModel.displayDatail(this,restaurantModel.restaurant!!)
         }
         else {
-            restaurantModel.loadDetail(this,resto!!)
+            restaurantModel.loadDetail(this,resto!!.id_restaurant)
         }
 
     }
