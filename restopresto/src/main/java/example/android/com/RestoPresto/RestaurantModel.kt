@@ -12,6 +12,7 @@ import org.jetbrains.anko.toast
 import android.view.View
 import example.android.com.RestoPresto.R.id.nom
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragment_restaurant.*
 import org.jetbrains.anko.act
 import retrofit2.Call
 import retrofit2.Callback
@@ -75,13 +76,16 @@ class RestaurantModel: ViewModel() {
         //act.progressBar2.visibility = View.VISIBLE
         // load Restaurant detail from SQLite DB
         this.restaurant = RoomService.appDatabase.getRestaurantDao().getRestaurantByID (idRestaurant)
+
         if(this.restaurant==null) {
             // if the Restaurant details don't exist, load the details from server and update SQLite DB
+
             loadDetailFromRemote(act,idRestaurant)
         }
         else {
             //act.progressBar2.visibility = View.GONE
-            displayDatail(act, this.restaurant!!)
+
+            displayDatail(act, this.restaurant)
         }
 
     }
@@ -117,18 +121,16 @@ class RestaurantModel: ViewModel() {
     }
 
     fun displayDatail(act: Activity,Restaurant: Restaurant?) {
-        if (Restaurant!=null) {
-        Glide.with(act).load(baseUrl+ Restaurant.lien).into(act.imageView3)
+           //   Glide.with(act).load(baseUrl+ Restaurant!!.lien).into(act.imageView3)
+        System.out.println("lien glide display detail " +baseUrl+ Restaurant!!.lien)
+        if (act==null) System.out.println("activity is null Glide ")
+        if (act.imagedetail==null) System.out.println("act.imagedetail  is null Glide ")
 
-        act.nom_resto.text = Restaurant.nom
-        act.description.text = Restaurant.description
-        act.note.text=Restaurant.note
-        act.adresse.text=Restaurant.adresse
-        act.email_resto.text=Restaurant.email
-        //act.facebook.setOnClickListener { Restaurant.facebook }
-        act.numero_resto.text=Restaurant.n_tel
-        }
-    else System.out.println ("restaurant null dans display detail")
+
+        Glide.with(act).load(baseUrl+ Restaurant!!.lien).into(act.imagedetail)
+
+        act.nomdetail.text = Restaurant!!.nom
+
     }
 
 

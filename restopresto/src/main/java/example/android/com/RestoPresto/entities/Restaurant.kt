@@ -1,6 +1,7 @@
 package example.android.com.RestoPresto.entities
 
 import android.arch.persistence.room.*
+import java.io.Serializable
 
 /**
  * Created by start on 18/06/2018.
@@ -32,4 +33,4 @@ data class Restaurant (
         var longitude : Double=1.0,
         @ColumnInfo(name ="note")
         var note: String=""
-)
+):Serializable

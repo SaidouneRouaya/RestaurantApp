@@ -18,11 +18,14 @@ class RestaurantActivity : AppCompatActivity() {
         val util = Util()
         val i = intent.getIntExtra("id_resto",0)
 
+        System.out.println ("valeur de i "+i)
+
         val restaurantModel = ViewModelProviders.of(this).get(RestaurantModel::class.java)
 
         //val resto= intent.getSerializableExtra("resto") as Restaurant?
 
         restaurantModel.loadDetail(this, i)
+
         val resto = restaurantModel.restaurant
 
         menujour.setOnClickListener({
