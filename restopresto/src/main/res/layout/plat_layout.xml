@@ -9,22 +9,6 @@
         app:layout_constraintEnd_toStartOf="@+id/nbCmd"-->
 
 
-    <TextView
-        android:id="@+id/nbCmd"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/bouton_arrondi"
-        android:backgroundTint="@color/colorAccent"
-        android:text="23"
-        android:textColor="@color/colorBouton"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nom_plat"
-        android:visibility="invisible"/>
     <android.support.v7.widget.CardView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -42,20 +26,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <!-- <TextView
-                 android:id="@+id/nom"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_marginEnd="8dp"
-                 android:layout_marginStart="16dp"
-                 android:gravity="center"
-                 android:text="TextView"
-                 android:textAlignment="textStart"
-                 android:textSize="20sp"
-                 app:layout_constraintBaseline_toBaselineOf="@+id/note"
-                 app:layout_constraintEnd_toEndOf="parent"
-                 app:layout_constraintHorizontal_bias="0.0"
-                 app:layout_constraintStart_toStartOf="parent" />-->
 
             <ImageView
                 android:id="@+id/image"
@@ -95,8 +65,7 @@
                     android:textColorHighlight="@color/colorPrimary"
                     android:textSize="18dp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintEnd_toStartOf="@+id/nbCmd"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:fontFamily="casual"
@@ -134,20 +103,21 @@
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/ingredients_plat" />
+
+                <TextView
+                    android:id="@+id/nbCmd"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/bouton_arrondi"
+                    android:backgroundTint="@color/colorAccent"
+                    android:text="23"
+                    android:textColor="@color/colorBouton"
+                    android:textStyle="bold|italic"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/nom_plat"
+                    app:layout_constraintEnd_toEndOf="parent" />
             </android.support.constraint.ConstraintLayout>
-            <!--  <TextView
-                  android:id="@+id/note"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_marginEnd="8dp"
-                  android:layout_marginStart="8dp"
-                  android:layout_marginTop="8dp"
-                  android:text="Note : ★★✩✩"
-                  android:textAlignment="textEnd"
-                  app:layout_constraintEnd_toEndOf="parent"
-                  app:layout_constraintHorizontal_bias="0.9"
-                  app:layout_constraintStart_toEndOf="@+id/nom"
-                  app:layout_constraintTop_toBottomOf="@+id/image" />-->
+
         </android.support.constraint.ConstraintLayout>
 
     </android.support.v7.widget.CardView>

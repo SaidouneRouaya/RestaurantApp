@@ -87,14 +87,6 @@ class CommanderActivity : AppCompatActivity(){
             ligne_commande = mutableListOf()
             liste_commandes = mutableMapOf()
         }
-        /*cmdPlatTab = resources.getStringArray(R.array.plat_cmd)
-        cmdPrixTab=resources.getStringArray(R.array.prix_cmd)
-        cmdNbTab = resources.getStringArray(R.array.nb_cmd)
-        val list = mutableListOf<Plat>()
-        for (i in 0..cmdPlatTab.size - 1) {
-            //list.add(Plat(nom = cmdPlatTab[i], prix = cmdPrixTab[i], nbCmd = cmdNbTab[i]))
-            list.add(Plat(nom = cmdPlatTab[i], prix = 123.056))
-        }*/
         return liste_commandes
     }
 

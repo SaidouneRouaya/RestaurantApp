@@ -70,6 +70,7 @@ class nbCmdFragment : DialogFragment(), NumberPicker.OnValueChangeListener {
                 if (commandes.isEmpty())
                 {
                     mDb!!.getCommandeDao().addCommandes(Commande(0,sdf.format(Date()),stf.format(Date()),id_restaurant,id_user,0))
+                    lancerJob()
                     commandes = mDb!!.getCommandeDao().getCommandesByUserByRestaurant(id_user,id_restaurant)
                     System.out.println("c : "+commandes.get(0).id_cmd+"  "+id_plat)
                     mDb!!.getLigneCommandeDao().addLigne_commandes(Ligne_commande(0,nombrecmd!!.value,commandes.get(0).id_cmd,id_plat))
@@ -79,11 +80,15 @@ class nbCmdFragment : DialogFragment(), NumberPicker.OnValueChangeListener {
                     lignecmd = mDb!!.getLigneCommandeDao().getLigne_commandeByCommandeByPlat(commandes.get(0).id_cmd, id_plat)
                     if (lignecmd.isNotEmpty()) {
                         lignecmd.get(0).nombre = nombrecmd!!.value
+                        if (nombrecmd!!.value !=0)
                         mDb!!.getLigneCommandeDao().updateLigne_commande(lignecmd.get(0))
+                        else
+                            mDb!!.getLigneCommandeDao().deleteLigne_commande(lignecmd.get(0))
                     }
                     else
                     {
                         System.out.println("c : "+commandes.get(0).id_cmd+"  "+id_plat)
+                        if (nombrecmd!!.value !=0)
                         mDb!!.getLigneCommandeDao().addLigne_commandes(Ligne_commande(0,nombrecmd!!.value,commandes.get(0).id_cmd,id_plat))
                     }
                 }
@@ -103,16 +108,17 @@ class nbCmdFragment : DialogFragment(), NumberPicker.OnValueChangeListener {
         args.putInt("id_plat", id_plat)
         args.putInt("id_restaurant",id_restaurant)
         args.putInt("id_user", id_user)
-        val myJob = dispatcher?.newJobBuilder()
+        val myJob = dispatcher.newJobBuilder()
                 .setService(CommandeJobService::class.java)
                 .setRecurring(false) // Exécuter une fois
                 .setTag("lll")
                 .setExtras(args)
                 .setLifetime(Lifetime.FOREVER) // durée de vie
-                .setTrigger(Trigger.executionWindow(3600, 3630)) // temps de lancement
+                .setTrigger(Trigger.executionWindow(10, 30)) // temps de lancement
                 .setRetryStrategy(RetryStrategy.DEFAULT_LINEAR) // stratégie de relance
-                .setConstraints(Constraint.ON_UNMETERED_NETWORK).build() // mode WiFi uniquement
-        dispatcher?.mustSchedule(myJob)
+                .setConstraints(Constraint.ON_ANY_NETWORK).build() // mode WiFi uniquement
+        System.out.print("je passe dans la programmation")
+        dispatcher.mustSchedule(myJob)
     }
 }
 
