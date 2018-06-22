@@ -130,19 +130,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-   /* fun loadData(): List<Restaurant> {
-        detailImagesTab = arrayOf(R.drawable.ledey, R.drawable.lallamina, R.drawable.eldjenina, R.drawable.lapalmeraie, R.drawable.eldjazair)
-        detailNomsTab=resources.getStringArray(R.array.restos)
-        val imagesTab = arrayOf(R.drawable.ledey, R.drawable.lallamina, R.drawable.eldjenina, R.drawable.lapalmeraie, R.drawable.eldjazair)
-        val nomsTab = resources.getStringArray(R.array.restos)
-        val notesTab = resources.getStringArray(R.array.notes)
 
-        val list = mutableListOf<Restaurant>()
-        for (i in 0..imagesTab.size - 1) {
-            list.add(Restaurant(nom = nomsTab[i], lien = imagesTab[i].toString(), note = notesTab[i]))
-
-        }
-        return list
-    }*/
     fun isTwoPane() = findViewById<View>(R.id.fragment2) != null
 }
