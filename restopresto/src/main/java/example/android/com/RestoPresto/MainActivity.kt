@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         infosbouton = findViewById(R.id.infos) as? Button
         menubouton = findViewById(R.id.menus) as? Button
         // Instance of Uiil class............. rouya
-        val util = Util()
+
         // View Model instance
         val restaurantModel = ViewModelProviders.of(this).get(RestaurantModel::class.java)
         // Création de l'adapter pour la liste
@@ -47,80 +47,85 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        if (isTwoPane()) {
-            if (restaurantModel.restaurant!!.nom.equals(""))
-            {   restaurantModel.restaurant = Restaurant(nom = detailNomsTab[0], lien = detailImagesTab[0].toString())
-            util.displayDetail(this,restaurantModel.restaurant!!)
+
+        if (isTwoPane()  && restaurantModel.restaurant!=null) {
+
+              //  restaurantModel.displayDatail (this,restaurantModel.restaurant!!)
+            restaurantModel.loadDetail(this,restaurantModel.restaurant!!.id_restaurant)
 
             menujourbouton?.setOnClickListener({
-                startActivity(intentFor<MenuJourActivity>("pos" to 0, "nom" to detailNomsTab[0]))
+                startActivity(intentFor<MenuJourActivity>("id_resto" to restaurantModel.restaurant!!.id_restaurant))
             })
             commandebouton?.setOnClickListener({
-                startActivity(intentFor<CommanderActivity>("pos" to 0))
+                startActivity(intentFor<CommanderActivity>("id_resto" to restaurantModel.restaurant!!.id_restaurant))
             })
             reservebouton?.setOnClickListener({
-                startActivity(intentFor<ReserverActivity>("nom" to detailNomsTab[0]))
+                startActivity(intentFor<ReserverActivity>("id_resto" to restaurantModel.restaurant!!.id_restaurant))
             })
             menubouton?.setOnClickListener({
-                startActivity(intentFor<MenuDesMenusActivity>("nom" to detailNomsTab[0], "pos" to 0))
+                startActivity(intentFor<MenuDesMenusActivity>("id_resto" to restaurantModel.restaurant!!.id_restaurant))
             })
             infosbouton?.setOnClickListener({
-                startActivity(intentFor<InfosActivity>("pos" to 0))
+                startActivity(intentFor<InfosActivity>("id_resto" to restaurantModel.restaurant!!.id_restaurant))
             }
             )}
             else
             {
-                util.displayDetail(this,restaurantModel.restaurant!!)
-                var i = restaurantModel.i
+                restaurantModel.loadDetail(this,0)
+
+                System.out.println("contenu du intent est 0")
+
+
                 menujourbouton?.setOnClickListener({
-                    startActivity(intentFor<MenuJourActivity>("pos" to i, "nom" to detailNomsTab[i]))
+                    startActivity(intentFor<MenuJourActivity>("id_resto" to restaurantModel.restaurant!!.id_restaurant))
                 })
                 commandebouton?.setOnClickListener({
-                    startActivity(intentFor<CommanderActivity>("pos" to i))
+                    startActivity(intentFor<CommanderActivity>("id_resto" to restaurantModel.restaurant!!.id_restaurant))
                 })
                 reservebouton?.setOnClickListener({
-                    startActivity(intentFor<ReserverActivity>("nom" to detailNomsTab[i]))
+                    startActivity(intentFor<ReserverActivity>("id_resto" to restaurantModel.restaurant!!.id_restaurant))
                 })
                 menubouton?.setOnClickListener({
-                    startActivity(intentFor<MenuDesMenusActivity>("nom" to detailNomsTab[i], "pos" to i))
+                    startActivity(intentFor<MenuDesMenusActivity>("id_resto" to restaurantModel.restaurant!!.id_restaurant))
                 })
                 infosbouton?.setOnClickListener({
-                    startActivity(intentFor<InfosActivity>("pos" to i))
+                    startActivity(intentFor<InfosActivity>("id_resto" to restaurantModel.restaurant!!.id_restaurant))
                 })
             }
 
-        }
+
 
         // Listner pour les éléments de la liste
 
 
         listrestos.setOnItemClickListener { adapterView, view, i, l ->
-
+            val resto = (adapterView.getItemAtPosition(i) as Restaurant)
             if (isTwoPane()) {
                 // display detail data
-                restaurantModel.restaurant = Restaurant(nom = detailNomsTab[i], lien = detailImagesTab[i].toString())
-                restaurantModel.i = i
-                util.displayDetail(this,restaurantModel.restaurant!!)
+                /*restaurantModel.restaurant = Restaurant(nom = detailNomsTab[i], lien = detailImagesTab[i].toString())
+                restaurantModel.i = i*/
+
+                restaurantModel.displayDetail(this,resto)
 
                 menujourbouton?.setOnClickListener({
-                    startActivity(intentFor<MenuJourActivity>("pos" to i, "nom" to detailNomsTab[i]))
+                    startActivity(intentFor<MenuJourActivity>("id_resto" to resto.id_restaurant))
                 })
                 commandebouton?.setOnClickListener({
-                    startActivity(intentFor<CommanderActivity>("pos" to i))
+                    startActivity(intentFor<CommanderActivity>("id_resto" to resto.id_restaurant))
                 })
                 reservebouton?.setOnClickListener({
-                    startActivity(intentFor<ReserverActivity>("nom" to detailNomsTab[i]))
+                    startActivity(intentFor<ReserverActivity>("id_resto" to resto.id_restaurant))
                 })
                 menubouton?.setOnClickListener({
-                    startActivity(intentFor<MenuDesMenusActivity>("nom" to detailNomsTab[i], "pos" to i))
+                    startActivity(intentFor<MenuDesMenusActivity>("id_resto" to resto.id_restaurant))
                 })
                 infosbouton?.setOnClickListener({
-                    startActivity(intentFor<InfosActivity>("pos" to i))
+                    startActivity(intentFor<InfosActivity>("resto" to resto))
                 })
             }
             else {
                 // send the position to the detail activity
-                startActivity(intentFor<RestaurantActivity>("pos" to i))
+                startActivity(intentFor<RestaurantActivity>("resto" to resto))
             }
             }
         }

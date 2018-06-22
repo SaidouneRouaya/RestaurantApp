@@ -20,6 +20,10 @@ interface RestaurantDao {
     @Query("select * from restaurant where nom=:RestaurantName")
     fun getRestaurantsByName(RestaurantName:String):List<Restaurant>
 
+    @Query("select * from restaurant where id_restaurant=:RestaurantID")
+    fun getRestaurantByID(RestaurantID:Int):Restaurant
+
+
     @Insert
     fun addRestaurants(vararg Restaurant: Restaurant)
 

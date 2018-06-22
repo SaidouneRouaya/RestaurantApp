@@ -2,6 +2,9 @@ package example.android.com.RestoPresto
 
 import android.app.Activity
 import android.arch.lifecycle.ViewModel
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import example.android.com.RestoPresto.entities.Restaurant
@@ -12,7 +15,9 @@ import org.jetbrains.anko.toast
 import android.view.View
 import example.android.com.RestoPresto.R.id.nom
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragment_restaurant.*
 import org.jetbrains.anko.act
+import org.jetbrains.anko.browse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -40,9 +45,7 @@ class RestaurantModel: ViewModel() {
             //act.progressBar1.visibility = View.GONE
             act.listrestos.adapter = RestaurantAdapter(act, restaurants!!)
         }
-
 }
-    
 
     private fun getrestaurantsFromRemote(act:Activity) {
         val call = RetrofitService.endpoint.getRestaurants()
@@ -73,38 +76,32 @@ class RestaurantModel: ViewModel() {
         })
     }
 
-    fun loadDetail(act:Activity,Restaurant:Restaurant) {
+    fun loadDetail(act:Activity,idRestaurant:Int) {
         //act.progressBar2.visibility = View.VISIBLE
         // load Restaurant detail from SQLite DB
-        this.restaurants = RoomService.appDatabase.getRestaurantDao().getRestaurantsByName(Restaurant.nom)
-        if(this.restaurant?.lien==null) {
+        this.restaurant = RoomService.appDatabase.getRestaurantDao().getRestaurantByID (idRestaurant)
+
+        if(this.restaurant==null) {
             // if the Restaurant details don't exist, load the details from server and update SQLite DB
-            loadDetailFromRemote(act,Restaurant)
+
+            loadDetailFromRemote(act,idRestaurant)
         }
         else {
             //act.progressBar2.visibility = View.GONE
-            displayDatail(act, this.restaurant!!)
+
+            displayDetail(act, this.restaurant)
         }
 
     }
 
-    private fun loadDetailFromRemote(act:Activity,Restaurant:Restaurant) {
-        val call = RetrofitService.endpoint.getDetailRestaurant(Restaurant.id_restaurant)
+    private fun loadDetailFromRemote(act:Activity,idRestaurant:Int) {
+        val call = RetrofitService.endpoint.getDetailRestaurant(idRestaurant)
         call.enqueue(object : Callback<Restaurant> {
             override fun onResponse(call: Call<Restaurant>?, response: Response<Restaurant>?) {
                 //act.progressBar2.visibility = View.GONE
                 if(response?.isSuccessful!!) {
                     var RestaurantDetail = response?.body()
-                    RestaurantDetail = Restaurant.copy(
-                            nom=Restaurant!!.nom,
-                          adresse=Restaurant!!.adresse,
-                            note=Restaurant!!.note,
-                            email=Restaurant!!.email,
-                           n_tel= Restaurant!!.n_tel,
-                            description =RestaurantDetail!!.description,
-                            lien = RestaurantDetail!!.lien
-                            )
-                    displayDatail(act,RestaurantDetail)
+                    displayDetail(act,RestaurantDetail!!)
                     // update the Restaurant in the SQLite DB to support offline mode
                     RoomService.appDatabase.getRestaurantDao().updateRestaurant(RestaurantDetail)
                     // update ViewModel
@@ -127,19 +124,37 @@ class RestaurantModel: ViewModel() {
         })
     }
 
-    fun displayDatail(act: Activity,Restaurant: Restaurant) {
-        Glide.with(act).load("192.168.1.6" + Restaurant.lien).apply(
-                RequestOptions().placeholder(R.drawable.resto_fond)
-        ).into(act.imageView3)
+    fun displayDetail(act: Activity,Restaurant: Restaurant?) {
+           //   Glide.with(act).load(baseUrl+ Restaurant!!.lien).into(act.imageView3)
+        Glide.with(act).load(baseUrl+ Restaurant!!.lien).into(act.imagedetail)
+        act.nomdetail.text = Restaurant!!.nom
 
-        act.nom_resto.text = Restaurant.nom
-        act.description.text = Restaurant.description
-        act.note.text=Restaurant.note
-        act.adresse.text=Restaurant.adresse
-        act.email_resto.text=Restaurant.email
-        //act.facebook.setOnClickListener { Restaurant.facebook }
-        act.numero_resto.text=Restaurant.n_tel
     }
+    fun displayInfos(act: Activity,resto: Restaurant?)
+    {
+
+        Glide.with(act).load(baseUrl+ resto!!.lien).into(act.imageView3)
+        act.nom_resto.text = resto.nom
+        act.adresse.text = "Adresse : "+resto.adresse
+        act.numero_resto.text =resto.n_tel
+        act.email_resto.text ="Email : "+resto.email
+        act.note.text = "Note : "+resto.note
+        act.description.text = resto.description
+    }
+
+    fun openFacebookPage(ctx: Context, facebookUrl: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(facebookUrl))
+        ctx.startActivity(intent)
+    }
+
+    /**
+     * This function opens a web page
+     */
+
+    fun browseUrl(ctx: Context, url:String){
+        ctx.browse(url)
+    }
+
 
 
 }
