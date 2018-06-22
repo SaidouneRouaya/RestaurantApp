@@ -20,7 +20,7 @@ class MenuDiabetFragment: Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_menu_diabet, container, false)
-        val id_restaurant = activity!!.intent.getIntExtra("id_restaurant",0)
+        val id_restaurant = activity!!.intent.getIntExtra("id_resto",0)
         val menuModel =  ViewModelProviders.of(this).get(MenuModel::class.java)
         val listView= view.findViewById<ListView>(R.id.list_plats_diabet)
         menuModel.loadDataMenu(id_restaurant,activity!!,"Diabete",listView)

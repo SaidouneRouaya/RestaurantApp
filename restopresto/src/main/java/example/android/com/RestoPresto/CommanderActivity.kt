@@ -33,7 +33,7 @@ class CommanderActivity : AppCompatActivity(){
         ab?.setDisplayHomeAsUpEnabled(true)
         preferences = getSharedPreferences("projetMobile", Context.MODE_PRIVATE)
         // Récupération des variables passées en argument
-        id_restaurant =intent.getIntExtra("pos",1)
+        id_restaurant =intent.getIntExtra("id_resto",1)
         id_user = preferences!!.getInt("id_user",1)
         val listView= findViewById<ListView>(R.id.list_plats_cmd)
 
@@ -62,7 +62,7 @@ class CommanderActivity : AppCompatActivity(){
         dialogCmd.show(supportFragmentManager,"dialog")
     }
     fun loadData():  MutableMap<Ligne_commande,Plat> {
-        commandes = mDb!!.getCommandeDao().getCommandesByUserByRestaurant(id_user,id_restaurant+1)
+        commandes = mDb!!.getCommandeDao().getCommandesByUserByRestaurant(id_user,id_restaurant)
         var plat : Plat
         var liste_commandes = mutableMapOf<Ligne_commande,Plat>()
         System.out.println("je passe avant commandes.notEmpty "+id_restaurant)

@@ -10,8 +10,7 @@ import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_les_menus.*
 import android.support.design.widget.TabLayout
-
-
+import org.jetbrains.anko.intentFor
 
 
 class LesMenusActivity : AppCompatActivity(){
@@ -54,6 +53,10 @@ class LesMenusActivity : AppCompatActivity(){
 
         if (id == R.id.action_settings) {
             return true
+        }
+        if (id == R.id.action_commande)
+        {
+            startActivity(intentFor<CommanderActivity>("id_resto" to intent.getIntExtra("id_resto",0)))
         }
 
         return super.onOptionsItemSelected(item)

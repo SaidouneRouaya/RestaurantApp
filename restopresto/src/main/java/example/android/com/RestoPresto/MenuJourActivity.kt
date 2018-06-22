@@ -36,7 +36,7 @@ class MenuJourActivity : AppCompatActivity() {
         val util = Util()
         val calendar = Calendar.getInstance()
         date=calendar.get(Calendar.DAY_OF_WEEK)
-        id_restaurant = intent.getIntExtra("pos",0)
+        id_restaurant = intent.getIntExtra("id_resto",0)
         val nom = intent.getStringExtra("nom")
         /*val menusjTab = resources.getStringArray(R.array.menujour)
         //menuj.text = menusjTab[i]*/

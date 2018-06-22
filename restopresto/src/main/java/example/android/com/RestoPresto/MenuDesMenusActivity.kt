@@ -13,15 +13,15 @@ class MenuDesMenusActivity : AppCompatActivity() {
         val ab = getSupportActionBar()
         ab?.setDisplayHomeAsUpEnabled(true)
         val nom = intent.getStringExtra("nom")
-        val i = intent.getIntExtra("pos",0)
+        val i = intent.getIntExtra("id_resto",0)
         CV_MenuJour.setOnClickListener({
-            startActivity(intentFor<MenuJourActivity>("pos" to i, "nom" to nom))
+            startActivity(intentFor<MenuJourActivity>("id_resto" to i, "nom" to nom))
         })
         CV_menu.setOnClickListener({
-            startActivity(intentFor<LesMenusActivity>("id_restaurant" to i,"nom" to nom))
+            startActivity(intentFor<LesMenusActivity>("id_resto" to i,"nom" to nom))
         })
         CV_formuleBinaire.setOnClickListener({
-            startActivity(intentFor<FormuleBinaireActivity>("id_restaurant" to i,"nom" to nom))
+            startActivity(intentFor<FormuleBinaireActivity>("id_resto" to i,"nom" to nom))
         })
     }
 }

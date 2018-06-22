@@ -54,7 +54,7 @@ class nbCmdFragment : DialogFragment(), NumberPicker.OnValueChangeListener {
         id_plat=args.getInt("id_plat",1)
         id_restaurant=args.getInt("id_restaurant",1)
         id_user=preferences!!.getInt("id_user",1)
-        var commandes =  mDb!!.getCommandeDao().getCommandesByUserByRestaurant(preferences!!.getInt("id_user",1),id_restaurant+1)
+        var commandes =  mDb!!.getCommandeDao().getCommandesByUserByRestaurant(preferences!!.getInt("id_user",1),id_restaurant)
         nombrecmd= view.findViewById<NumberPicker>(R.id.nombreCmd)
         nombrecmd!!.minValue = 0
         nombrecmd!!.maxValue = 10
@@ -69,8 +69,9 @@ class nbCmdFragment : DialogFragment(), NumberPicker.OnValueChangeListener {
             override  fun onClick(dialog: DialogInterface, id: Int) {
                 if (commandes.isEmpty())
                 {
-                    mDb!!.getCommandeDao().addCommandes(Commande(0,sdf.format(Date()),stf.format(Date()),id_restaurant+1,id_user,0))
-                    commandes = mDb!!.getCommandeDao().getCommandesByUserByRestaurant(id_user,id_restaurant+1)
+                    mDb!!.getCommandeDao().addCommandes(Commande(0,sdf.format(Date()),stf.format(Date()),id_restaurant,id_user,0))
+                    commandes = mDb!!.getCommandeDao().getCommandesByUserByRestaurant(id_user,id_restaurant)
+                    System.out.println("c : "+commandes.get(0).id_cmd+"  "+id_plat)
                     mDb!!.getLigneCommandeDao().addLigne_commandes(Ligne_commande(0,nombrecmd!!.value,commandes.get(0).id_cmd,id_plat))
                 }
                 else
@@ -82,6 +83,7 @@ class nbCmdFragment : DialogFragment(), NumberPicker.OnValueChangeListener {
                     }
                     else
                     {
+                        System.out.println("c : "+commandes.get(0).id_cmd+"  "+id_plat)
                         mDb!!.getLigneCommandeDao().addLigne_commandes(Ligne_commande(0,nombrecmd!!.value,commandes.get(0).id_cmd,id_plat))
                     }
                 }

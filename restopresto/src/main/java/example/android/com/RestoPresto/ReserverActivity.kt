@@ -105,7 +105,7 @@ class ReserverActivity : AppCompatActivity() {
                 if (isNetworkAvailable())
                 {
                     val reservation = Reservation(date =date_textview.text.toString(),heure =time_textview.text.toString(),
-                            nb_personne = numberPicker.value, id_restaurant = id_restaurant+1, id_user = preferences!!.getInt("id_user",1),
+                            nb_personne = numberPicker.value, id_restaurant = id_restaurant, id_user = preferences!!.getInt("id_user",1),
                             id_reservation = 0)
                     System.out.println(reservation.date+"  "+reservation.nb_personne)
 //                    mDb!!.getReservationDao().addReservations(reservation)

@@ -16,7 +16,7 @@ class EntreePlatFragment : Fragment(/*var _ctxt: Activity*/) {
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_entree_plat, container, false)
         val formuleModel =  ViewModelProviders.of(this).get(FormuleModel::class.java)
-        val id_restaurant = activity!!.intent.getIntExtra("id_restaurant",0)
+        val id_restaurant = activity!!.intent.getIntExtra("id_resto",0)
         view.CV_plat?.setOnClickListener({
             val newFragment:PlatFragment = PlatFragment().newInstance("entree_plat",formuleModel,id_restaurant)
             newFragment.show(activity?.fragmentManager,"dialog")
