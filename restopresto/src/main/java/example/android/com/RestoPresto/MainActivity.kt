@@ -13,8 +13,6 @@ import org.jetbrains.anko.intentFor
 
 class MainActivity : AppCompatActivity() {
 
-    var detailImagesTab = arrayOf<Int>()
-    var detailNomsTab = arrayOf<String>()
     var menujourbouton: Button? = null
     var commandebouton: Button? = null
     var reservebouton:Button? = null
@@ -30,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         reservebouton = findViewById(R.id.reserve) as? Button
         infosbouton = findViewById(R.id.infos) as? Button
         menubouton = findViewById(R.id.menus) as? Button
-        // Instance of Uiil class............. rouya
+
 
         // View Model instance
         val restaurantModel = ViewModelProviders.of(this).get(RestaurantModel::class.java)
@@ -75,7 +73,6 @@ class MainActivity : AppCompatActivity() {
 
                 System.out.println("contenu du intent est 0")
 
-
                 menujourbouton?.setOnClickListener({
                     startActivity(intentFor<MenuJourActivity>("id_resto" to restaurantModel.restaurant!!.id_restaurant))
                 })
@@ -101,9 +98,6 @@ class MainActivity : AppCompatActivity() {
         listrestos.setOnItemClickListener { adapterView, view, i, l ->
             val resto = (adapterView.getItemAtPosition(i) as Restaurant)
             if (isTwoPane()) {
-                // display detail data
-                /*restaurantModel.restaurant = Restaurant(nom = detailNomsTab[i], lien = detailImagesTab[i].toString())
-                restaurantModel.i = i*/
 
                 restaurantModel.displayDetail(this,resto)
 
