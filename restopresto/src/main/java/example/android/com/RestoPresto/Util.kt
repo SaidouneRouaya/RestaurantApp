@@ -23,7 +23,7 @@ class Util {
     fun displayInfos(act: Activity,resto: Restaurant)
     {
         act.imageView3.setImageResource(resto.lien.toInt())
-        act.nom_resto.text = resto.nom
+        act.date_jour.text = resto.nom
         act.adresse.text = "Adresse : "+resto.adresse
         act.numero_resto.text =resto.n_tel
         act.email_resto.text ="Email : "+resto.email

@@ -30,7 +30,7 @@ abstract class AppDatabase: RoomDatabase() {
 
     abstract fun getUserDao() : UserDao
 
-    abstract fun getContnirMenuDao() : Contenir_menuDao
+    abstract fun getContenirMenuDao() : Contenir_menuDao
 
     abstract fun getContenirFormuleDao() : Contenir_formuleDao
 

@@ -19,5 +19,7 @@ data class Menu (
         @ColumnInfo(name = "type")
         var type :String,
         @ColumnInfo(name="id_restaurant")
-        var id_restaurant:Int
+        var id_restaurant:Int,
+        @ColumnInfo(name="date")
+        var date:Int = 0
 )
