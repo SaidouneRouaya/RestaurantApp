@@ -123,7 +123,7 @@ class RestaurantModel: ViewModel() {
     fun displayDatail(act: Activity,Restaurant: Restaurant?) {
            //   Glide.with(act).load(baseUrl+ Restaurant!!.lien).into(act.imageView3)
         System.out.println("lien glide display detail " +baseUrl+ Restaurant!!.lien)
-        if (act==null) System.out.println("activity is null Glide ")
+        if (act==null) System.out.println("act121b820ivity is null Glide ")
         if (act.imagedetail==null) System.out.println("act.imagedetail  is null Glide ")
 
 
