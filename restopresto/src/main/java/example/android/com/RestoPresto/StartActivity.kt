@@ -1,5 +1,6 @@
 package example.android.com.RestoPresto
 
+import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -11,6 +12,11 @@ class StartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
         val handler = Handler()
-        handler.postDelayed(Runnable { startActivity(intentFor<LoginActivity>()) }, 2000)
+        val pref = getSharedPreferences("projetMobile", Context.MODE_PRIVATE)
+        handler.postDelayed(Runnable {
+            if (pref.getBoolean("connected",false))
+                startActivity(intentFor<MainActivity>())
+            else
+                    startActivity(intentFor<LoginActivity>()) }, 2000)
     }
 }

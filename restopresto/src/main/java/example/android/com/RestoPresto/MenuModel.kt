@@ -192,5 +192,9 @@ class MenuModel:ViewModel() {
         val listView= listviewid
         val platNormalAdapter = platMenuAdapter(activity!!, listPlats)
         listView.adapter = platNormalAdapter
+        listView.setOnItemClickListener({adapterView, view, i, l ->
+            val newFragment:nbCmdFragment = nbCmdFragment.newInstance(listPlats[i].id_plat)
+            newFragment.show(activity?.fragmentManager,"dialog")
+        })
     }
 }

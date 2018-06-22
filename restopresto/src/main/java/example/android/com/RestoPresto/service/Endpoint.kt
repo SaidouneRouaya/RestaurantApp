@@ -37,7 +37,7 @@ interface Endpoint {
     fun getFormulesByRestaurant(@Path("id")id_restaurant: Int, @Path("type")type:String) : Call<List<Formule>>
 
     @GET("getuserbyemail/{email}")
-    fun getUserByEmail(@Path("email")mail:String) : Call<User>
+    fun getUserByEmail(@Path("email")mail:String) : Call<List<User>>
 
     @POST("addUser")
     fun addUser(@Body user : User):Call<String>
@@ -53,4 +53,7 @@ interface Endpoint {
 
     @GET("getcontenirformule")
     fun getContenirFormule(): Call<List<Contenir_formule>>
+
+    @POST("addReservation")
+    fun addReservation(@Body reservation: Reservation):Call<String>
 }

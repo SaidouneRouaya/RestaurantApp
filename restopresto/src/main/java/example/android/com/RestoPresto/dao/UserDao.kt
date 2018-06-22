@@ -11,8 +11,8 @@ interface UserDao {
     @Query("select * from user")
     fun getUsers():List<User>
 
-    @Query("select * from user where nom=:UserName ")
-    fun getUsersByName(UserName:String):List<User>
+    @Query("select * from user where mail=:email ")
+    fun getUsersByEmail(email:String):List<User>
 
     @Insert
     fun addUsers(vararg User: User)

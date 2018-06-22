@@ -2,13 +2,25 @@ package example.android.com.RestoPresto
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Context
+import android.content.SharedPreferences
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import example.android.com.RestoPresto.database.AppDatabase
+import example.android.com.RestoPresto.entities.Plat
+import example.android.com.RestoPresto.entities.Reservation
+import example.android.com.RestoPresto.service.RetrofitService
+import example.android.com.RestoPresto.singleton.RoomService
 import kotlinx.android.synthetic.main.activity_reserver.*
 import org.jetbrains.anko.makeCall
 import org.jetbrains.anko.toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -20,12 +32,16 @@ class ReserverActivity : AppCompatActivity() {
     var textview_date:TextView? = null
     var bouton_date:Button? = null
     var numberpicker:NumberPicker? = null
+    var preferences: SharedPreferences? = null
     var MY_PERMISSIONS_REQUEST_CALL_PHONE:Int = 0
+    var id_restaurant = 0
+    private var mDb: AppDatabase? = RoomService.appDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reserver)
         val ab = getSupportActionBar()
         ab?.setDisplayHomeAsUpEnabled(true)
+        preferences = getSharedPreferences("projetMobile", Context.MODE_PRIVATE)
         //Récupération des références du layout 11201201
         textview_date = this.date_textview
         bouton_date = this.button_pick_date
@@ -39,6 +55,7 @@ class ReserverActivity : AppCompatActivity() {
         numberPicker.maxValue = 10
 
         nom_resto.text= intent.getStringExtra("nom")
+        id_restaurant = intent.getIntExtra("pos",0)
 
         //Création OnDate Listener
         val dateSetListener = object : DatePickerDialog.OnDateSetListener{
@@ -83,13 +100,35 @@ class ReserverActivity : AppCompatActivity() {
             }
             else
             {
-                toast("Votre réservation a bien été prise en compte !")
+                if (isNetworkAvailable())
+                {
+                    val reservation = Reservation(date =date_textview.text.toString(),heure =time_textview.text.toString(),
+                            nb_personne = numberPicker.value, id_restaurant = id_restaurant+1, id_user = preferences!!.getInt("id_user",1),
+                            id_reservation = 0)
+                    System.out.println(reservation.date+"  "+reservation.nb_personne)
+//                    mDb!!.getReservationDao().addReservations(reservation)
+                    val call3 = RetrofitService.endpoint.addReservation(reservation)
+                    call3.enqueue(object:Callback<String>
+                    {
+                        override fun onFailure(call: Call<String>?, t: Throwable?) {
+                            toast("failure"+t!!.message.toString())
+                        }
+
+                        override fun onResponse(call: Call<String>?, response: Response<String>?) {
+                            if(response?.isSuccessful!!)
+                                toast("Votre réservation a bien été prise en compte !")
+                            else
+                                toast("nonsuccess"+response.message())
+
+                        }
+
+                    })
+
+                }
+
                 this.finish()
             }
         })
-
-
-
         appel.setOnClickListener({
            /* if (ContextCompat.checkSelfPermission(this,
                             Manifest.permission.READ_CONTACTS)
@@ -123,6 +162,12 @@ class ReserverActivity : AppCompatActivity() {
 
 
         numberPicker.wrapSelectorWheel = false
+    }
+
+    private fun isNetworkAvailable(): Boolean {
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo: NetworkInfo? = connectivityManager.activeNetworkInfo
+        return (networkInfo != null && networkInfo?.type == ConnectivityManager.TYPE_WIFI)
     }
     private fun updateDateInView(){
         val myFormat = "dd/MM/yyyy"

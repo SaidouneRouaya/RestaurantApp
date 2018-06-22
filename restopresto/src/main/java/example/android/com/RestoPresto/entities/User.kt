@@ -22,5 +22,5 @@ data class User (
         @ColumnInfo(name = "adresse")
         var adresse:String,
         @ColumnInfo(name ="preference")
-        var preference:Double
+        var preference:String
 )
