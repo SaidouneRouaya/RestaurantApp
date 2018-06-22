@@ -112,13 +112,11 @@ class RestaurantModel: ViewModel() {
                     act.toast("Une erreur s'est produite3")
 
                 }
-
-
             }
 
             override fun onFailure(call: Call<Restaurant>?, t: Throwable?) {
                 //act.progressBar2.visibility = View.GONE
-                act.toast("Une erreur s'est produite4")
+                act.toast(t!!.message.toString())
 
             }
         })

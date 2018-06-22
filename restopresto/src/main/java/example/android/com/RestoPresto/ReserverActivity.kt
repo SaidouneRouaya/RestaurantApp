@@ -42,19 +42,21 @@ class ReserverActivity : AppCompatActivity() {
         val ab = getSupportActionBar()
         ab?.setDisplayHomeAsUpEnabled(true)
         preferences = getSharedPreferences("projetMobile", Context.MODE_PRIVATE)
-        //Récupération des références du layout 11201201
+
+        //Récupération des références du layout et personnalisation
         textview_date = this.date_textview
         bouton_date = this.button_pick_date
         textview_time= this.time_textview
         bouton_time=this.button_pick_time
         numberpicker= this.numberPicker
-
         textview_date!!.text= "--/--/----"
         textview_time!!.text="--:--"
         numberPicker.minValue = 1
         numberPicker.maxValue = 10
-
+       // nom_prenom.editText!!.text = preferences!!.getString("nom")
         nom_resto.text= intent.getStringExtra("nom")
+
+        //Initialisation de la variable
         id_restaurant = intent.getIntExtra("pos",0)
 
         //Création OnDate Listener
@@ -123,10 +125,14 @@ class ReserverActivity : AppCompatActivity() {
                         }
 
                     })
+                    this.finish()
 
                 }
+                else {
+                    toast("Veuillez vous connecter !")
+                }
 
-                this.finish()
+
             }
         })
         appel.setOnClickListener({
@@ -164,11 +170,13 @@ class ReserverActivity : AppCompatActivity() {
         numberPicker.wrapSelectorWheel = false
     }
 
+    //Vérifier si le wifi est activé
     private fun isNetworkAvailable(): Boolean {
         val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val networkInfo: NetworkInfo? = connectivityManager.activeNetworkInfo
         return (networkInfo != null && networkInfo?.type == ConnectivityManager.TYPE_WIFI)
     }
+
     private fun updateDateInView(){
         val myFormat = "dd/MM/yyyy"
         val sdf = SimpleDateFormat(myFormat, Locale.FRANCE)

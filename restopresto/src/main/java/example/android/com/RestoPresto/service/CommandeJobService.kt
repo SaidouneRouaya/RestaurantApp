@@ -1,4 +1,5 @@
 package example.android.com.RestoPresto.service
+
 import android.app.NotificationManager
 import android.content.Context
 import android.media.RingtoneManager
@@ -6,6 +7,7 @@ import android.support.v4.app.NotificationCompat
 import com.firebase.jobdispatcher.JobParameters
 import com.firebase.jobdispatcher.JobService
 import example.android.com.RestoPresto.R
+import example.android.com.RestoPresto.database.AppDatabase
 import example.android.com.RestoPresto.service.RetrofitService
 import example.android.com.RestoPresto.singleton.RoomService
 import org.jetbrains.anko.toast
@@ -15,29 +17,32 @@ import retrofit2.Response
 /**
  * Created by start on 21/05/2018.
  */
-class MyJobService : JobService() {
+class CommandeJobService : JobService() {
     var job:JobParameters? = null
+    private var mDb: AppDatabase? = RoomService.appDatabase
+
     override fun onStartJob(job: JobParameters?): Boolean {
         sendNotification(this,"start_service")
-       this.job=job
+        this.job=job
+       // val commandes= mDb!!.getCommandeDao().
         /*val  teams: List<Team> = RoomService.appDatabase.getTeamDao().getTeams()
         val team = teams.get(teams.size-1)
         val s = RetrofitService.endpoint.addTeam(team)
         s.enqueue(object:Callback<String>
         {
             override fun onFailure(call: Call<String>?, t: Throwable?){
-                sendNotification(this@MyJobService,"probleme")
+                sendNotification(this@CommandeJobService,"probleme")
             jobFinished(job!!,true)
 
             }
 
             override fun onResponse(call: Call<String>?, response: Response<String>?) {
                 if(response?.isSuccessful!!){
-                    sendNotification(this@MyJobService,"fait")
+                    sendNotification(this@CommandeJobService,"fait")
                     toast("Fait !")
                 jobFinished(job!!,false)}
                 else {
-                    sendNotification(this@MyJobService,"erreur")
+                    sendNotification(this@CommandeJobService,"erreur")
                     jobFinished(job!!, true)
                 }
 

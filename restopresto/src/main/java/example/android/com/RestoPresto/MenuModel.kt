@@ -42,11 +42,11 @@ class MenuModel:ViewModel() {
             plats = mDb!!.getContenirMenuDao().getPlatsByMenu(menus!!.get(0).id_menu)
             if (plats!!.isEmpty())
             {
-                getPlatsFromRemote(menus!!.get(0).id_menu,activity,listviewid)
+                getPlatsFromRemote(menus!!.get(0).id_menu,activity,listviewid,id_restaurant)
             }
             else
             {
-                showMenu(activity,listviewid,plats!!)
+                showMenu(activity,listviewid,plats!!,id_restaurant)
             }
         }
     }
@@ -62,27 +62,7 @@ class MenuModel:ViewModel() {
                 if (response?.isSuccessful!!) {
                     val list: List<Menu> = response.body()!!
                     System.out.println("je passe par menu remote")
-                    getPlatsFromRemote(list.get(0).id_menu,activity,listviewid)
-                     //loadDataNormal(list.get(0).id_menu)
-                    //Toast.makeText(activity, list.get(0).id_menu.toString(), Toast.LENGTH_SHORT).show()
-
-                    /*listView.setOnItemClickListener({adapterView, view, i, l ->
-                        var viewHolder: platMenuAdapter.ViewHolder
-                        val num = view?.findViewById<TextView>(R.id.nbCmd) as TextView
-                        val nom = view?.findViewById<TextView>(R.id.nom_plat) as TextView
-                        val ingredients = view?.findViewById<TextView>(R.id.ingredients_plat) as TextView
-                        val prix = view?.findViewById<TextView>(R.id.prix) as TextView
-                        if(num.text.toString().toInt()<20)
-                        {
-                            /*  listNormal.get(i).nbCmd= (listNormal.get(i).nbCmd.toInt()+1).toString()
-                              num.text= listNormal.get(i).nbCmd*/
-                            num.text= "5"
-                        }
-                        else num.text="20"
-                        viewHolder= platMenuAdapter.ViewHolder(nom, ingredients,prix,num)
-                        viewHolder.nb.visibility = View.VISIBLE
-                        view.setTag(viewHolder)
-                    })*/
+                    getPlatsFromRemote(list.get(0).id_menu,activity,listviewid,id_restaurant)
                 } else {
                     Toast.makeText(activity, response.toString(), Toast.LENGTH_SHORT).show()
 
@@ -93,7 +73,7 @@ class MenuModel:ViewModel() {
     }
 
 
-    fun getPlatsFromRemote(id_menu: Int, activity: Activity, listviewid:ListView){
+    fun getPlatsFromRemote(id_menu: Int, activity: Activity, listviewid:ListView, id_restaurant: Int){
         val call2 = RetrofitService.endpoint.getPlatByMenu(id_menu)
         call2.enqueue(object : Callback<List<Plat>> {
             override fun onFailure(call: Call<List<Plat>>?, t: Throwable?) {
@@ -104,7 +84,7 @@ class MenuModel:ViewModel() {
                     val listPlat :List<Plat> = response.body()!!
                     //Toast.makeText(activity, listNormal.toList().get(0).nom, Toast.LENGTH_SHORT).show()
                     System.out.println("je passe par plat remote")
-                    showMenu(activity,listviewid,listPlat)
+                    showMenu(activity,listviewid,listPlat,id_restaurant)
                     //remplirMenus()
                 } else {
                     Toast.makeText(activity, response.toString(), Toast.LENGTH_SHORT).show()
@@ -187,13 +167,13 @@ class MenuModel:ViewModel() {
         })}
     }
 
-    fun showMenu(activity: Activity,listviewid: ListView,listPlats:List<Plat>)
+    fun showMenu(activity: Activity,listviewid: ListView,listPlats:List<Plat>,id_restaurant: Int)
     {
         val listView= listviewid
         val platNormalAdapter = platMenuAdapter(activity!!, listPlats)
         listView.adapter = platNormalAdapter
         listView.setOnItemClickListener({adapterView, view, i, l ->
-            val newFragment:nbCmdFragment = nbCmdFragment.newInstance(listPlats[i].id_plat)
+            val newFragment:nbCmdFragment = nbCmdFragment.newInstance(listPlats[i].id_plat,id_restaurant)
             newFragment.show(activity?.fragmentManager,"dialog")
         })
     }

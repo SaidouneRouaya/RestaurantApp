@@ -11,6 +11,8 @@ interface PlatDao {
     @Query("select * from Plat")
     fun getPlats():List<Plat>
 
+    @Query("select * from Plat where id_plat=:id_plat")
+    fun getPlatById(id_plat : Int):Plat
 
     @Insert
     fun addPlats(vararg Plat: Plat)

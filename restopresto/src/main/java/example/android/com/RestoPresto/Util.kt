@@ -16,6 +16,7 @@ import org.jetbrains.anko.browse
  */
 class Util {
 
+
     fun displayDetail(act: Activity, resto : Restaurant) {
 
         act.imagedetail?.setImageResource(resto.lien.toInt())

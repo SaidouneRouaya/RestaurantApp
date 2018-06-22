@@ -25,6 +25,8 @@ data class Commande(
         @ColumnInfo(name="id_restaurant")
         var id_restaurant:Int,
         @ColumnInfo(name ="id_user")
-        var id_user:Int
+        var id_user:Int,
+        @ColumnInfo(name= "termine")
+        var termine:Int
 
 )
