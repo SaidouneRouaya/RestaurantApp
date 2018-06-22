@@ -33,7 +33,9 @@ class LesMenusActivity : AppCompatActivity(){
         mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
 
         container.adapter = mSectionsPagerAdapter
-
+        // Loader les informations en local
+        val menumodel = MenuModel()
+        menumodel.remplirMenus()
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
         tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
     }

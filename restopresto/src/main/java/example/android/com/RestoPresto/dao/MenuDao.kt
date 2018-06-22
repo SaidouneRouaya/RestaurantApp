@@ -14,6 +14,9 @@ interface MenuDao {
     @Query("select * from menu p natural join restaurant r where r.id_restaurant=:id_restaurant and p.type=:type")
     fun getMenusByRestaurantAndType(id_restaurant:Int, type : String):List<Menu>
 
+    @Query("select * from menu p natural join restaurant r where r.id_restaurant=:id_restaurant and p.type='menujour' and p.date=:date")
+    fun getMenusJourByRestaurantJour(id_restaurant:Int, date : Int):List<Menu>
+
     @Insert
     fun addMenus(vararg Menu: Menu)
 

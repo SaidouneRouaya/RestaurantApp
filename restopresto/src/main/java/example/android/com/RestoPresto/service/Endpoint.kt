@@ -21,11 +21,20 @@ interface Endpoint {
     @GET("getmenusbyrestaurantandtype/{id}&{type}")
     fun getMenusByRestaurant(@Path("id")id_restaurant: Int, @Path("type")type:String) : Call<List<Menu>>
 
+    @GET("getmenusjourbyrestaurantanddate/{id}&{date}")
+    fun getMenuJourByRestaurant(@Path("id")id_restaurant: Int,@Path("date")date: Int) : Call<List<Menu>>
+
     @GET("getplatbymenu/{id}")
     fun getPlatByMenu(@Path("id")id_menu: Int) : Call<List<Plat>>
 
-    @GET("getformulesbyrestaurant/{id}")
-    fun getFormulesByRestaurant(@Path("id")id_restaurant: Int) : Call<List<Formule>>
+    @GET("getplatbyformule/{id}&{typePlat}")
+    fun getPlatByFormule(@Path("id")id_menu: Int, @Path("typePlat")typePlat:String) : Call<List<Plat>>
+
+    @GET("getplats")
+    fun getPlats() : Call<List<Plat>>
+
+    @GET("getformulesbyrestaurantandtype/{id}&{type}")
+    fun getFormulesByRestaurant(@Path("id")id_restaurant: Int, @Path("type")type:String) : Call<List<Formule>>
 
     @GET("getuserbyemail/{email}")
     fun getUserByEmail(@Path("email")mail:String) : Call<User>
@@ -35,4 +44,13 @@ interface Endpoint {
 
     @GET("getcontenirmenu")
     fun getContenirMenu(): Call<List<Contenir_menu>>
+
+    @GET("getmenus")
+    fun getMenus(): Call<List<Menu>>
+
+    @GET("getformules")
+    fun getFormules() : Call<List<Formule>>
+
+    @GET("getcontenirformule")
+    fun getContenirFormule(): Call<List<Contenir_formule>>
 }

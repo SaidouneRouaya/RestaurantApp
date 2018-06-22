@@ -13,8 +13,8 @@ interface Contenir_menuDao {
     @Query("select * from contenir_menu")
     fun getContenir_menu():List<Contenir_menu>
 
-    @Query("select * from contenir_menu inner join plat on contenir_menu.id_plat = plat.id_plat " +
-            "where contenir_menu.id_menu = :id_menu")
+    @Query("select * from plat natural join contenir_menu where contenir_menu.id_plat = plat.id_plat " +
+            "and contenir_menu.id_menu = :id_menu")
     fun getPlatsByMenu(id_menu:Int):List<Plat>
 
     @Insert

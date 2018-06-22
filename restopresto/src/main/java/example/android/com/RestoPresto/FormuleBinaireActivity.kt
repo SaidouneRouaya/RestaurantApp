@@ -36,6 +36,8 @@ class FormuleBinaireActivity : AppCompatActivity() {
         fab.setOnClickListener { view ->
             startActivity(intentFor<ReserverActivity>("nom" to nom))
         }
+        val formuleModel = FormuleModel()
+        formuleModel.remplirFormules()
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(Tab))
         Tab.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
 
