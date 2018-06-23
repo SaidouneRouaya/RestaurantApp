@@ -2,7 +2,9 @@ package example.android.com.RestoPresto
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Context
 import android.content.DialogInterface
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.design.widget.TextInputLayout
 import android.support.v7.app.AppCompatDialogFragment
@@ -18,7 +20,7 @@ import retrofit2.Response
 
 
 class ConfirmCmdDialogFragment : AppCompatDialogFragment() {
-
+    var preferences: SharedPreferences? = null
     private var mDb: AppDatabase? = RoomService.appDatabase
     companion object {
         fun newInstance(id_cmd:Int): ConfirmCmdDialogFragment{
@@ -34,8 +36,10 @@ class ConfirmCmdDialogFragment : AppCompatDialogFragment() {
         var builder : AlertDialog.Builder = AlertDialog.Builder(activity)
         var nom = view?.findViewById<TextInputLayout>(R.id.textNom)
         val id_cmd = arguments!!.getInt("id_cmd",1)
-        nom!!.editText!!.setText("kkkd")
+        preferences = activity?.getSharedPreferences("projetMobile", Context.MODE_PRIVATE)
+        nom!!.editText!!.setText(preferences!!.getString("nom",""))
         var adresse = view?.findViewById<TextInputLayout>(R.id.TextAdresse)
+        adresse!!.editText!!.setText(preferences!!.getString("adresse",""))
         builder.setView(view).setTitle("Confirmation de la commande").setNegativeButton("Annuler", object : DialogInterface.OnClickListener {
             override  fun onClick(dialog: DialogInterface, id: Int) {
 

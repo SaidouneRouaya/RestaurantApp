@@ -34,14 +34,16 @@ class CommandeJobService : JobService() {
     }
     override fun onStartJob(job: JobParameters?): Boolean {
         sendNotification(this,"start_service")
+        toast("service commencé")
         this.job=job
         val commandes= mDb!!.getCommandeDao().getCommandesByUserByRestaurant(job!!.extras!!.getInt("id_user"),job!!.extras!!.getInt("id_restaurant"))
         if (commandes.isNotEmpty())
         {
             mDb!!.getCommandeDao().deleteCommande(commandes.get(0))
+            sendNotification(this@CommandeJobService,"Votre commande a été supprimée !")
         }
         System.out.print("je passe dans la notif")
-        sendNotification(this@CommandeJobService,"fait")
+
         toast("supprimé")
         /*val  teams: List<Team> = RoomService.appDatabase.getTeamDao().getTeams()
         val team = teams.get(teams.size-1)
@@ -78,7 +80,7 @@ class CommandeJobService : JobService() {
                 RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder = NotificationCompat.Builder(ctx,"ssss")
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("Notification")
+                .setContentTitle("Commande supprimée2")
                 .setContentText(message)
                 .setAutoCancel(false)
                 .setSound(defaultSoundUri)
