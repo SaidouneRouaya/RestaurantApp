@@ -30,7 +30,7 @@ class CommanderActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_commander)
         val ab = getSupportActionBar()
-        ab?.setDisplayHomeAsUpEnabled(true)
+        //ab?.setDisplayHomeAsUpEnabled(true)
         preferences = getSharedPreferences("projetMobile", Context.MODE_PRIVATE)
         // Récupération des variables passées en argument
         id_restaurant =intent.getIntExtra("id_resto",1)
@@ -88,6 +88,11 @@ class CommanderActivity : AppCompatActivity(){
             liste_commandes = mutableMapOf()
         }
         return liste_commandes
+    }
+
+    private fun validerCommande()
+    {
+
     }
 
 

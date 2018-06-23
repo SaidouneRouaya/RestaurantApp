@@ -64,8 +64,9 @@ class LoginActivity : AppCompatActivity() {
 
         email_log_in_button.setOnClickListener { attemptLogin() }*/
 
-
         preferences = getSharedPreferences("projetMobile", Context.MODE_PRIVATE)
+        if (preferences!!.getBoolean("connected",false))
+            startActivity(intentFor<MainActivity>())
         email_log_in_button.setOnClickListener {
             val emailStr = email.text.toString()
             val passwordStr = password.text.toString()

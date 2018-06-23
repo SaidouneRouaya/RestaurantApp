@@ -28,7 +28,7 @@ class FormuleModel: ViewModel() {
     {
         /*mDbWorkerThread = DbWorkerThread("dbWorkerThread")
         mDbWorkerThread.start()*/
-        formules = mDb!!.getFormuleDao().getFormulesByRestaurant(id_restaurant+1,typeformule)
+        formules = mDb!!.getFormuleDao().getFormulesByRestaurant(id_restaurant,typeformule)
 
         if (formules!!.isEmpty())
         {

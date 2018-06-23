@@ -49,7 +49,7 @@ class MenuJourActivity : AppCompatActivity() {
     fun loadDataMenujour()
     {
 
-        menu = mDb!!.getMenuDao().getMenusJourByRestaurantJour(id_restaurant+1,date)
+        menu = mDb!!.getMenuDao().getMenusJourByRestaurantJour(id_restaurant,date)
         if(menu!!.isEmpty())
         {
             getMenuJourFromRemote(id_restaurant)
