@@ -17,6 +17,9 @@ interface CommandeDao {
     @Query("select * from commande p natural join user u where u.id_user=:id_user")
     fun getCommandesByUser(id_user:Int):List<Commande>
 
+    @Query("select * from commande  where id_cmd=:id_cmd")
+    fun getCommandesById(id_cmd:Int):Commande
+
     @Query("select * from commande where id_user=:id_user and id_restaurant=:id_restaurant and termine='0'")
     fun getCommandesByUserByRestaurant(id_user:Int,id_restaurant:Int):List<Commande>
 

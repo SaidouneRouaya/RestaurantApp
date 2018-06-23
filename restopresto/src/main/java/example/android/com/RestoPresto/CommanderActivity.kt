@@ -9,10 +9,14 @@ import example.android.com.RestoPresto.database.AppDatabase
 import example.android.com.RestoPresto.entities.Commande
 import example.android.com.RestoPresto.entities.Ligne_commande
 import example.android.com.RestoPresto.entities.Plat
+import example.android.com.RestoPresto.service.RetrofitService
 import example.android.com.RestoPresto.singleton.RoomService
 import kotlinx.android.synthetic.main.activity_commander.*
 import kotlinx.android.synthetic.main.plat_commande_layout.*
 import org.jetbrains.anko.toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class CommanderActivity : AppCompatActivity(){
     private var mDb: AppDatabase? = RoomService.appDatabase
@@ -53,12 +57,16 @@ class CommanderActivity : AppCompatActivity(){
         }
         prix_total_cmd.setText(total.toString())
         valider.setOnClickListener({
-            openDialog()
+            if (commandes!!.isNotEmpty() && ligne_commande.isNotEmpty())
+                openDialog()
+            else
+                toast("Veuillez sélectionner des plats d'abord !")
         })
+
 
     }
     fun openDialog() {
-        var dialogCmd = ConfirmCmdDialogFragment()
+        var dialogCmd = ConfirmCmdDialogFragment.newInstance(commandes!!.get(0).id_cmd)
         dialogCmd.show(supportFragmentManager,"dialog")
     }
     fun loadData():  MutableMap<Ligne_commande,Plat> {
@@ -90,10 +98,7 @@ class CommanderActivity : AppCompatActivity(){
         return liste_commandes
     }
 
-    private fun validerCommande()
-    {
 
-    }
 
 
 }

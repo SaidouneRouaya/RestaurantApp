@@ -8,6 +8,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.view.View
 import android.widget.*
 import example.android.com.RestoPresto.database.AppDatabase
@@ -51,9 +52,9 @@ class ReserverActivity : AppCompatActivity() {
         numberpicker= this.numberPicker
         textview_date!!.text= "--/--/----"
         textview_time!!.text="--:--"
+        nom_prenom.editText!!.setText(preferences!!.getString("nom",""))
         numberPicker.minValue = 1
         numberPicker.maxValue = 10
-       // nom_prenom.editText!!.text = preferences!!.getString("nom")
         nom_resto.text= intent.getStringExtra("nom")
 
         //Initialisation de la variable
