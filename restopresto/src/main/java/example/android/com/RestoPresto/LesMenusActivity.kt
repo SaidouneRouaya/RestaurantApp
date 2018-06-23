@@ -1,6 +1,8 @@
 package example.android.com.RestoPresto
 
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -10,17 +12,23 @@ import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_les_menus.*
 import android.support.design.widget.TabLayout
-
-
+import example.android.com.RestoPresto.entities.User
+import example.android.com.RestoPresto.singleton.RoomService
 
 
 class LesMenusActivity : AppCompatActivity(){
 
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
+    var pref : SharedPreferences? =null
+   val  mDb = RoomService.appDatabase.getUserDao()
+   val  user = mDb.getUsersByID(pref!!.getInt("id_user",0))
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_les_menus)
+        pref =  this !!.getSharedPreferences("projetMobile", Context.MODE_PRIVATE)
+
 
         toolbar.setTitle(intent.getStringExtra("nom"))
         setSupportActionBar(toolbar)
@@ -55,17 +63,35 @@ class LesMenusActivity : AppCompatActivity(){
         if (id == R.id.action_settings) {
             return true
         }
-
         return super.onOptionsItemSelected(item)
     }
 
     inner class SectionsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
-            return when (position) {
-                0 -> MenuNormalFragment()
-                1-> MenuDiabetFragment()
-                2-> MenuVegetarienFragment()
-                else -> MenuNormalFragment()
+
+            return when (user.preference)  {
+           "vegetarien" -> {when (position) {
+              0-> MenuVegetarienFragment()
+               1-> MenuNormalFragment()
+               else->MenuDiabetFragment()
+
+           }
+           }
+           "normal" -> {when (position) {
+                    0-> MenuNormalFragment()
+                    1-> MenuVegetarienFragment()
+               else->MenuDiabetFragment()
+
+                }
+                }
+                //diabetique
+           else -> {when (position) {
+                    0-> MenuDiabetFragment()
+                    1-> MenuNormalFragment()
+               else->MenuVegetarienFragment()
+
+                }
+                }
             }
         }
 
@@ -73,6 +99,30 @@ class LesMenusActivity : AppCompatActivity(){
             // Show 2s total pages.
             return 3
         }
-    }
+        override fun getPageTitle(position: Int): CharSequence {
+
+            return when (user.preference)  {
+                "vegetarien" -> {when (position) {
+                    0-> "VEGITARIEN"
+                    1-> "NORMAL"
+                    else->"DIABETIQUE"
+                }
+                }
+                "normal" -> {when (position) {
+                    0-> "NORMAL"
+                    1-> "VEGITARIEN"
+                    else->"DIABETIQUE"
+                }
+                }
+            //diabetique
+                else -> {when (position) {
+                    0->"DIABETIQUE"
+                    1-> "NORMAL"
+                    else-> "VEGITARIEN"
+                }
+                }
+                }
+
+    }}
 
 }

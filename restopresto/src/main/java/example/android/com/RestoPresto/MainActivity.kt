@@ -124,6 +124,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
     fun isTwoPane() = findViewById<View>(R.id.fragment2) != null
 }

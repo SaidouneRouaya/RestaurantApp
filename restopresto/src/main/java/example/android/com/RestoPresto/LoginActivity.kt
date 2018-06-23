@@ -110,7 +110,9 @@ class LoginActivity : AppCompatActivity() {
         if (strpassword.equals(user.password))
         {
             preferences!!.edit().putBoolean("connected",true).putInt("id_user",user.id_user)
-                    .putString("adresse",user.adresse).putString("favoris",user.preference).putString("nom",user.nom).apply()
+                    .putString("adresse",user.adresse).putString("email",user.mail)
+                    .putString("favoris",user.preference).putString("nom",user.nom)
+                    .apply()
             mDb!!.getUserDao().addUsers(user)
             startActivity(intentFor<MainActivity>())
         }

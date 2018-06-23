@@ -2,10 +2,7 @@ package example.android.com.RestoPresto.service
 
 import example.android.com.RestoPresto.entities.*
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface Endpoint {
 
@@ -41,6 +38,9 @@ interface Endpoint {
 
     @POST("addUser")
     fun addUser(@Body user : User):Call<String>
+
+    @PUT("updateUser")
+    fun updateUser( @Body user:User):Call<String>
 
     @GET("getcontenirmenu")
     fun getContenirMenu(): Call<List<Contenir_menu>>
