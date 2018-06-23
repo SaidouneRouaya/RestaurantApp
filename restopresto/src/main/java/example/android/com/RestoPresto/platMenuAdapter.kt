@@ -8,15 +8,17 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import example.android.com.RestoPresto.entities.Ligne_commande
 import example.android.com.RestoPresto.entities.Plat
 
 /**
  * Created by start on 28/04/2018.
  */
-class platMenuAdapter (_ctx: Activity, _listplats:List<Plat>): BaseAdapter() {
+class platMenuAdapter (_ctx: Activity, _listplats:List<Plat>, _id_restaurant :Int ): BaseAdapter() {
 
     var ctx = _ctx
     val listplats = _listplats
+    val id_restaurant = _id_restaurant
 
     override fun getItem(p0: Int) = listplats.get(p0)
     override fun getItemId(p0: Int) = listplats.get(p0).hashCode().toLong()
@@ -37,6 +39,7 @@ class platMenuAdapter (_ctx: Activity, _listplats:List<Plat>): BaseAdapter() {
         else {
             viewHolder = view.getTag() as ViewHolder
         }
+        val listeCmd = MenuModel().loadNbPlat(id_restaurant,ctx,listplats)
 
         System.out.println(" Url est : "+baseUrl + listplats.get(position).lien)
         Glide.with(ctx).load(baseUrl + listplats.get(position).lien)
@@ -45,7 +48,13 @@ class platMenuAdapter (_ctx: Activity, _listplats:List<Plat>): BaseAdapter() {
         viewHolder.ingredients.setText(listplats.get(position).ingredient)
         viewHolder.prix.setText(" ${listplats.get(position).prix} DZD")
        // viewHolder.nb.setText(listplats.get(position).nbCmd)
-       viewHolder.nb.setText("3")
+        var ligne_commande = listeCmd.get(listplats.get(position))
+        if (ligne_commande != null)
+        {
+            viewHolder.nb.text = ligne_commande.nombre.toString()
+        }
+        else
+            viewHolder.nb.setText("0")
 
         /* if (viewHolder.nb.text.equals("0"))
         {

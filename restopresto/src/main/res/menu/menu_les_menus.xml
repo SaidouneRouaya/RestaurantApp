@@ -11,6 +11,7 @@
         android:id="@+id/action_commande"
         android:orderInCategory="300"
         android:title="Commande"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/baseline_shopping_basket_white_48dp"/>
 </menu>
     <!-- android:icon="@drawable/ic_call_white_24dp"-->
