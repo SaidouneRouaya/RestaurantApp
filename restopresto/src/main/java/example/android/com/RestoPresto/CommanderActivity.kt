@@ -20,9 +20,6 @@ import retrofit2.Response
 
 class CommanderActivity : AppCompatActivity(){
     private var mDb: AppDatabase? = RoomService.appDatabase
-    var cmdPlatTab = arrayOf<String>()
-    var cmdPrixTab = arrayOf<String>()
-    var cmdNbTab = arrayOf<String>()
     var total: Double= 0.0
     var id_user = 1
     var id_restaurant = 1
@@ -55,12 +52,21 @@ class CommanderActivity : AppCompatActivity(){
             //à enlever
             total += p.key.nombre * p.value.prix
         }
+        listView.setOnItemClickListener({adapterView, view, i, l ->
+            val newFragment:nbCmdFragment = nbCmdFragment.newInstance(ligne_commande[i]!!.id_plat,id_restaurant)
+            newFragment.show(fragmentManager,"dialog")
+        })
         prix_total_cmd.setText(total.toString())
         valider.setOnClickListener({
-            if (commandes!!.isNotEmpty() && ligne_commande.isNotEmpty())
-                openDialog()
-            else
-                toast("Veuillez sélectionner des plats d'abord !")
+            if (Util().isNetworkAvailable(this)) {
+                if (commandes!!.isNotEmpty() && ligne_commande.isNotEmpty())
+                    openDialog()
+                else
+                    toast("Veuillez sélectionner des plats d'abord !")
+            }
+            else {
+                toast("Veuillez vous connecter !")
+            }
         })
 
 

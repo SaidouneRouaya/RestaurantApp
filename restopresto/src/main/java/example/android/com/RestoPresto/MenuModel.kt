@@ -2,10 +2,13 @@ package example.android.com.RestoPresto
 
 import android.app.Activity
 import android.arch.lifecycle.ViewModel
+import android.content.Context
+import android.content.SharedPreferences
 import android.widget.ListView
 import android.widget.Toast
 import example.android.com.RestoPresto.database.AppDatabase
 import example.android.com.RestoPresto.entities.Contenir_menu
+import example.android.com.RestoPresto.entities.Ligne_commande
 import example.android.com.RestoPresto.entities.Menu
 import example.android.com.RestoPresto.entities.Plat
 import example.android.com.RestoPresto.service.RetrofitService
@@ -26,6 +29,7 @@ class MenuModel:ViewModel() {
     var menus : List<Menu>? = null
     var plats : List<Plat>? = null
     var contenir_menu : List<Contenir_menu>? = null
+    var preferences: SharedPreferences? = null
 
     fun loadDataMenu(id_restaurant: Int, activity: Activity, type:String, listviewid:ListView)
     {
@@ -166,10 +170,37 @@ class MenuModel:ViewModel() {
         })}
     }
 
+    fun loadNbPlat(id_restaurant: Int, activity: Activity, listPlats: List<Plat>):  MutableMap<Plat,Ligne_commande> {
+        preferences = activity.getSharedPreferences("projetMobile", Context.MODE_PRIVATE)
+        val commandes = mDb!!.getCommandeDao().getCommandesByUserByRestaurant(preferences!!.getInt("id_user",1),id_restaurant)
+        var plat : Plat
+        var liste_commandes = mutableMapOf<Plat,Ligne_commande>()
+        var ligne_commande : List<Ligne_commande> = mutableListOf()
+        System.out.println("je passe avant commandes.notEmpty "+id_restaurant)
+        if (commandes!!.isNotEmpty())
+        {
+            for (p in listPlats)
+            {
+                ligne_commande = mDb!!.getLigneCommandeDao().getLigne_commandeByCommandeByPlat(commandes.get(0).id_cmd, p.id_plat)
+                if (ligne_commande.isNotEmpty())
+                {
+                    liste_commandes.put(p,ligne_commande.get(0))
+                }
+            }
+        }
+        else
+        {
+           liste_commandes = mutableMapOf()
+        }
+        return liste_commandes
+    }
+
     fun showMenu(activity: Activity,listviewid: ListView,listPlats:List<Plat>,id_restaurant: Int)
     {
         val listView= listviewid
-        val platNormalAdapter = platMenuAdapter(activity!!, listPlats)
+        val id_user = activity.getSharedPreferences("projetMobile", Context.MODE_PRIVATE).getInt("id_user",1)
+        //var liste_commandes = loadNbPlat(id_restaurant,activity,listPlats)
+        val platNormalAdapter = platMenuAdapter(activity!!, listPlats,id_restaurant)
         listView.adapter = platNormalAdapter
         listView.setOnItemClickListener({adapterView, view, i, l ->
             val newFragment:nbCmdFragment = nbCmdFragment.newInstance(listPlats[i].id_plat,id_restaurant)

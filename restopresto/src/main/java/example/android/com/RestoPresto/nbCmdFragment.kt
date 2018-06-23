@@ -16,6 +16,7 @@ import example.android.com.RestoPresto.entities.Commande
 import example.android.com.RestoPresto.entities.Ligne_commande
 import example.android.com.RestoPresto.service.CommandeJobService
 import example.android.com.RestoPresto.singleton.RoomService
+import org.jetbrains.anko.toast
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -67,9 +68,10 @@ class nbCmdFragment : DialogFragment(), NumberPicker.OnValueChangeListener {
         val builder = AlertDialog.Builder(activity)
         builder.setPositiveButton(R.string.valider, object : DialogInterface.OnClickListener {
             override  fun onClick(dialog: DialogInterface, id: Int) {
-                if (commandes.isEmpty())
+                if (commandes.isEmpty() && (nombrecmd!!.value != 0))
                 {
                     mDb!!.getCommandeDao().addCommandes(Commande(0,sdf.format(Date()),stf.format(Date()),id_restaurant,id_user,0))
+                    activity?.toast("job lancé ! ")
                     lancerJob()
                     commandes = mDb!!.getCommandeDao().getCommandesByUserByRestaurant(id_user,id_restaurant)
                     System.out.println("c : "+commandes.get(0).id_cmd+"  "+id_plat)
@@ -80,8 +82,10 @@ class nbCmdFragment : DialogFragment(), NumberPicker.OnValueChangeListener {
                     lignecmd = mDb!!.getLigneCommandeDao().getLigne_commandeByCommandeByPlat(commandes.get(0).id_cmd, id_plat)
                     if (lignecmd.isNotEmpty()) {
                         lignecmd.get(0).nombre = nombrecmd!!.value
-                        if (nombrecmd!!.value !=0)
-                        mDb!!.getLigneCommandeDao().updateLigne_commande(lignecmd.get(0))
+                        if (nombrecmd!!.value !=0) {
+                            mDb!!.getLigneCommandeDao().updateLigne_commande(lignecmd.get(0))
+
+                        }
                         else
                             mDb!!.getLigneCommandeDao().deleteLigne_commande(lignecmd.get(0))
                     }
@@ -92,6 +96,8 @@ class nbCmdFragment : DialogFragment(), NumberPicker.OnValueChangeListener {
                         mDb!!.getLigneCommandeDao().addLigne_commandes(Ligne_commande(0,nombrecmd!!.value,commandes.get(0).id_cmd,id_plat))
                     }
                 }
+                dialog.dismiss()
+                activity.recreate()
                 }
                 })
                 .setNegativeButton(R.string.annuler, object : DialogInterface.OnClickListener {

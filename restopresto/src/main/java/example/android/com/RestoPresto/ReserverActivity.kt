@@ -58,7 +58,7 @@ class ReserverActivity : AppCompatActivity() {
         nom_resto.text= intent.getStringExtra("nom")
 
         //Initialisation de la variable
-        id_restaurant = intent.getIntExtra("pos",0)
+        id_restaurant = intent.getIntExtra("id_resto",0)
 
         //Création OnDate Listener
         val dateSetListener = object : DatePickerDialog.OnDateSetListener{
@@ -103,11 +103,12 @@ class ReserverActivity : AppCompatActivity() {
             }
             else
             {
-                if (isNetworkAvailable())
+                if (Util().isNetworkAvailable(this))
                 {
                     val reservation = Reservation(date =date_textview.text.toString(),heure =time_textview.text.toString(),
                             nb_personne = numberPicker.value, id_restaurant = id_restaurant, id_user = preferences!!.getInt("id_user",1),
                             id_reservation = 0)
+                    System.out.println(reservation.toString())
                     System.out.println(reservation.date+"  "+reservation.nb_personne)
 //                    mDb!!.getReservationDao().addReservations(reservation)
                     val call3 = RetrofitService.endpoint.addReservation(reservation)
@@ -171,12 +172,7 @@ class ReserverActivity : AppCompatActivity() {
         numberPicker.wrapSelectorWheel = false
     }
 
-    //Vérifier si le wifi est activé
-    private fun isNetworkAvailable(): Boolean {
-        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val networkInfo: NetworkInfo? = connectivityManager.activeNetworkInfo
-        return (networkInfo != null && networkInfo?.type == ConnectivityManager.TYPE_WIFI)
-    }
+
 
     private fun updateDateInView(){
         val myFormat = "dd/MM/yyyy"

@@ -42,7 +42,7 @@ class MenuJourActivity : AppCompatActivity() {
         //menuj.text = menusjTab[i]*/
         loadDataMenujour()
         reserve.setOnClickListener({
-            startActivity(intentFor<ReserverActivity>("nom" to nom))
+            startActivity(intentFor<ReserverActivity>("id_resto" to id_restaurant, "nom" to nom))
         })
     }
 

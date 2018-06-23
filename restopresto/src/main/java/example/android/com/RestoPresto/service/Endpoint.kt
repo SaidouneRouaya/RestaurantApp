@@ -59,4 +59,8 @@ interface Endpoint {
 
     @POST("addCommande")
     fun addCommande(@Body commande:Commande): Call<String>
+
+    @POST("addLigneCommande")
+    fun addLigneCommande(@Body ligne_commande: Ligne_commande): Call<String>
+
 }

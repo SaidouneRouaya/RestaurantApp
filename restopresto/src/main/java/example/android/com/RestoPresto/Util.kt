@@ -38,7 +38,12 @@ class Util {
         ctx.startActivity(intent)
     }
 
-
+    //Vérifier si le wifi est activé
+    fun isNetworkAvailable(act :Activity): Boolean {
+        val connectivityManager = act.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo: NetworkInfo? = connectivityManager.activeNetworkInfo
+        return (networkInfo != null && networkInfo?.type == ConnectivityManager.TYPE_WIFI)
+    }
 
     /**
      * This function opens a web page
