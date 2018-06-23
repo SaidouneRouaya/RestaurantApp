@@ -12,30 +12,42 @@ import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_les_menus.*
 import android.support.design.widget.TabLayout
+import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.TextView
+import example.android.com.RestoPresto.R.array.ingredients
+import example.android.com.RestoPresto.dao.UserDao
 import example.android.com.RestoPresto.entities.User
 import example.android.com.RestoPresto.singleton.RoomService
+import kotlinx.android.synthetic.main.restaurant_layout.view.*
+import org.jetbrains.anko.contentView
+import org.jetbrains.anko.ctx
+import org.jetbrains.anko.design.tabItem
+import org.jetbrains.anko.find
 
 
 class LesMenusActivity : AppCompatActivity(){
 
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
-    var pref : SharedPreferences? =null
-   val  mDb = RoomService.appDatabase.getUserDao()
-   val  user = mDb.getUsersByID(pref!!.getInt("id_user",0))
+    var  user: User?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_les_menus)
-        pref =  this !!.getSharedPreferences("projetMobile", Context.MODE_PRIVATE)
+        var pref : SharedPreferences? =this!!.getSharedPreferences("projetMobile", Context.MODE_PRIVATE)
 
-
+        val mDb = RoomService.appDatabase.getUserDao()
+       user  = mDb.getUsersByID(pref!!.getInt("id_user",0))
         toolbar.setTitle(intent.getStringExtra("nom"))
+
         setSupportActionBar(toolbar)
         // Action Up
         val ab = getSupportActionBar()
         ab?.setDisplayHomeAsUpEnabled(true)
-        
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
@@ -44,6 +56,7 @@ class LesMenusActivity : AppCompatActivity(){
         // Loader les informations en local
         val menumodel = MenuModel()
         menumodel.remplirMenus()
+
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
         tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
     }
@@ -69,7 +82,7 @@ class LesMenusActivity : AppCompatActivity(){
     inner class SectionsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
 
-            return when (user.preference)  {
+            return when (user!!.preference)  {
            "vegetarien" -> {when (position) {
               0-> MenuVegetarienFragment()
                1-> MenuNormalFragment()
@@ -99,9 +112,10 @@ class LesMenusActivity : AppCompatActivity(){
             // Show 2s total pages.
             return 3
         }
-        override fun getPageTitle(position: Int): CharSequence {
 
-            return when (user.preference)  {
+        override fun getPageTitle(position: Int): CharSequence? {
+
+            return when (user!!.preference)  {
                 "vegetarien" -> {when (position) {
                     0-> "VEGITARIEN"
                     1-> "NORMAL"

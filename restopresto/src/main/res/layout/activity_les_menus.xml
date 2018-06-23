@@ -40,19 +40,22 @@
                 android:id="@+id/menu_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/menu_normal" />
+                android:text ="tab1"
+                 />
 
             <android.support.design.widget.TabItem
                 android:id="@+id/menu_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/menu_diabet" />
+                android:text ="tab2"
+            />
 
             <android.support.design.widget.TabItem
                 android:id="@+id/menu_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/menu_vegetarien" />
+                android:text ="tab3"
+                />
 
         </android.support.design.widget.TabLayout>
 

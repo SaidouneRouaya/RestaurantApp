@@ -6,6 +6,8 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
+import android.support.design.widget.TabItem
+import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -30,7 +32,9 @@ class MenuDiabetFragment: Fragment() {
         val id_restaurant = activity!!.intent.getIntExtra("id_restaurant",0)
         val menuModel =  ViewModelProviders.of(this).get(MenuModel::class.java)
         val listView= view.findViewById<ListView>(R.id.list_plats_diabet)
+
         val fav = view.findViewById<FloatingActionButton>(R.id.favoris)
+
         pref = activity!!.getSharedPreferences("projetMobile", Context.MODE_PRIVATE)
         menuModel.loadDataMenu(id_restaurant,activity!!,"Diabete",listView)
         val mDb = RoomService.appDatabase.getUserDao()
