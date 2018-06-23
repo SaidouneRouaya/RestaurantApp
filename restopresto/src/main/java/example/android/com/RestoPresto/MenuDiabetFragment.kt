@@ -27,23 +27,17 @@ class MenuDiabetFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-
         val view = inflater.inflate(R.layout.fragment_menu_diabet, container, false)
         val id_restaurant = activity!!.intent.getIntExtra("id_resto",0)
         val menuModel =  ViewModelProviders.of(this).get(MenuModel::class.java)
         val listView= view.findViewById<ListView>(R.id.list_plats_diabet)
 
-        val fav = view.findViewById<FloatingActionButton>(R.id.favoris)
+        val fav = view.findViewById<FloatingActionButton>(R.id.favorisD)
 
         pref = activity!!.getSharedPreferences("projetMobile", Context.MODE_PRIVATE)
-        menuModel.loadDataMenu(id_restaurant,activity!!,"Diabete",listView)
+        menuModel.loadDataMenu(id_restaurant,activity!!,"diabetique",listView)
         val mDb = RoomService.appDatabase.getUserDao()
-
         val user = mDb.getUsersByID(pref!!.getInt("id_user",0))
-        // ligne suivante à enlever
-        System.out.println("user name : "+user.nom)
-        System.out.println("user id : "+user.id_user)
-        System.out.println("user preference : "+user.preference)
 
         if ( user.preference== "diabetique") fav.visibility=GONE
 

@@ -25,6 +25,7 @@ import org.jetbrains.anko.contentView
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.design.tabItem
 import org.jetbrains.anko.find
+import org.jetbrains.anko.intentFor
 
 
 class LesMenusActivity : AppCompatActivity(){
@@ -67,6 +68,7 @@ class LesMenusActivity : AppCompatActivity(){
         return true
     }
 
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -76,6 +78,11 @@ class LesMenusActivity : AppCompatActivity(){
         if (id == R.id.action_settings) {
             return true
         }
+        if (id == R.id.action_commande)
+        {
+            startActivity(intentFor<CommanderActivity>("id_resto" to intent.getIntExtra("id_resto",0)))
+        }
+
         return super.onOptionsItemSelected(item)
     }
 
@@ -117,14 +124,14 @@ class LesMenusActivity : AppCompatActivity(){
 
             return when (user!!.preference)  {
                 "vegetarien" -> {when (position) {
-                    0-> "VEGITARIEN"
+                    0-> "VEGETARIEN"
                     1-> "NORMAL"
                     else->"DIABETIQUE"
                 }
                 }
                 "normal" -> {when (position) {
                     0-> "NORMAL"
-                    1-> "VEGITARIEN"
+                    1-> "VEGETARIEN"
                     else->"DIABETIQUE"
                 }
                 }
@@ -132,7 +139,7 @@ class LesMenusActivity : AppCompatActivity(){
                 else -> {when (position) {
                     0->"DIABETIQUE"
                     1-> "NORMAL"
-                    else-> "VEGITARIEN"
+                    else-> "VEGETARIEN"
                 }
                 }
                 }
