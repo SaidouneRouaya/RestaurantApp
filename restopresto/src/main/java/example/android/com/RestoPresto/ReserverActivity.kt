@@ -8,6 +8,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.view.View
 import android.widget.*
 import example.android.com.RestoPresto.database.AppDatabase
@@ -51,9 +52,9 @@ class ReserverActivity : AppCompatActivity() {
         numberpicker= this.numberPicker
         textview_date!!.text= "--/--/----"
         textview_time!!.text="--:--"
+        nom_prenom.editText!!.setText(preferences!!.getString("nom",""))
         numberPicker.minValue = 1
         numberPicker.maxValue = 10
-       // nom_prenom.editText!!.text = preferences!!.getString("nom")
         nom_resto.text= intent.getStringExtra("nom")
 
         //Initialisation de la variable
@@ -105,7 +106,7 @@ class ReserverActivity : AppCompatActivity() {
                 if (isNetworkAvailable())
                 {
                     val reservation = Reservation(date =date_textview.text.toString(),heure =time_textview.text.toString(),
-                            nb_personne = numberPicker.value, id_restaurant = id_restaurant+1, id_user = preferences!!.getInt("id_user",1),
+                            nb_personne = numberPicker.value, id_restaurant = id_restaurant, id_user = preferences!!.getInt("id_user",1),
                             id_reservation = 0)
                     System.out.println(reservation.date+"  "+reservation.nb_personne)
 //                    mDb!!.getReservationDao().addReservations(reservation)

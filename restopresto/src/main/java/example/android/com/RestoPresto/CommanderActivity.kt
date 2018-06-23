@@ -9,10 +9,14 @@ import example.android.com.RestoPresto.database.AppDatabase
 import example.android.com.RestoPresto.entities.Commande
 import example.android.com.RestoPresto.entities.Ligne_commande
 import example.android.com.RestoPresto.entities.Plat
+import example.android.com.RestoPresto.service.RetrofitService
 import example.android.com.RestoPresto.singleton.RoomService
 import kotlinx.android.synthetic.main.activity_commander.*
 import kotlinx.android.synthetic.main.plat_commande_layout.*
 import org.jetbrains.anko.toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class CommanderActivity : AppCompatActivity(){
     private var mDb: AppDatabase? = RoomService.appDatabase
@@ -30,10 +34,10 @@ class CommanderActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_commander)
         val ab = getSupportActionBar()
-        ab?.setDisplayHomeAsUpEnabled(true)
+        //ab?.setDisplayHomeAsUpEnabled(true)
         preferences = getSharedPreferences("projetMobile", Context.MODE_PRIVATE)
         // Récupération des variables passées en argument
-        id_restaurant =intent.getIntExtra("pos",1)
+        id_restaurant =intent.getIntExtra("id_resto",1)
         id_user = preferences!!.getInt("id_user",1)
         val listView= findViewById<ListView>(R.id.list_plats_cmd)
 
@@ -53,16 +57,20 @@ class CommanderActivity : AppCompatActivity(){
         }
         prix_total_cmd.setText(total.toString())
         valider.setOnClickListener({
-            openDialog()
+            if (commandes!!.isNotEmpty() && ligne_commande.isNotEmpty())
+                openDialog()
+            else
+                toast("Veuillez sélectionner des plats d'abord !")
         })
+
 
     }
     fun openDialog() {
-        var dialogCmd = ConfirmCmdDialogFragment()
+        var dialogCmd = ConfirmCmdDialogFragment.newInstance(commandes!!.get(0).id_cmd)
         dialogCmd.show(supportFragmentManager,"dialog")
     }
     fun loadData():  MutableMap<Ligne_commande,Plat> {
-        commandes = mDb!!.getCommandeDao().getCommandesByUserByRestaurant(id_user,id_restaurant+1)
+        commandes = mDb!!.getCommandeDao().getCommandesByUserByRestaurant(id_user,id_restaurant)
         var plat : Plat
         var liste_commandes = mutableMapOf<Ligne_commande,Plat>()
         System.out.println("je passe avant commandes.notEmpty "+id_restaurant)
@@ -87,16 +95,10 @@ class CommanderActivity : AppCompatActivity(){
             ligne_commande = mutableListOf()
             liste_commandes = mutableMapOf()
         }
-        /*cmdPlatTab = resources.getStringArray(R.array.plat_cmd)
-        cmdPrixTab=resources.getStringArray(R.array.prix_cmd)
-        cmdNbTab = resources.getStringArray(R.array.nb_cmd)
-        val list = mutableListOf<Plat>()
-        for (i in 0..cmdPlatTab.size - 1) {
-            //list.add(Plat(nom = cmdPlatTab[i], prix = cmdPrixTab[i], nbCmd = cmdNbTab[i]))
-            list.add(Plat(nom = cmdPlatTab[i], prix = 123.056))
-        }*/
         return liste_commandes
     }
+
+
 
 
 }

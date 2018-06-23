@@ -56,4 +56,7 @@ interface Endpoint {
 
     @POST("addReservation")
     fun addReservation(@Body reservation: Reservation):Call<String>
+
+    @POST("addCommande")
+    fun addCommande(@Body commande:Commande): Call<String>
 }

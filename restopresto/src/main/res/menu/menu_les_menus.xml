@@ -7,4 +7,10 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_commande"
+        android:orderInCategory="300"
+        android:title="Commande"
+        app:showAsAction="ifRoom"/>
 </menu>
+    <!-- android:icon="@drawable/ic_call_white_24dp"-->

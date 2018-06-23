@@ -31,7 +31,7 @@ class MenuModel:ViewModel() {
     {
         /*mDbWorkerThread = DbWorkerThread("dbWorkerThread")
         mDbWorkerThread.start()*/
-        menus = mDb!!.getMenuDao().getMenusByRestaurantAndType(id_restaurant+1,type)
+        menus = mDb!!.getMenuDao().getMenusByRestaurantAndType(id_restaurant,type)
 
         if (menus!!.isEmpty())
         {
@@ -53,7 +53,7 @@ class MenuModel:ViewModel() {
 
     fun getMenuFromRemote(id_restaurant: Int, activity: Activity, type:String, listviewid:ListView){
         //remplirRestos()
-        val call = RetrofitService.endpoint.getMenusByRestaurant(id_restaurant+1,type)
+        val call = RetrofitService.endpoint.getMenusByRestaurant(id_restaurant,type)
         call.enqueue(object : Callback<List<Menu>> {
             override fun onFailure(call: Call<List<Menu>>?, t: Throwable?) {
                 Toast.makeText(activity, "echec 1 !", Toast.LENGTH_SHORT).show()
@@ -61,7 +61,6 @@ class MenuModel:ViewModel() {
             override fun onResponse(call: Call<List<Menu>>?, response: Response<List<Menu>>?) {
                 if (response?.isSuccessful!!) {
                     val list: List<Menu> = response.body()!!
-                    System.out.println("je passe par menu remote")
                     getPlatsFromRemote(list.get(0).id_menu,activity,listviewid,id_restaurant)
                 } else {
                     Toast.makeText(activity, response.toString(), Toast.LENGTH_SHORT).show()
@@ -85,7 +84,7 @@ class MenuModel:ViewModel() {
                     //Toast.makeText(activity, listNormal.toList().get(0).nom, Toast.LENGTH_SHORT).show()
                     System.out.println("je passe par plat remote")
                     showMenu(activity,listviewid,listPlat,id_restaurant)
-                    //remplirMenus()
+                    remplirMenus()
                 } else {
                     Toast.makeText(activity, response.toString(), Toast.LENGTH_SHORT).show()
 

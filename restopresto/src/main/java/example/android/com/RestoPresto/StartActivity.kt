@@ -17,6 +17,10 @@ class StartActivity : AppCompatActivity() {
             if (pref.getBoolean("connected",false))
                 startActivity(intentFor<MainActivity>())
             else
-                    startActivity(intentFor<LoginActivity>()) }, 2000)
+                    startActivity(intentFor<LoginActivity>())
+            finish()
+        }, 2000)
+
     }
+
 }
