@@ -16,6 +16,7 @@ import example.android.com.RestoPresto.entities.Menu
 import example.android.com.RestoPresto.entities.Plat
 import example.android.com.RestoPresto.service.RetrofitService
 import example.android.com.RestoPresto.singleton.RoomService
+import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -52,7 +53,7 @@ class MenuNormalFragment : Fragment() {
 
                 val userM =   ViewModelProviders.of(this).get(UserModel::class.java)
                 userM.updateUserRemote (activity!!, user)
-
+                activity?.toast("Catégorie menu Normal marquée favourite ")
                 fav.visibility= View.GONE
             })
         }

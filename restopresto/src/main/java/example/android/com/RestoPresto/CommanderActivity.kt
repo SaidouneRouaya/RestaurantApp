@@ -79,7 +79,7 @@ class CommanderActivity : AppCompatActivity(){
         commandes = mDb!!.getCommandeDao().getCommandesByUserByRestaurant(id_user,id_restaurant)
         var plat : Plat
         var liste_commandes = mutableMapOf<Ligne_commande,Plat>()
-        System.out.println("je passe avant commandes.notEmpty "+id_restaurant)
+
         if (commandes!!.isNotEmpty())
         {
             ligne_commande = mDb!!.getLigneCommandeDao().getLigne_commandesByCommande(commandes!!.get(0).id_cmd)

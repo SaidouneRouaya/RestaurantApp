@@ -22,6 +22,7 @@ class RestaurantActivity : AppCompatActivity() {
 
         val resto = intent.getSerializableExtra("resto") as Restaurant?
         restaurantModel.restaurant=resto!!
+
         restaurantModel.displayDetail(this,resto!!)
 
         menujour.setOnClickListener({
