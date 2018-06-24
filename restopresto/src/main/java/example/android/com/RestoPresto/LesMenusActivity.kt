@@ -62,16 +62,7 @@ class LesMenusActivity : AppCompatActivity(){
 
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
         tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
-        intent.putExtra("id_resto" , id_resto)
-        System.out.println("id resto dans les menu pour l'envoyer est : "+id_resto)
 
-        if (getParent() == null) {
-            setResult( RESULT_OK, intent)
-            System.out.println("result_ok dans parent null: "+ RESULT_OK)
-        } else {
-            getParent().setResult(RESULT_OK,intent )
-            System.out.println("result_ok dans parent not null : "+ RESULT_OK)
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

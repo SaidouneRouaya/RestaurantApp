@@ -29,21 +29,10 @@ class MenuDesMenusActivity : AppCompatActivity() {
         })
         CV_menu.setOnClickListener({
 
-            startActivityForResult(intentFor<LesMenusActivity>("id_resto" to i,"nom" to nom),1)
+            startActivity(intentFor<LesMenusActivity>("id_resto" to i,"nom" to nom))
         })
         CV_formuleBinaire.setOnClickListener({
             startActivity(intentFor<FormuleBinaireActivity>("id_resto" to i,"nom" to nom))
         })
-    }
-
-    public override fun onActivityResult(requestCode: Int, resultCode: Int, int: Intent) {
-        super.onActivityResult(requestCode, resultCode, int)
-        if (requestCode == 1) {
-            if (resultCode ==RESULT_OK) {
-
-                i= int.getIntExtra("id_resto",0)
-                System.out.println("id resto dans menus des menus  est : "+i)
-            }
-        }
     }
 }

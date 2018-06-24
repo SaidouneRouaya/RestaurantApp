@@ -85,7 +85,9 @@
         <activity
             android:name=".LesMenusActivity"
             android:label="@string/title_activity_les_menus"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName="example.android.com.RestoPresto.MenuDesMenusActivity" >
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="example.android.com.RestoPresto.MenuDesMenusActivity" />
