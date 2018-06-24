@@ -29,6 +29,14 @@
                     android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
             </intent-filter>
         </service>
+        <service
+            android:exported="false"
+            android:name=".service.SynchroService">
+            <intent-filter>
+                <action
+                    android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
+            </intent-filter>
+        </service>
         <activity
     android:name=".MainActivity"
     android:theme="@style/AppThemeCustom">
