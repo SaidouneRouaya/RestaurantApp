@@ -51,7 +51,7 @@ class MenuDiabetFragment: Fragment() {
 
                 val userM =   ViewModelProviders.of(this).get(UserModel::class.java)
                 userM.updateUserRemote (activity!!, user)
-                activity?.toast("Catégorie menu Diabetique marquée favourite ")
+                activity?.toast("Catégorie menu Diabetique marquée favorite ")
                 fav.visibility=GONE
             })
         }

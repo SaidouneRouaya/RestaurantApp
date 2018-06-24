@@ -46,7 +46,7 @@ class MenuVegetarienFragment : Fragment(){
                 val userM =   ViewModelProviders.of(this).get(UserModel::class.java)
                 userM.updateUserRemote (activity!!, user)
 
-                activity?.toast("Catégorie menu Vegetarien marquée favourite ")
+                activity?.toast("Catégorie menu Vegetarien marquée favorite ")
                 fav.visibility= View.GONE
             })
         }
