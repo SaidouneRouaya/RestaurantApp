@@ -94,10 +94,9 @@ class MenuJourActivity : AppCompatActivity() {
             override fun onResponse(call: Call<List<Plat>>?, response: Response<List<Plat>>?){
                 if (response?.isSuccessful!!) {
                     val listPlat :List<Plat> = response.body()!!
-                    //Toast.makeText(activity, listNormal.toList().get(0).nom, Toast.LENGTH_SHORT).show()
-                    System.out.println("je passe par plat remote")
+
                     showMenuJour()
-                    //remplirMenus()
+
                 } else {
                    // Toast.makeText(this@MenuJourActivity, response.toString(), Toast.LENGTH_SHORT).show()
 

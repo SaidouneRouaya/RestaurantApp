@@ -16,6 +16,7 @@ import android.view.ViewGroup
 import android.widget.ListView
 import example.android.com.RestoPresto.singleton.RoomService
 import kotlinx.android.synthetic.main.fragment_menu_diabet.*
+import org.jetbrains.anko.toast
 
 /**
  * Created by er_sa on 4/22/2018.
@@ -50,7 +51,7 @@ class MenuDiabetFragment: Fragment() {
 
                 val userM =   ViewModelProviders.of(this).get(UserModel::class.java)
                 userM.updateUserRemote (activity!!, user)
-
+                activity?.toast("Catégorie menu Diabetique marquée favourite ")
                 fav.visibility=GONE
             })
         }

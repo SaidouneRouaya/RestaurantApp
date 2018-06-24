@@ -12,6 +12,7 @@ import android.widget.ListView
 import android.widget.TextView
 import example.android.com.RestoPresto.entities.Plat
 import example.android.com.RestoPresto.singleton.RoomService
+import org.jetbrains.anko.toast
 
 /**
  * Created by er_sa on 4/22/2018.
@@ -45,6 +46,7 @@ class MenuVegetarienFragment : Fragment(){
                 val userM =   ViewModelProviders.of(this).get(UserModel::class.java)
                 userM.updateUserRemote (activity!!, user)
 
+                activity?.toast("Catégorie menu Vegetarien marquée favourite ")
                 fav.visibility= View.GONE
             })
         }

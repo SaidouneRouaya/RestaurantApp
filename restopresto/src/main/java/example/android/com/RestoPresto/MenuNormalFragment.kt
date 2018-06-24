@@ -1,8 +1,9 @@
 package example.android.com.RestoPresto
 
-
+import android.app.Activity
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
@@ -11,7 +12,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import example.android.com.RestoPresto.entities.Menu
+import example.android.com.RestoPresto.entities.Plat
+import example.android.com.RestoPresto.service.RetrofitService
 import example.android.com.RestoPresto.singleton.RoomService
+import org.jetbrains.anko.toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.util.concurrent.ArrayBlockingQueue
 
 /**
  * Created by er_sa on 4/22/2018.
@@ -44,7 +53,7 @@ class MenuNormalFragment : Fragment() {
 
                 val userM =   ViewModelProviders.of(this).get(UserModel::class.java)
                 userM.updateUserRemote (activity!!, user)
-
+                activity?.toast("Catégorie menu Normal marquée favourite ")
                 fav.visibility= View.GONE
             })
         }

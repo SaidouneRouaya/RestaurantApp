@@ -39,8 +39,7 @@ class RestaurantAdapter(_ctx:Context, _listRestaurants:List<Restaurant>):BaseAda
         else {
             viewHolder = view.getTag() as ViewHolder
         }
-      //  viewHolder.image.setImageResource(listRestaurants.get(position).lien.toInt())
-        System.out.println(" Url est : "+baseUrl + listRestaurants.get(position).lien)
+
         Glide.with(ctx).load(baseUrl + listRestaurants.get(position).lien)
                 .into(viewHolder.image)
 

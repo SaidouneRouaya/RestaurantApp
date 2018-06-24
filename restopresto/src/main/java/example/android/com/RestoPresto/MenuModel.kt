@@ -55,6 +55,7 @@ class MenuModel:ViewModel() {
     fun getMenuFromRemote(id_restaurant: Int, activity: Activity, type:String, listviewid:ListView){
         //remplirRestos()
         val call = RetrofitService.endpoint.getMenusByRestaurant(id_restaurant,type)
+
         call.enqueue(object : Callback<List<Menu>> {
             override fun onFailure(call: Call<List<Menu>>?, t: Throwable?) {
                // Toast.makeText(activity!!, "echec 1 !", Toast.LENGTH_SHORT).show()
@@ -83,8 +84,7 @@ class MenuModel:ViewModel() {
             override fun onResponse(call: Call<List<Plat>>?, response: Response<List<Plat>>?){
                 if (response?.isSuccessful!!) {
                     val listPlat :List<Plat> = response.body()!!
-                    //Toast.makeText(activity, listNormal.toList().get(0).nom, Toast.LENGTH_SHORT).show()
-                    System.out.println("je passe par plat remote")
+
                     showMenu(activity,listviewid,listPlat,id_restaurant)
                     //remplirMenus()
                 } else {
@@ -107,7 +107,7 @@ class MenuModel:ViewModel() {
             override fun onResponse(call: Call<List<Contenir_menu>>?, response: Response<List<Contenir_menu>>?){
                 if (response?.isSuccessful!!) {
                     val listCM: List<Contenir_menu> = response.body()!!
-                    System.out.println("je passe par contenir")
+
                     for(c in listCM)
                     {
                         mDb!!.getContenirMenuDao().addContenir_menus(c)
@@ -123,7 +123,6 @@ class MenuModel:ViewModel() {
     {
         val menus : List<Menu> = mDb!!.getMenuDao().getMenus()
         if(menus.isEmpty()) {
-            System.out.println("je passe par la aussi")
         val call2 = RetrofitService.endpoint.getMenus()
         call2.enqueue(object : Callback<List<Menu>> {
             override fun onFailure(call: Call<List<Menu>>?, t: Throwable?) {
@@ -131,7 +130,6 @@ class MenuModel:ViewModel() {
             override fun onResponse(call: Call<List<Menu>>?, response: Response<List<Menu>>?){
                 if (response?.isSuccessful!!) {
                     val listCM: List<Menu> = response.body()!!
-                    System.out.println("je passe par menus menus la focntion")
                     for(m in listCM)
                     {
                         mDb!!.getMenuDao().addMenus(m)
@@ -154,10 +152,10 @@ class MenuModel:ViewModel() {
             override fun onResponse(call: Call<List<Plat>>?, response: Response<List<Plat>>?){
                 if (response?.isSuccessful!!) {
                     val listPlats: List<Plat> = response.body()!!
-                    System.out.println("taille ds plats :"+listPlats.size)
+
                     for(p in listPlats)
                     {
-                        System.out.println("plat numero"+p.id_plat)
+
                         mDb!!.getPlatDao().addPlats(p)
                     }
                     remplirContenirMenu()
@@ -174,7 +172,7 @@ class MenuModel:ViewModel() {
         var plat : Plat
         var liste_commandes = mutableMapOf<Plat,Ligne_commande>()
         var ligne_commande : List<Ligne_commande> = mutableListOf()
-        System.out.println("je passe avant commandes.notEmpty "+id_restaurant)
+
         if (commandes!!.isNotEmpty())
         {
             for (p in listPlats)

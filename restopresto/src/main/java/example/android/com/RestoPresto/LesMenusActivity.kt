@@ -1,6 +1,7 @@
 package example.android.com.RestoPresto
 
 
+import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
@@ -21,11 +22,11 @@ class LesMenusActivity : AppCompatActivity(){
 
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
     var  user: User?=null
-
+    var id_resto:Int=0
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-
+         id_resto = intent.getIntExtra("id_resto",0)
         setContentView(R.layout.activity_les_menus)
         var pref : SharedPreferences? =this!!.getSharedPreferences("projetMobile", Context.MODE_PRIVATE)
 
@@ -35,6 +36,7 @@ class LesMenusActivity : AppCompatActivity(){
 
         setSupportActionBar(toolbar)
         // Action Up
+
         val ab = getSupportActionBar()
         ab?.setDisplayHomeAsUpEnabled(true)
 
@@ -64,6 +66,7 @@ class LesMenusActivity : AppCompatActivity(){
 
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
         tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -84,8 +87,9 @@ class LesMenusActivity : AppCompatActivity(){
         }
         if (id == R.id.action_commande)
         {
-            startActivity(intentFor<CommanderActivity>("id_resto" to intent.getIntExtra("id_resto",0)))
+            startActivity(intentFor<CommanderActivity>("id_resto" to id_resto))
         }
+
 
         return super.onOptionsItemSelected(item)
     }

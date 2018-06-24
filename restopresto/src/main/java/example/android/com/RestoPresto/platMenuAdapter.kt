@@ -41,7 +41,6 @@ class platMenuAdapter (_ctx: Activity, _listplats:List<Plat>, _id_restaurant :In
         }
         val listeCmd = MenuModel().loadNbPlat(id_restaurant,ctx,listplats)
 
-        System.out.println(" Url est : "+baseUrl + listplats.get(position).lien)
         Glide.with(ctx).load(baseUrl + listplats.get(position).lien)
                 .into(viewHolder.image)
         viewHolder.nom.setText(listplats.get(position).nom)
