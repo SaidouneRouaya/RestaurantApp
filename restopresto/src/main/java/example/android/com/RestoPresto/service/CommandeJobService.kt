@@ -76,7 +76,7 @@ class CommandeJobService : JobService() {
                 RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder = NotificationCompat.Builder(ctx,"ssss")
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("Commande supprimée2")
+                .setContentTitle("Commande supprimée")
                 .setContentText(message)
                 .setAutoCancel(false)
                 .setSound(defaultSoundUri)

@@ -9,14 +9,9 @@ import example.android.com.RestoPresto.database.AppDatabase
 import example.android.com.RestoPresto.entities.Commande
 import example.android.com.RestoPresto.entities.Ligne_commande
 import example.android.com.RestoPresto.entities.Plat
-import example.android.com.RestoPresto.service.RetrofitService
 import example.android.com.RestoPresto.singleton.RoomService
 import kotlinx.android.synthetic.main.activity_commander.*
-import kotlinx.android.synthetic.main.plat_commande_layout.*
 import org.jetbrains.anko.toast
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class CommanderActivity : AppCompatActivity(){
     private var mDb: AppDatabase? = RoomService.appDatabase
@@ -26,7 +21,6 @@ class CommanderActivity : AppCompatActivity(){
     var preferences: SharedPreferences? = null
     var commandes: List<Commande>? = null
     var ligne_commande : List<Ligne_commande> = mutableListOf()
-    //var liste_commandes : Map<Ligne_commande,Plat>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_commander)

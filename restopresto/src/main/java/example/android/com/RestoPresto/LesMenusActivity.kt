@@ -12,19 +12,8 @@ import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_les_menus.*
 import android.support.design.widget.TabLayout
-import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.widget.TextView
-import example.android.com.RestoPresto.R.array.ingredients
-import example.android.com.RestoPresto.dao.UserDao
 import example.android.com.RestoPresto.entities.User
 import example.android.com.RestoPresto.singleton.RoomService
-import kotlinx.android.synthetic.main.restaurant_layout.view.*
-import org.jetbrains.anko.contentView
-import org.jetbrains.anko.ctx
-import org.jetbrains.anko.design.tabItem
-import org.jetbrains.anko.find
 import org.jetbrains.anko.intentFor
 
 

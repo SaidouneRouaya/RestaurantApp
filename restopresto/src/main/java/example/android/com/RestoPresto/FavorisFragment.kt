@@ -4,15 +4,10 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.support.constraint.ConstraintLayout
 import android.support.v7.app.AppCompatDialogFragment
 import android.widget.RadioButton
-import android.widget.RadioGroup
-import example.android.com.RestoPresto.database.AppDatabase
 import example.android.com.RestoPresto.singleton.RoomService
-import kotlinx.android.synthetic.main.fragment_favoris.*
 import org.jetbrains.anko.toast
 
 

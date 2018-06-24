@@ -25,7 +25,6 @@ class MenuModel:ViewModel() {
 
     // Gestion de SQLLite
     private var mDb: AppDatabase? = RoomService.appDatabase
-    private lateinit var mDbWorkerThread: DbWorkerThread
     var menus : List<Menu>? = null
     var plats : List<Plat>? = null
     var contenir_menu : List<Contenir_menu>? = null
@@ -33,8 +32,6 @@ class MenuModel:ViewModel() {
 
     fun loadDataMenu(id_restaurant: Int, activity: Activity, type:String, listviewid:ListView)
     {
-        /*mDbWorkerThread = DbWorkerThread("dbWorkerThread")
-        mDbWorkerThread.start()*/
         menus = mDb!!.getMenuDao().getMenusByRestaurantAndType(id_restaurant,type)
 
         if (menus!!.isEmpty())
@@ -60,7 +57,7 @@ class MenuModel:ViewModel() {
         val call = RetrofitService.endpoint.getMenusByRestaurant(id_restaurant,type)
         call.enqueue(object : Callback<List<Menu>> {
             override fun onFailure(call: Call<List<Menu>>?, t: Throwable?) {
-                Toast.makeText(activity!!, "echec 1 !", Toast.LENGTH_SHORT).show()
+               // Toast.makeText(activity!!, "echec 1 !", Toast.LENGTH_SHORT).show()
             }
             override fun onResponse(call: Call<List<Menu>>?, response: Response<List<Menu>>?) {
                 if (response?.isSuccessful!!) {
@@ -68,7 +65,7 @@ class MenuModel:ViewModel() {
                     val list: List<Menu> = response.body()!!
                     getPlatsFromRemote(list.get(0).id_menu,activity,listviewid,id_restaurant)
                 } else {
-                    Toast.makeText(activity, response.toString(), Toast.LENGTH_SHORT).show()
+                   // Toast.makeText(activity, response.toString(), Toast.LENGTH_SHORT).show()
 
                 }
             }
@@ -81,7 +78,7 @@ class MenuModel:ViewModel() {
         val call2 = RetrofitService.endpoint.getPlatByMenu(id_menu)
         call2.enqueue(object : Callback<List<Plat>> {
             override fun onFailure(call: Call<List<Plat>>?, t: Throwable?) {
-                Toast.makeText(activity!!, "echec 2 !", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(activity!!, "echec 2 !", Toast.LENGTH_SHORT).show()
             }
             override fun onResponse(call: Call<List<Plat>>?, response: Response<List<Plat>>?){
                 if (response?.isSuccessful!!) {
@@ -91,7 +88,7 @@ class MenuModel:ViewModel() {
                     showMenu(activity,listviewid,listPlat,id_restaurant)
                     //remplirMenus()
                 } else {
-                    Toast.makeText(activity, response.toString(), Toast.LENGTH_SHORT).show()
+                   // Toast.makeText(activity, response.toString(), Toast.LENGTH_SHORT).show()
 
                 }
             }
@@ -200,7 +197,6 @@ class MenuModel:ViewModel() {
     {
         val listView= listviewid
         val id_user = activity.getSharedPreferences("projetMobile", Context.MODE_PRIVATE).getInt("id_user",1)
-        //var liste_commandes = loadNbPlat(id_restaurant,activity,listPlats)
         val platNormalAdapter = platMenuAdapter(activity!!, listPlats,id_restaurant)
         listView.adapter = platNormalAdapter
         listView.setOnItemClickListener({adapterView, view, i, l ->

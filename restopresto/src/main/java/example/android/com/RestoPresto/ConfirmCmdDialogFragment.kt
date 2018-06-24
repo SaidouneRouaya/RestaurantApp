@@ -12,7 +12,6 @@ import example.android.com.RestoPresto.database.AppDatabase
 import example.android.com.RestoPresto.entities.Ligne_commande
 import example.android.com.RestoPresto.service.RetrofitService
 import example.android.com.RestoPresto.singleton.RoomService
-import kotlinx.android.synthetic.main.fragment_confirm_cmd_dialog.*
 import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
@@ -68,7 +67,7 @@ class ConfirmCmdDialogFragment : AppCompatDialogFragment() {
         val call2 = RetrofitService.endpoint.addCommande(commande)
         call2.enqueue(object : Callback<String> {
             override fun onFailure(call: Call<String>?, t: Throwable?) {
-                activity?.toast(t!!.message.toString())
+                //activity?.toast(t!!.message.toString())
             }
             override fun onResponse(call: Call<String>?, response: Response<String>?){
                 if (response?.isSuccessful!!) {
@@ -80,7 +79,7 @@ class ConfirmCmdDialogFragment : AppCompatDialogFragment() {
                         enregistrerLignesCommande(lc)
                     }
                 } else {
-                    activity!!.toast(response.message())
+                   // activity!!.toast(response.message())
                 }
             }
         })

@@ -1,9 +1,8 @@
 package example.android.com.RestoPresto
 
-import android.app.Activity
+
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
@@ -12,14 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import example.android.com.RestoPresto.entities.Menu
-import example.android.com.RestoPresto.entities.Plat
-import example.android.com.RestoPresto.service.RetrofitService
 import example.android.com.RestoPresto.singleton.RoomService
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.util.concurrent.ArrayBlockingQueue
 
 /**
  * Created by er_sa on 4/22/2018.

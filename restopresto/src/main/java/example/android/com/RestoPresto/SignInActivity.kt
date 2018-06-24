@@ -28,7 +28,7 @@ class SignInActivity : AppCompatActivity() {
                 call.enqueue(object: Callback<String>
                 {
                     override fun onFailure(call: Call<String>?, t: Throwable?) {
-                        toast("failure"+t!!.message.toString())
+                       // toast("failure"+t!!.message.toString())
                     }
 
                     override fun onResponse(call: Call<String>?, response: Response<String>?) {
@@ -36,8 +36,8 @@ class SignInActivity : AppCompatActivity() {
                             toast("Compte créé !")
                             startActivity(intentFor<LoginActivity>())
                         }
-                        else
-                            toast("nonsuccess"+response.message())
+                        /*else
+                            toast("nonsuccess"+response.message())*/
 
                     }
 

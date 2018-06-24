@@ -66,12 +66,12 @@ class nbCmdFragment : DialogFragment(), NumberPicker.OnValueChangeListener {
             }
         }
         val builder = AlertDialog.Builder(activity)
-        builder.setPositiveButton(R.string.valider, object : DialogInterface.OnClickListener {
+        builder.setPositiveButton("OK", object : DialogInterface.OnClickListener {
             override  fun onClick(dialog: DialogInterface, id: Int) {
                 if (commandes.isEmpty() && (nombrecmd!!.value != 0))
                 {
                     mDb!!.getCommandeDao().addCommandes(Commande(0,sdf.format(Date()),stf.format(Date()),id_restaurant,id_user,0))
-                    activity?.toast("job lancé ! ")
+                    //activity?.toast("job lancé ! ")
                     lancerJob()
                     commandes = mDb!!.getCommandeDao().getCommandesByUserByRestaurant(id_user,id_restaurant)
                     System.out.println("c : "+commandes.get(0).id_cmd+"  "+id_plat)

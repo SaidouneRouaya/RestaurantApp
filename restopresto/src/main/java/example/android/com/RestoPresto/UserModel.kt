@@ -17,16 +17,16 @@ class UserModel: ViewModel() {
             call.enqueue(object:Callback<String>
             {
                 override fun onFailure(call: Call<String>?, t: Throwable?) {
-                    act.toast("failure"+t!!.message.toString())
+                    //act.toast("failure"+t!!.message.toString())
                 }
 
                 override fun onResponse(call: Call<String>?, response: Response<String>?) {
-                    if(response?.isSuccessful!!){
+                   // if(response?.isSuccessful!!){
                      //  act.toast("Catégorie marquée comme favorite")
-                        act.toast("message du call: "+call.toString())
+                        //act.toast("message du call: "+call.toString())
 
-                    }else
-                        act.toast("nonsuccess "+response.message())
+                   // }else
+                       // act.toast("nonsuccess "+response.message())
 
                 }
             })

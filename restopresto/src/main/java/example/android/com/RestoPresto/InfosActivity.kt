@@ -47,9 +47,6 @@ class InfosActivity : AppCompatActivity(), OnMapReadyCallback, NavigationView.On
         val url  = "fb://page/218641444910278"
 
         val restaurantModel = ViewModelProviders.of(this).get(RestaurantModel::class.java)
-        /* restaurantModel.loadDetail(this, i)
-        val resto = restaurantModel.restaurant
-        */
         val resto = intent.getSerializableExtra("resto") as Restaurant
         restaurantModel.restaurant=resto
         restaurantModel.displayInfos(this,resto)

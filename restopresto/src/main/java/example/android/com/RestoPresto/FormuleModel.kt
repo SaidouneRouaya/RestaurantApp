@@ -19,15 +19,12 @@ class FormuleModel: ViewModel() {
 
     // Gestion de SQLLite
     private var mDb: AppDatabase? = RoomService.appDatabase
-    private lateinit var mDbWorkerThread: DbWorkerThread
     var formules : List<Formule>? = null
     var plats : List<Plat>? = null
     var contenir_formule : List<Contenir_formule>? = null
 
     fun loadDataFormule(id_restaurant: Int, activity: Activity, typeformule:String,typePlat:String, listviewid: ListView)
     {
-        /*mDbWorkerThread = DbWorkerThread("dbWorkerThread")
-        mDbWorkerThread.start()*/
         formules = mDb!!.getFormuleDao().getFormulesByRestaurant(id_restaurant,typeformule)
 
         if (formules!!.isEmpty())
@@ -56,7 +53,7 @@ class FormuleModel: ViewModel() {
         val call = RetrofitService.endpoint.getFormulesByRestaurant(id_restaurant+1,type)
         call.enqueue(object : Callback<List<Formule>> {
             override fun onFailure(call: Call<List<Formule>>?, t: Throwable?) {
-                Toast.makeText(activity, "echec 1 !", Toast.LENGTH_SHORT).show()
+               // Toast.makeText(activity, "echec 1 !", Toast.LENGTH_SHORT).show()
             }
             override fun onResponse(call: Call<List<Formule>>?, response: Response<List<Formule>>?) {
                 if (response?.isSuccessful!!) {
@@ -64,7 +61,7 @@ class FormuleModel: ViewModel() {
                     System.out.println("je passe par menu remote")
                     getPlatsFromRemote(list.get(0).id_formule,activity,listviewid,typePlat)
                 } else {
-                    Toast.makeText(activity, response.toString(), Toast.LENGTH_SHORT).show()
+                   // Toast.makeText(activity, response.toString(), Toast.LENGTH_SHORT).show()
 
                 }
             }
@@ -76,7 +73,7 @@ class FormuleModel: ViewModel() {
         val call2 = RetrofitService.endpoint.getPlatByFormule(id_formule,typePlat)
         call2.enqueue(object : Callback<List<Plat>> {
             override fun onFailure(call: Call<List<Plat>>?, t: Throwable?) {
-                Toast.makeText(activity!!, "echec 2 !", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(activity!!, "echec 2 !", Toast.LENGTH_SHORT).show()
             }
             override fun onResponse(call: Call<List<Plat>>?, response: Response<List<Plat>>?){
                 if (response?.isSuccessful!!) {
@@ -86,7 +83,7 @@ class FormuleModel: ViewModel() {
                     showFormule(activity,listviewid,listPlat)
                     //remplirMenus()
                 } else {
-                    Toast.makeText(activity, response.toString(), Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(activity, response.toString(), Toast.LENGTH_SHORT).show()
 
                 }
             }

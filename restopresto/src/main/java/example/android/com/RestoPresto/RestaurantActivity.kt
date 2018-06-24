@@ -16,9 +16,6 @@ class RestaurantActivity : AppCompatActivity() {
         val ab = getSupportActionBar()
         ab?.setDisplayHomeAsUpEnabled(true)
         val restaurantModel = ViewModelProviders.of(this).get(RestaurantModel::class.java)
-       /* val i = intent.getIntExtra("id_resto",0)
-        restaurantModel.loadDetail(this, i)
-        val resto = restaurantModel.restaurant*/
 
         val resto = intent.getSerializableExtra("resto") as Restaurant?
         restaurantModel.restaurant=resto!!

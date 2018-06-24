@@ -1,9 +1,7 @@
 package example.android.com.RestoPresto
 
-import android.app.Activity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ListView
 import android.widget.Toast
 import example.android.com.RestoPresto.database.AppDatabase
 import example.android.com.RestoPresto.entities.Menu
@@ -38,8 +36,6 @@ class MenuJourActivity : AppCompatActivity() {
         date=calendar.get(Calendar.DAY_OF_WEEK)
         id_restaurant = intent.getIntExtra("id_resto",0)
         val nom = intent.getStringExtra("nom")
-        /*val menusjTab = resources.getStringArray(R.array.menujour)
-        //menuj.text = menusjTab[i]*/
         loadDataMenujour()
         reserve.setOnClickListener({
             startActivity(intentFor<ReserverActivity>("id_resto" to id_restaurant, "nom" to nom))
@@ -73,7 +69,7 @@ class MenuJourActivity : AppCompatActivity() {
         val call = RetrofitService.endpoint.getMenuJourByRestaurant(id_resto,date)
         call.enqueue(object : Callback<List<Menu>> {
             override fun onFailure(call: Call<List<Menu>>?, t: Throwable?) {
-                Toast.makeText(this@MenuJourActivity, "echec 1 !", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this@MenuJourActivity, "echec 1 !", Toast.LENGTH_SHORT).show()
             }
             override fun onResponse(call: Call<List<Menu>>?, response: Response<List<Menu>>?) {
                 if (response?.isSuccessful!!) {
@@ -81,7 +77,7 @@ class MenuJourActivity : AppCompatActivity() {
                     System.out.println("je passe par menu remote")
                     getPlatsFromRemote(list.get(0).id_menu)
                 } else {
-                    Toast.makeText(this@MenuJourActivity, response.toString(), Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this@MenuJourActivity, response.toString(), Toast.LENGTH_SHORT).show()
 
                 }
             }
@@ -93,7 +89,7 @@ class MenuJourActivity : AppCompatActivity() {
         val call2 = RetrofitService.endpoint.getPlatByMenu(id_menu)
         call2.enqueue(object : Callback<List<Plat>> {
             override fun onFailure(call: Call<List<Plat>>?, t: Throwable?) {
-                Toast.makeText(this@MenuJourActivity, "echec 2 !", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this@MenuJourActivity, "echec 2 !", Toast.LENGTH_SHORT).show()
             }
             override fun onResponse(call: Call<List<Plat>>?, response: Response<List<Plat>>?){
                 if (response?.isSuccessful!!) {
@@ -103,7 +99,7 @@ class MenuJourActivity : AppCompatActivity() {
                     showMenuJour()
                     //remplirMenus()
                 } else {
-                    Toast.makeText(this@MenuJourActivity, response.toString(), Toast.LENGTH_SHORT).show()
+                   // Toast.makeText(this@MenuJourActivity, response.toString(), Toast.LENGTH_SHORT).show()
 
                 }
             }

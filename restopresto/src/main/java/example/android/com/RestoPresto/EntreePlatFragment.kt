@@ -9,8 +9,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_entree_plat.view.*
 
 
-class EntreePlatFragment : Fragment(/*var _ctxt: Activity*/) {
-   // var context?:Context =_ctxt
+class EntreePlatFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

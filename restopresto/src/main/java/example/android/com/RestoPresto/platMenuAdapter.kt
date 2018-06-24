@@ -56,9 +56,6 @@ class platMenuAdapter (_ctx: Activity, _listplats:List<Plat>, _id_restaurant :In
         else
             viewHolder.nb.setText("0")
 
-        /* if (viewHolder.nb.text.equals("0"))
-        {
-        viewHolder.nb.visibility = View.INVISIBLE}*/
 
    return view
     }

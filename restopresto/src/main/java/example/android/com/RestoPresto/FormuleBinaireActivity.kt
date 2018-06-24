@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.view.Menu
 import android.view.MenuItem
-
 import kotlinx.android.synthetic.main.activity_formule_binaire.*
 import org.jetbrains.anko.intentFor
 
