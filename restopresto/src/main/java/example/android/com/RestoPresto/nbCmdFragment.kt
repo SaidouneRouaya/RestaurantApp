@@ -121,7 +121,7 @@ class nbCmdFragment : DialogFragment(), NumberPicker.OnValueChangeListener {
                 .setExtras(args)
                 .setLifetime(Lifetime.FOREVER) // durée de vie
                 .setTrigger(Trigger.executionWindow(180, 185)) // temps de lancement
-                .setRetryStrategy(RetryStrategy.DEFAULT_LINEAR) // stratégie de relance
+                //.setRetryStrategy(RetryStrategy.DEFAULT_LINEAR) // stratégie de relance
                 .setConstraints(Constraint.ON_ANY_NETWORK).build() // mode WiFi uniquement
         System.out.print("je passe dans la programmation")
         dispatcher.mustSchedule(myJob)

@@ -31,7 +31,7 @@
         </service>
         <activity
     android:name=".MainActivity"
-    android:theme="@style/AppTheme">
+    android:theme="@style/AppThemeCustom">
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="example.android.com.RestoPresto.LoginActivity" />

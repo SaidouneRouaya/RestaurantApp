@@ -59,10 +59,11 @@ class MenuModel:ViewModel() {
 
         call.enqueue(object : Callback<List<Menu>> {
             override fun onFailure(call: Call<List<Menu>>?, t: Throwable?) {
-                Toast.makeText(activity, "echec 1 !", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity!!, "echec 1 !", Toast.LENGTH_SHORT).show()
             }
             override fun onResponse(call: Call<List<Menu>>?, response: Response<List<Menu>>?) {
                 if (response?.isSuccessful!!) {
+                    System.out.println("je passe par menu remote")
                     val list: List<Menu> = response.body()!!
                     getPlatsFromRemote(list.get(0).id_menu,activity,listviewid,id_restaurant)
                 } else {
@@ -86,7 +87,7 @@ class MenuModel:ViewModel() {
                     val listPlat :List<Plat> = response.body()!!
 
                     showMenu(activity,listviewid,listPlat,id_restaurant)
-                    remplirMenus()
+                    //remplirMenus()
                 } else {
                     Toast.makeText(activity, response.toString(), Toast.LENGTH_SHORT).show()
 

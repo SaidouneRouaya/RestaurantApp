@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ProjetMobile2.iml" filepath="$PROJECT_DIR$/ProjetMobile2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaKotlinExamples-master.iml" filepath="$PROJECT_DIR$/JavaKotlinExamples-master.iml" />
+      <module fileurl="file://C:\Users\start\Desktop\2CS\S2\MOB\TPs Prof\JavaKotlinExamples-master_list\JavaKotlinExamples-master\ProjetMobile2.iml" filepath="C:\Users\start\Desktop\2CS\S2\MOB\TPs Prof\JavaKotlinExamples-master_list\JavaKotlinExamples-master\ProjetMobile2.iml" />
       <module fileurl="file://$PROJECT_DIR$/appdebug/appdebug.iml" filepath="$PROJECT_DIR$/appdebug/appdebug.iml" />
       <module fileurl="file://$PROJECT_DIR$/restopresto/restopresto.iml" filepath="$PROJECT_DIR$/restopresto/restopresto.iml" />
     </modules>
