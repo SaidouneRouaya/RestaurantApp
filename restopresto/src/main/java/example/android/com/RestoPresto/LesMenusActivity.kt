@@ -53,6 +53,21 @@ class LesMenusActivity : AppCompatActivity(){
         // primary sections of the activity.
         mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
 
+        if (user!!.preference =="vegetarien")  {
+                tabs.getTabAt(0)!!.setText("VEGETARIEN")
+                tabs.getTabAt(1)!!.setText("NORMAL")
+                tabs.getTabAt(2)!!.setText("DIABETIQUE")
+            }
+        else if(user!!.preference =="normal") {
+            tabs.getTabAt(0)!!.setText("NORMAL")
+            tabs.getTabAt(1)!!.setText("VEGETARIEN")
+            tabs.getTabAt(2)!!.setText("DIABETIQUE")
+        }
+        else{
+            tabs.getTabAt(0)!!.setText("DIABETIQUE")
+            tabs.getTabAt(1)!!.setText("NORMAL")
+            tabs.getTabAt(2)!!.setText("VEGETARIEN")
+        }
         container.adapter = mSectionsPagerAdapter
         // Loader les informations en local
         val menumodel = MenuModel()
@@ -94,7 +109,6 @@ class LesMenusActivity : AppCompatActivity(){
               0-> MenuVegetarienFragment()
                1-> MenuNormalFragment()
                else->MenuDiabetFragment()
-
            }
            }
            "normal" -> {when (position) {

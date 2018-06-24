@@ -60,10 +60,11 @@ class MenuModel:ViewModel() {
         val call = RetrofitService.endpoint.getMenusByRestaurant(id_restaurant,type)
         call.enqueue(object : Callback<List<Menu>> {
             override fun onFailure(call: Call<List<Menu>>?, t: Throwable?) {
-                Toast.makeText(activity, "echec 1 !", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity!!, "echec 1 !", Toast.LENGTH_SHORT).show()
             }
             override fun onResponse(call: Call<List<Menu>>?, response: Response<List<Menu>>?) {
                 if (response?.isSuccessful!!) {
+                    System.out.println("je passe par menu remote")
                     val list: List<Menu> = response.body()!!
                     getPlatsFromRemote(list.get(0).id_menu,activity,listviewid,id_restaurant)
                 } else {
@@ -88,7 +89,7 @@ class MenuModel:ViewModel() {
                     //Toast.makeText(activity, listNormal.toList().get(0).nom, Toast.LENGTH_SHORT).show()
                     System.out.println("je passe par plat remote")
                     showMenu(activity,listviewid,listPlat,id_restaurant)
-                    remplirMenus()
+                    //remplirMenus()
                 } else {
                     Toast.makeText(activity, response.toString(), Toast.LENGTH_SHORT).show()
 

@@ -91,7 +91,11 @@ class LoginActivity : AppCompatActivity() {
                     if (response?.isSuccessful!!) {
                         val listUser :List<User> = response.body()!!
                         if (listUser.isNotEmpty())
-                        verifyPassword(password,listUser.get(0))
+                        {
+                            verifyPassword(password,listUser.get(0))
+                            mDb!!.getUserDao().addUsers(listUser.get(0))
+                        }
+
                         else
                         {
                             var focusView: View? = email
@@ -104,6 +108,9 @@ class LoginActivity : AppCompatActivity() {
                 }
             })
         }
+        else{
+            verifyPassword(password,user.get(0))
+        }
     }
 
     fun verifyPassword(strpassword:String, user:User)
@@ -114,7 +121,6 @@ class LoginActivity : AppCompatActivity() {
                     .putString("adresse",user.adresse).putString("email",user.mail)
                     .putString("favoris",user.preference).putString("nom",user.nom)
                     .apply()
-            mDb!!.getUserDao().addUsers(user)
             startActivity(intentFor<MainActivity>())
         }
         else
