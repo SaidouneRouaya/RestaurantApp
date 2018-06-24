@@ -13,6 +13,7 @@ import android.widget.RadioGroup
 import example.android.com.RestoPresto.database.AppDatabase
 import example.android.com.RestoPresto.singleton.RoomService
 import kotlinx.android.synthetic.main.fragment_favoris.*
+import org.jetbrains.anko.toast
 
 
 /**
@@ -32,36 +33,24 @@ class FavorisFragment : AppCompatDialogFragment() {
         val view = activity!!.layoutInflater?.inflate(R.layout.fragment_favoris, null)
         var builder : AlertDialog.Builder = AlertDialog.Builder(activity)
         var pref = activity!!.getSharedPreferences("projetMobile", Context.MODE_PRIVATE)
-        val linearLayout = activity!!.findViewById(R.id.layoutFrag) as ConstraintLayout
-        val radioGroup = RadioGroup(activity)
+//        val linearLayout = activity!!.findViewById(R.id.layoutFrag) as ConstraintLayout
 
-        radioGroup.orientation = RadioGroup.VERTICAL
-
-        //This option will be the default value
-        val radioButtonDefault = RadioButton(activity)
-        radioButtonDefault.text = "normal"
-        radioGroup.addView(radioButtonDefault)
-        radioGroup.check(radioButtonDefault.id)
         //These options will be the regular radio buttons
-        val options = arrayOf("vegetarien", "diabetique")
-
+        var radioD = view?.findViewById<RadioButton>(R.id.radioDiabet)
+        var radioN = view?.findViewById<RadioButton>(R.id.radioNormal)
+        var radioV = view?.findViewById<RadioButton>(R.id.radioVeg)
         //This option can't be unchecked
         val radioButtonAlwaysChecked = RadioButton(activity)
-        radioGroup.addView(radioDiabet)
-        radioGroup.addView(radioNormal)
-        radioGroup.addView(radioVeg)
 
         var fav  = pref.getString("favoris","")
         if (fav=="normal")
-            radioNormal.isChecked = true
+            radioN!!.isChecked = true
         else if (fav=="vegetarien")
-            radioVeg.isChecked = true
+            radioV!!.isChecked = true
         else
-            radioDiabet.isChecked=true
+            radioD!!.isChecked=true
 
-        radioGroup.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { radioGroup, i ->
-        })
-        linearLayout.addView(radioGroup)
+       // linearLayout.addView(radioGroup)
         val mDb = RoomService.appDatabase.getUserDao()
         val user = mDb.getUsersByID(pref!!.getInt("id_user",0))
         builder.setView(view).setTitle("Menu favori").setNegativeButton("Annuler", object : DialogInterface.OnClickListener {
@@ -71,24 +60,25 @@ class FavorisFragment : AppCompatDialogFragment() {
         })
                 .setPositiveButton("Confirmer", object : DialogInterface.OnClickListener {
                     override  fun onClick(dialog: DialogInterface, id: Int) {
-                        if (radioNormal.isChecked)
+                        if (radioN!!.isChecked)
                         {
                             user.preference="normal"
                             pref!!.edit().putString("favoris", "normal").apply()
                             mDb.updateUser(user.id_user,user.preference)
                         }
-                        else if (radioDiabet.isChecked)
+                        else if (radioD!!.isChecked)
                         {
                             user.preference="diabetique"
                             pref!!.edit().putString("favoris", "diabetique").apply()
                             mDb.updateUser(user.id_user,user.preference)
                         }
-                        else if (radioVeg.isChecked)
+                        else if (radioV!!.isChecked)
                         {
                             user.preference="vegetarien"
                             pref!!.edit().putString("favoris", "vegetarie").apply()
                             mDb.updateUser(user.id_user,user.preference)
                         }
+                        activity!!.toast("Favoris retenu !")
                     }
                 })
 

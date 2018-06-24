@@ -154,7 +154,7 @@ class MainActivity : AppCompatActivity() {
         if (id == R.id.favoris)
         {
             val newFragment:FavorisFragment = FavorisFragment.newInstance()
-            //newFragment.show(supportFragmentManager,"dialog")
+            newFragment.show(supportFragmentManager,"dialog")
         }
 
         return super.onOptionsItemSelected(item)
